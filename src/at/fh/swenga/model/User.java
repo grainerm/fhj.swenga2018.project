@@ -3,12 +3,14 @@ package at.fh.swenga.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,6 +21,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 public class User implements java.io.Serializable{
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Role role;
 
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private Set<Activity> activities;
