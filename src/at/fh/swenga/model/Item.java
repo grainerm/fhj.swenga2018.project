@@ -45,6 +45,9 @@ public class Item implements java.io.Serializable {
 	@Column(nullable = false, length = 6)
 	private int kalorien;
 	
+	@Column(nullable = false, length = 1)
+	private boolean validiert;
+	
 	
 
 	public Item(int itemID, String bezeichnung, int kalorien) {
