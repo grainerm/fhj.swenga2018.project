@@ -23,6 +23,7 @@
 		<logout logout-url="/logout" />
 	</http>
 	<authentication-manager>
+		<authentication-provider user-service-ref="userDetailsService" /> 
 			<authentication-provider>
 				<user-service>
 				<!-- {noop} see https://docs.spring.io/spring-security/site/docs/5.0.4.RELEASE/reference/htmlsingle/#ns-minimal -->
@@ -51,4 +52,6 @@
 	        />
 		</authentication-provider>
 	</authentication-manager-->
+	<b:bean id="userDetailsService"
+  class="//TODO"/>
 </b:beans>

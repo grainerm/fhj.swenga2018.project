@@ -36,6 +36,10 @@ public class StandardKalorienVerbrauch implements java.io.Serializable {
 	@Column(nullable = false, length = 2)
 	private int bisGroesse;
 
+	public StandardKalorienVerbrauch() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public StandardKalorienVerbrauch(int skvID, char geschlecht, int kalorien, int vonAlter, int bisAlter,
 			int vonGroesse, int bisGroesse) {
 		super();

@@ -44,21 +44,25 @@ public class User implements java.io.Serializable{
 	@Column(nullable = false, length = 1)
 	private boolean aktiv;
 	
-	@Column(nullable = false, length = 3)
+	@Column(nullable = true, length = 3)
 	private int groesse;
 	
-	@Column(nullable = false, length = 3)
+	@Column(nullable = true, length = 3)
 	private int gewicht;
 	
-	@Column(nullable = false, length = 3)
+	@Column(nullable = true, length = 3)
 	private int zielgewicht;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@DateTimeFormat(pattern = "dd.MM.yyyy")
 	private Date geburtstag;
 	
-	@Column(nullable = false, length = 1)
+	@Column(nullable = true, length = 1)
 	private char geschlecht;
+	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public User(String name, String vorname, String nachname, String passwort, boolean aktiv, int groesse, int gewicht,
 			int zielgewicht, Date geburtstag, char geschlecht) {
@@ -153,6 +157,15 @@ public class User implements java.io.Serializable{
 
 	public void setGeschlecht(char geschlecht) {
 		this.geschlecht = geschlecht;
+	}
+
+	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Override

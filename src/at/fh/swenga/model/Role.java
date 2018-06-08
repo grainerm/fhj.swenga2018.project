@@ -27,6 +27,10 @@ public class Role implements java.io.Serializable{
 	
 	private String bezeichnung;
 
+	public Role() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Role(int roleID, String bezeichnung) {
 		super();
 		this.roleID = roleID;

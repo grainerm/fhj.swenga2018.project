@@ -71,6 +71,15 @@ public class Food implements java.io.Serializable {
 		return true;
 	}
 
-	
+	public Food(int foodID, Item item, int menge) {
+		super();
+		this.foodID = foodID;
+		this.item = item;
+		this.menge = menge;
+	}
+
+	public Food() {
+		// TODO Auto-generated constructor stub
+	}
 	
 }

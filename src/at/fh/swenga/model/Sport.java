@@ -26,6 +26,10 @@ public class Sport implements java.io.Serializable {
 	@Column(nullable = false, length = 3)
 	private int dauer; //Minuten
 
+	public Sport() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Sport(int sportID, int dauer) {
 		super();
 		this.sportID = sportID;
