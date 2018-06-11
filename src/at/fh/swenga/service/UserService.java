@@ -1,21 +1,14 @@
 package at.fh.swenga.service;
 
-import java.util.Arrays;
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import at.fh.swenga.controller.UserDto;
-import at.fh.swenga.dao.UserDAO;
-import at.fh.swenga.model.Role;
-import at.fh.swenga.model.User;
 
-@Service
-public class UserService implements IUserService 
+public interface UserService 
 {
-	@Autowired
+	
+	void save(UserDto user);
+
+	/*@Autowired
     private UserDAO userDao; 
      
     @Transactional
@@ -36,6 +29,6 @@ public class UserService implements IUserService
             return true;
         }
         return false;
-    }
+    }*/
 
 }

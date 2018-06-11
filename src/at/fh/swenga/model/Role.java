@@ -13,8 +13,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Role")
-
-
 public class Role implements java.io.Serializable{ 
 	
 	@OneToMany(mappedBy="role", fetch=FetchType.EAGER)
@@ -31,9 +29,8 @@ public class Role implements java.io.Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Role(int roleID, String bezeichnung) {
+	public Role(String bezeichnung) {
 		super();
-		this.roleID = roleID;
 		this.bezeichnung = bezeichnung;
 	}
 
