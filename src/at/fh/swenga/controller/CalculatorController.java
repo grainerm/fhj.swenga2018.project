@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import at.fh.swenga.dao.RoleDAO;
 import at.fh.swenga.dao.UserDAO;
@@ -41,14 +42,9 @@ public class CalculatorController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/registration", method = RequestMethod.GET)
-	public String showRegistration() {
-		return "registration";
-	}
-	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	@Transactional
-    public String registration(@Valid UserDto newUser, BindingResult bindingResult, Model model) 
+    public String registration(@Valid UserDto newUser, BindingResult bindingResult, RedirectAttributes attributes) 
 	{
 		if(roleDao.getRole(1)==null)
 		{
@@ -65,14 +61,16 @@ public class CalculatorController {
 			Role guest = new Role("ROLE_GUEST");
 			roleDao.persist(guest);
 		}
-		//model.addAttribute("user", user);
+		
         if (bindingResult.hasErrors()) {
             return "error";
         }
+        
+        attributes.addFlashAttribute("success", "Account wurde erstellt!");
 
         userService.save(newUser);
 
-        return "forward:/login";
+        return "redirect:/login";
     }
 	
 

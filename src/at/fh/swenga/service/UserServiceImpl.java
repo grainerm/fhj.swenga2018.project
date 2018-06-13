@@ -19,17 +19,24 @@ public class UserServiceImpl implements UserService
 	@Override
 	public void save(UserDto userDto) 
 	{
-		User user = userDao.getUser(userDto.getNickname());
-		if(user == null)
+		try
 		{
-			user = new User();
-			user.setName(userDto.getNickname());
-			user.setPasswort(userDto.getPasswort());
-			user.setVorname(userDto.getVorname());
-			user.setNachname(userDto.getNachname());
-			user.setAktiv(false);
-			user.setRole(roleDao.getRole(1));
-			userDao.persist(user);
+			User user = userDao.getUser(userDto.getNickname());
+			if(user == null)
+			{
+				user = new User();
+				user.setName(userDto.getNickname());
+				user.setPasswort(userDto.getPasswort());
+				user.setVorname(userDto.getVorname());
+				user.setNachname(userDto.getNachname());
+				user.setAktiv(false);
+				user.setRole(roleDao.getRole(1));
+				userDao.persist(user);
+			}
+		}
+		catch(Exception ex)
+		{
+
 		}
 	}
 

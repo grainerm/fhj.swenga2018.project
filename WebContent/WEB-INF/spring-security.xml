@@ -2,15 +2,20 @@
 <b:beans xmlns:b="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 							http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 							http://www.springframework.org/schema/security 
-							http://www.springframework.org/schema/security/spring-security.xsd">
+							http://www.springframework.org/schema/security/spring-security.xsd							
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context.xsd">
 
+	
 	<http>
-		<csrf disabled="true" />
+		<csrf />
 		<intercept-url pattern="/login" access="permitAll" />
-		<intercept-url pattern="/registration" access="permitAll" />
+		<intercept-url pattern="/registration"
+			access="permitAll" />
 		<intercept-url pattern="/fillUsers" access="permitAll" />
 		<intercept-url pattern="/images/**" access="permitAll" />
 
@@ -26,7 +31,8 @@
 		<logout logout-url="/logout" />
 	</http>
 	<authentication-manager>
-		<authentication-provider user-service-ref="userDetailsService" /> 
+		<authentication-provider
+			user-service-ref="userDetailsService" />
 		<authentication-provider>
 			<user-service>
 				<!-- {noop} see https://docs.spring.io/spring-security/site/docs/5.0.4.RELEASE/reference/htmlsingle/#ns-minimal -->
@@ -39,6 +45,7 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
+
 	<!--authentication-manager> <authentication-provider> <password-encoder 
 		hash="bcrypt" /> <jdbc-user-service data-source-ref="dataSource" users-by-username-query=" 
 		SELECT username, password, CASE enabled WHEN 1 THEN 'true' ELSE 'false' END 
@@ -46,6 +53,11 @@
 		u.username, ur.role FROM users u INNER JOIN users_user_roles u2r ON u.id 
 		= u2r.users_id INNER JOIN user_roles ur ON u2r.userRoles_id = ur.id WHERE 
 		u.username=?;" /> </authentication-provider> </authentication-manager -->
-<b:bean id="userDetailsService"
-  class="at.fh.swenga.service.UserDetailsServiceImpl"/>
+		
+	<!-- - POJOs labeled with the @Controller and @Service annotations are auto-detected. -->
+	<!-- >context:component-scan base-package="at.fh.swenga" /-->
+	<b:bean id="userDetailsService"
+		class="at.fh.swenga.service.UserDetailsServiceImpl" />
 </b:beans>
+
+	
