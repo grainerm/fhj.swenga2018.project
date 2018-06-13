@@ -5,7 +5,7 @@
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">Calories Calculator</a>
+                    <a class="navbar-brand" th:href="@{/}">Calories Calculator</a>
                 </div>
 
                 <ul class="nav navbar-right navbar-top-links" style="margin-right:20px">
@@ -31,7 +31,7 @@
                 <ul class="nav" id="side-menu">
                     
                     <li>
-                        <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                        <a th:href="@{/}" class="active"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
                     </li>
                     <li>
                         <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i>Activities</a>

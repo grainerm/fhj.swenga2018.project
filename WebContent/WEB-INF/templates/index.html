@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-	><link rel="stylesheet" type="text/css" href="resources/style.css"/>
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="stylesheet" type="text/css" href="resources/style.css" />
 <head>
 <div th:replace="~{includes/bootstrap :: bootstrapMeta}" />
 <title>Calories Calculator</title>
 <div th:replace="~{includes/bootstrap :: bootstrapCSS}" />
 
- 
+
 </head>
-<body >
+<body>
 	<div class="container" role="main">
 
 
@@ -20,8 +20,9 @@
 		<!--  Error message ----------------------------------------------------------- -->
 
 		<!--  Warning message ----------------------------------------------------------- -->
-		<div th:unless="${warningMessage} == null" th:utext="${warningMessage}"
-			class="alert alert-warning" role="warning"></div>
+		<div th:unless="${warningMessage} == null"
+			th:utext="${warningMessage}" class="alert alert-warning"
+			role="warning"></div>
 		<!--  Warning message ----------------------------------------------------------- -->
 
 		<!--   message ----------------------------------------------------------- -->
@@ -33,60 +34,80 @@
 	</div>
 	<div class="container" role="main">
 		<div class="row">
-		<div class="col-md-4 col-md-offset-6" style="margin-top:50px">
+			<div class="col-md-4 col-md-offset-6" style="margin-top: 40px">
 				<div class="container">
-				<h1>Hello Miriam!</h1>
-                        <div class="panel panel-default">
-                            <div class="panel-heading overview">
-                                Overview Table
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body calories">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <!--  thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Username</th>
-                                            </tr>
-                                        </thead>-->
-                                        <tbody>
-                                            <tr>
-                                              
-                                                <th>Calories burnt:</td>
-                                                <td>3000</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                
-                                                <th>Lost weight:</td>
-                                                <td>2kg</td>
-                                                
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.table-responsive -->
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                        <button class="btn btn-secondary btn-sm pull-right"><i class="fa fa-download"></i> Download Report</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-offset-6">
-                    <div class="container">
-                    <h1>sjflkdsjflsdjfldsfjs</h1>
-                    </div>
-                    </div>
-                    </div>
-                   
+					<h1>Hello Miriam!</h1>
+					<div class="panel panel-default">
+						<div class="panel-heading overview">What you have reached
+							today:</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body calories">
+							<div class="table-responsive">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th>Calories burnt:
+											<td>3000</td>
+										</tr>
+										<tr>
+											<th>Weight lost:
+											<td>2kg</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.table-responsive -->
 
-		
-	<!--  End of container -->
-	<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
+						</div>
+						<!-- /.panel-body -->
+						<button class="btn btn-secondary btn-sm pull-right"
+							style="margin: 5px 0 5px 0">
+							<i class="fa fa-download"></i> Download Report
+						</button>
+					</div>
+					<!-- /.panel -->
+
+				</div>
+			</div>
+
+
+			<div class="col-md-4 col-md-offset-6">
+				<div class="container">
+					<div class="panel panel-default">
+						<div class="panel-heading">Calories Consumption</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<div id="donut-chart">
+							<!-- http://morrisjs.github.io/morris.js/donuts.html -->
+							</div>
+						</div>
+						<!-- /.panel-body -->
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+		<!--  End of container -->
+		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
+<script>new Morris.Donut({
+	  // ID of the element in which to draw the chart.
+	  element: 'donut-chart',
+	  // Chart data records -- each entry in this array corresponds to a point on
+	  // the chart.
+	  data: [
+	    {label: "Calories left", value: 12},
+	    {label: "Calories Eaten", value: 30}
+	  ],
+	  
+	  colors: ["#0778ce", "#0f1cce"],
+	  
+	 
+	});</script>
 </html>
+
