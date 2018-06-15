@@ -26,11 +26,9 @@
 								<h2 style="text-align: center; margin-bottom: 35px">Please
 									Sign In</h2>
 							</div>
-							<div th:if="${param.error}" class="alert alert-danger">Invalid
-								username and password.</div>
+							<div th:if="${param.error}" class="alert alert-danger">Benutzername oder Passwort ung&uuml;ltig!</div>
 
-							<div th:if="${param.logout}" class="alert alert-success">You
-								have been logged out.</div>
+							<div th:if="${param.logout}" class="alert alert-success">Sie wurden abgemeldet!</div>
 							<div class="form-group">
 								<input type="text" id="username" class="form-control"
 									placeholder="Username" required autofocus name="username">
@@ -53,10 +51,11 @@
 				<div class="login-panel panel panel-default"
 					style="margin-left: 150px">
 					<div class="panel-heading" style="width: 350px">
-						<form th:action="@{/login}" method="post">
+						<form th:action="@{/registration}" method="post">
 							<h3 style="text-align: center; margin-bottom: 30px">Or
 								Create a New Account</h3>
-
+							<div th:if="${exists}" th:text="${exists}" class="alert alert-danger"/>
+							<div th:if="${registered}" th:text="${registered}" class="alert alert-success"/>
 							<div class="form-group">
 								<input type="text" id="name" name="nickname"
 									class="form-control" placeholder="User"

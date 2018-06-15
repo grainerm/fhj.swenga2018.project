@@ -46,6 +46,8 @@ public class CalculatorController {
 	@Transactional
     public String registration(@Valid UserDto newUser, BindingResult bindingResult, RedirectAttributes attributes) 
 	{
+		boolean error = false;
+		
 		if(roleDao.getRole(1)==null)
 		{
 			Role admin = new Role("ROLE_ADMIN");
@@ -66,10 +68,14 @@ public class CalculatorController {
             return "error";
         }
         
-        attributes.addFlashAttribute("success", "Account wurde erstellt!");
 
-        userService.save(newUser);
-
+        if(userService.exists(newUser.getNickname()))
+        	attributes.addFlashAttribute("exists", "User existiert bereits!");
+        else
+        {
+        	userService.save(newUser);
+            attributes.addFlashAttribute("registered", "Account wurde erstellt!");
+        }
         return "redirect:/login";
     }
 	

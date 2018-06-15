@@ -20,29 +20,26 @@ public class UserServiceImpl implements UserService
 	PasswordEncoder passwordEncoder;
 
 	@Override
-	public void save(UserDto userDto) 
+	public void save(UserDto userDto)
 	{
-		try
-		{
-			User user = userDao.getUser(userDto.getNickname());
-			if(user == null)
-			{
-				user = new User();
-				user.setName(userDto.getNickname());
-				user.setPasswort(passwordEncoder.encode(userDto.getPasswort()));
-				user.setVorname(userDto.getVorname());
-				user.setNachname(userDto.getNachname());
-				user.setAktiv(true);
-				user.setRole(roleDao.getRole(1));
-				userDao.persist(user);
-			}
-		}
-		catch(Exception ex)
-		{
+		User user = new User();
+		user.setName(userDto.getNickname());
+		user.setPasswort(passwordEncoder.encode(userDto.getPasswort()));
+		user.setVorname(userDto.getVorname());
+		user.setNachname(userDto.getNachname());
+		user.setAktiv(true);
+		user.setRole(roleDao.getRole(1));
+		userDao.persist(user);
 
-		}
 	}
 
-
+	public boolean exists(String nickname)
+	{
+		User user = userDao.getUser(nickname);
+		if(user == null)
+			return false;
+		else
+			return true;
+	}
 
 }
