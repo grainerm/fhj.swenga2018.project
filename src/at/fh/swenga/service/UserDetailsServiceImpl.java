@@ -1,7 +1,7 @@
 package at.fh.swenga.service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,16 +24,15 @@ public class UserDetailsServiceImpl implements UserDetailsService
 
     public UserDetails loadUserByUsername(String nickname) throws UsernameNotFoundException 
     {
-    	System.out.println("________________________________"+ nickname);
         User user = userDao.getUser(nickname);
         
         if(user == null)
         	throw new UsernameNotFoundException("Kein User mit diesem Namen gefunden!");
 
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getBezeichnung()));
 
-        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPasswort(), grantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPasswort(), user.isAktiv(), true, true, true, grantedAuthorities);
     }
 
 }

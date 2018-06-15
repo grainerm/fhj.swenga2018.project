@@ -1,6 +1,7 @@
 package at.fh.swenga.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import at.fh.swenga.controller.UserDto;
@@ -15,6 +16,8 @@ public class UserServiceImpl implements UserService
 	private UserDAO userDao;
 	@Autowired
 	private RoleDAO roleDao;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@Override
 	public void save(UserDto userDto) 
@@ -26,10 +29,10 @@ public class UserServiceImpl implements UserService
 			{
 				user = new User();
 				user.setName(userDto.getNickname());
-				user.setPasswort(userDto.getPasswort());
+				user.setPasswort(passwordEncoder.encode(userDto.getPasswort()));
 				user.setVorname(userDto.getVorname());
 				user.setNachname(userDto.getNachname());
-				user.setAktiv(false);
+				user.setAktiv(true);
 				user.setRole(roleDao.getRole(1));
 				userDao.persist(user);
 			}
