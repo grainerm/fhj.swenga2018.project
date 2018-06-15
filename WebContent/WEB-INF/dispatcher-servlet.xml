@@ -33,7 +33,6 @@
 
 	<!-- JSR-303/JSR-349 support will be detected on classpath and enabled automatically -->
 	<mvc:annotation-driven />
-		
 
 	<mvc:default-servlet-handler />
 
@@ -59,6 +58,10 @@
 	<bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="templateEngine" />
 	</bean>
+
+
+	
+
 
 	<bean
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
