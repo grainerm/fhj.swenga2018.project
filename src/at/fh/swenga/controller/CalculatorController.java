@@ -14,10 +14,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CalculatorController {     
 	       
 
-	@RequestMapping(value = { "/", "list" })
+	@RequestMapping(value = { "/" })
 	public String index(Model model) { 
 
-		return "index";
+		return "index"; 
+	}
+	
+	@RequestMapping(value = { "/settings" })
+	public String settings(Model model) { 
+
+		return "settings"; 
+	}
+	
+	@RequestMapping(value = { "/activities" })
+	public String activities(Model model) { 
+ 
+		return "activities";
+	}
+	
+	@RequestMapping(value = { "/items" })
+	public String items(Model model) { 
+ 
+		return "items";
+	}
+	
+	@RequestMapping(value = { "/journal" })
+	public String journal(Model model) { 
+
+		return "journal";
+	}
+	
+	@RequestMapping(value = { "/guestbook" })
+	public String guestbook(Model model) { 
+
+		return "guestbook";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
