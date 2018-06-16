@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<div th:replace="~{includes/bootstrap :: bootstrapMeta}" />
+<title>Calories Calculator</title>
+<div th:replace="~{includes/bootstrap :: bootstrapCSS}" />
+
+
+
+</head>
+<body>
+	<div class="container" role="main">
+
+
+		<!--  Error message ----------------------------------------------------------- -->
+		<div th:unless="${errorMessage} == null" th:utext="${errorMessage}"
+			class="alert alert-danger" role="alert"></div>
+		<!--  Error message ----------------------------------------------------------- -->
+
+		<!--  Warning message ----------------------------------------------------------- -->
+		<div th:unless="${warningMessage} == null"
+			th:utext="${warningMessage}" class="alert alert-warning"
+			role="warning"></div>
+		<!--  Warning message ----------------------------------------------------------- -->
+
+		<!--   message ----------------------------------------------------------- -->
+		<div th:unless="${message} == null" th:utext="${message}"
+			class="alert alert-success" role="warning"></div>
+		<!--   message ----------------------------------------------------------- -->
+
+		<nav th:replace="~{includes/navbar.html :: navigation}"></nav>
+	</div>
+	<div class="container" role="main">
+		<div class="row">
+		<div th:text="${#dates.format(#dates.createNow(),'dd-MM-YYYY')}" style="margin-top:100px; margin-left: 100px; font-size:80px">
+		
+		</div>
+			<div class="col-md-8 col-md-offset-1" style="margin-top: 20px">
+				
+					<h1>Calculate how much you can still eat today!</h1>
+					<div class="panel panel-default">
+						<div class="panel-heading overview">What do you have eaten
+							so far?</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body ">
+							
+							<!-- /.table-responsive -->
+							
+							<div class="form-group">
+                                                <label>Food/Drink</label>
+                                                <select class="form-control">
+                                                    <option>Beer</option>
+                                                    <option>Schnitzl</option>
+                                                    <option>Bread</option>
+                                                    <option>Salad</option>
+                                                    <option>Apple</option>
+                                                </select>
+                                            </div>
+                                <div class="form-group">
+                                                <label>Number</label>
+                                                <select class="form-control">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>            
+
+						</div>
+						<!-- /.panel-body -->
+						<button type="submit" class="btn btn-secondary btn-sm pull-right" style="margin: 5px 0 5px 0">
+							<i class="fa "></i> Add to list
+						</button>
+					</div>
+					
+					<!-- /.panel -->
+
+				
+			</div>
+
+
+			<div class="col-md-8 col-md-offset-1">
+				
+					<div class="panel panel-default">
+						<div class="panel-heading">What kind of sports have you done?</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							
+					<div class="form-group">
+                                                <label>Activity</label>
+                                                <select class="form-control">
+                                                    <option>Swimming</option>
+                                                    <option>Jogging</option>
+                                                    <option>Biking</option>
+                                                    <option>Yoga</option>
+                                                    <option>Sleeping</option>
+                                                </select>
+                                            </div>
+                                <div class="form-group">
+                                                <label>Number</label>
+                                                <select class="form-control">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>    
+					
+						</div>
+						<!-- /.panel-body -->
+						<button type="submit" class="btn btn-secondary btn-sm pull-right" style="margin: 5px 0 5px 0">
+							<i class="fa "></i> Add to list
+						</button>
+						
+					</div>
+			</div>
+			
+			
+		
+		
+		
+		
+		<div class="col-md-8 col-md-offset-1">
+			<div class="panel panel-default">
+                            <div class="panel-heading">
+                                Overview
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Activity/Food</th>
+                                                <th>Time (minutes)/kCl</th>
+                                                <th>Sum</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Swimming</td>
+                                                <td>60</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Beer</td>
+                                                <td>7348945</td>
+                                                <td>5</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Bread</td>
+                                                <td>1234</td>
+                                                <td>3</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Bread</td>
+                                                <td>1234</td>
+                                                <td>3</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Bread</td>
+                                                <td>1234</td>
+                                                <td>3</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Bread</td>
+                                                <td>1234</td>
+                                                <td>3</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                            <button type="submit" class="btn btn-secondary btn-sm pull-right"
+							style="margin: 5px 0 5px 0">
+							<i class="fa "></i>Calculate
+						</button>
+                        </div>
+					</div>
+					
+					
+					<div class="col-md-4 pull-right" style="margin-right: -100px; ">
+					<div id="line-chart"></div>
+					</div></div>
+
+
+		<!--  End of container -->
+		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
+</body>
+<script>new Morris.Bar({
+	  // ID of the element in which to draw the chart.
+	  element: 'line-chart',
+	  // Chart data records -- each entry in this array corresponds to a point on
+	  // the chart.
+	  data: [
+		    { y: 'Today', a: 1800, b: 200 }
+		   
+		    
+		  ],
+		  xkey: 'y',
+		  ykeys: ['a', 'b'],
+		  labels: ['Daily consuption', 'Left over']
+		});</script>
+
+</html>
+

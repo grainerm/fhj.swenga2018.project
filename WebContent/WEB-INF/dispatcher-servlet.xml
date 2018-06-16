@@ -33,13 +33,15 @@
 
 	<!-- JSR-303/JSR-349 support will be detected on classpath and enabled automatically -->
 	<mvc:annotation-driven />
+	<mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
 
 	<mvc:default-servlet-handler />
-
+	
+	           
 	<bean id="templateResolver"
 		class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
 		<property name="prefix" value="/WEB-INF/templates/" />
-		<property name="suffix" value=".html" />
+		<property name="suffix" value=".html" />	
 		<property name="templateMode" value="HTML" />
 		<property name="cacheable" value="false" />
 	</bean>
