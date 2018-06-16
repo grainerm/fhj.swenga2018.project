@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<div th:replace="~{includes/bootstrap :: bootstrapMeta}" />
+<title>Calories Calculator</title>
+<div th:replace="~{includes/bootstrap :: bootstrapCSS}" />
+
+
+
+</head>
+<body>
+	<div class="container" role="main">
+
+
+		<!--  Error message ----------------------------------------------------------- -->
+		<div th:unless="${errorMessage} == null" th:utext="${errorMessage}"
+			class="alert alert-danger" role="alert"></div>
+		<!--  Error message ----------------------------------------------------------- -->
+
+		<!--  Warning message ----------------------------------------------------------- -->
+		<div th:unless="${warningMessage} == null"
+			th:utext="${warningMessage}" class="alert alert-warning"
+			role="warning"></div>
+		<!--  Warning message ----------------------------------------------------------- -->
+
+		<!--   message ----------------------------------------------------------- -->
+		<div th:unless="${message} == null" th:utext="${message}"
+			class="alert alert-success" role="warning"></div>
+		<!--   message ----------------------------------------------------------- -->
+
+		<nav th:replace="~{includes/navbar.html :: navigation}"></nav>
+	</div>
+	<div class="container" role="main">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-1" style="margin-top: 40px">
+				
+					<h1>Create new items</h1>
+					<div class="panel panel-default">
+						<div class="panel-heading overview">Food/Drink</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form role="form">
+                                            <div class="form-group">
+                                                <label class="control-label" >Name</label>
+                                                <input type="text" class="form-control" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Calories</label>
+                                                <input type="number" class="form-control">
+                                            </div>
+                                            
+                                        </form>
+							<!-- /.table-responsive -->
+
+						</div>
+						<!-- /.panel-body -->
+						<button type="submit" class="btn btn-secondary btn-sm pull-right" style="margin: 5px 0 5px 0">
+							<i class="fa "></i> Create new item
+						</button>
+					</div>
+					<!-- /.panel -->
+
+				
+			</div>
+
+
+			<div class="col-md-6 col-md-offset-1">
+				
+					<div class="panel panel-default">
+						<div class="panel-heading">Activity</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<form role="form">
+                                            <div class="form-group">
+                                                <label class="control-label" >Name</label>
+                                                <input type="text" class="form-control" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Burnt calories per hour</label>
+                                                <input type="number" class="form-control">
+                                            </div>
+                                            
+                                        </form>
+							<!-- /.table-responsive -->
+
+						</div>
+						<!-- /.panel-body -->
+						<button type="submit" class="btn btn-secondary btn-sm pull-right" style="margin: 5px 0 5px 0">
+							<i class="fa "></i> Create new item
+						</button>
+					</div>
+			</div>
+			
+			
+		</div>
+		
+		
+		
+		<div class="col-md-5 pull-right" style="margin-right: -100px; margin-top:-650px">
+			
+					</div>
+
+
+		<!--  End of container -->
+		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
+</body>
+<script>new Morris.Donut({
+	  // ID of the element in which to draw the chart.
+	  element: 'donut-chart',
+	  // Chart data records -- each entry in this array corresponds to a point on
+	  // the chart.
+	  data: [
+	    {label: "Calories left", value: 12},
+	    {label: "Calories Eaten", value: 30}
+	  ]
+	  
+	  
+	  
+	 
+	});</script>
+</html>
+
