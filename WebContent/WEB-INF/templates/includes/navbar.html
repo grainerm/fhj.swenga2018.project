@@ -16,10 +16,10 @@
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                            
-                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            <li><a th:href="@{/settings}" ><i class="fa fa-gear fa-fw"></i> Settings</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a th:href="@{/login}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -34,13 +34,16 @@
                         <a th:href="@{/}" class="active"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i>Activities</a>
+                        <a th:href="@{/activities}" class="active"><i class="fa fa-dashboard fa-fw"></i>Activities</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i>Journal</a>
+                        <a th:href="@{/journal}" class="active"><i class="fa fa-dashboard fa-fw"></i>Journal</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i>Items</a>
+                        <a th:href="@{/guestbook}" class="active"><i class="fa fa-dashboard fa-fw"></i>Guestbook</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/items}" class="active"><i class="fa fa-dashboard fa-fw"></i>Items</a>
                     </li>
                 </ul>
 
