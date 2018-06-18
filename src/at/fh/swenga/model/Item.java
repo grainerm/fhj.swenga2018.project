@@ -48,7 +48,9 @@ public class Item implements java.io.Serializable {
 	@Column(nullable = false, length = 1)
 	private boolean validiert;
 	
-	
+	public Item() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Item(int itemID, String bezeichnung, int kalorien) {
 		super();
