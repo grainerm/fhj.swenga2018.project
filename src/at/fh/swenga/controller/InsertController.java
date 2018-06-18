@@ -10,10 +10,10 @@ import at.fh.swenga.model.Drink;
 import at.fh.swenga.model.Food;
 import at.fh.swenga.model.Item;
 import at.fh.swenga.model.Sport;
-import repositories.DrinkRepository;
-import repositories.FoodRepository;
-import repositories.ItemRepository;
-import repositories.SportRepository;
+import at.fh.swenga.repositories.DrinkRepository;
+import at.fh.swenga.repositories.FoodRepository;
+import at.fh.swenga.repositories.ItemRepository;
+import at.fh.swenga.repositories.SportRepository;
 
 
 @Controller
@@ -61,11 +61,6 @@ public class InsertController {
 		
 		Sport running = sportRepository.findByItem("Running");
 		if (running==null) running = new Sport(s1, 30);
-		
-		
-		
-		
-		
 		
 		return "forward:list";
 	
