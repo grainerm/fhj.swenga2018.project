@@ -26,6 +26,13 @@ public class Drink implements java.io.Serializable {
 	@Column(nullable = false, length = 3)
 	private int menge; //Liter
 
+	
+	public Drink(Item item, int menge) {
+		super();
+		this.item = item;
+		this.menge = menge;
+	}
+
 	public int getDrinkID() {
 		return drinkID;
 	}

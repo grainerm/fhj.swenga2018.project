@@ -52,11 +52,11 @@ public class Item implements java.io.Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Item(int itemID, String bezeichnung, int kalorien) {
+	public Item(String bezeichnung, int kalorien, boolean validiert) {
 		super();
-		this.itemID = itemID;
 		this.bezeichnung = bezeichnung;
 		this.kalorien = kalorien;
+		this.validiert = validiert;
 	}
 
 	public int getItemID() {
