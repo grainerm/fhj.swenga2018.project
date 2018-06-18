@@ -25,6 +25,12 @@ public class Food implements java.io.Serializable {
 	@Column(nullable = false, length = 3)
 	private int menge; //Gramm
 
+	public Food(Item item, int menge) {
+		super();
+		this.item = item;
+		this.menge = menge;
+	}
+
 	public int getFoodID() {
 		return foodID;
 	}
