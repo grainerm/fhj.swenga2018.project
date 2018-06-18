@@ -22,6 +22,7 @@ import at.fh.swenga.service.UserService;
 
 @Controller
 public class CalculatorController {     
+
 	@Autowired     
 	private UserDAO userDao;
 	
@@ -31,10 +32,41 @@ public class CalculatorController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = { "/", "list" })
+
+	@RequestMapping(value = { "/" })
 	public String index(Model model) { 
 
-		return "index";
+		return "index"; 
+	}
+	
+	@RequestMapping(value = { "/settings" })
+	public String settings(Model model) { 
+
+		return "settings"; 
+	}
+	
+	@RequestMapping(value = { "/activities" })
+	public String activities(Model model) { 
+ 
+		return "activities";
+	}
+	
+	@RequestMapping(value = { "/items" })
+	public String items(Model model) { 
+ 
+		return "items";
+	}
+	
+	@RequestMapping(value = { "/journal" })
+	public String journal(Model model) { 
+
+		return "journal";
+	}
+	
+	@RequestMapping(value = { "/guestbook" })
+	public String guestbook(Model model) { 
+
+		return "guestbook";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -70,11 +102,11 @@ public class CalculatorController {
         
 
         if(userService.exists(newUser.getNickname()))
-        	attributes.addFlashAttribute("exists", "User existiert bereits!");
-        else
+        	attributes.addFlashAttribute("exists", "User already existing!");
+        else  
         {
         	userService.save(newUser);
-            attributes.addFlashAttribute("registered", "Account wurde erstellt!");
+            attributes.addFlashAttribute("registered", "Account created!");
         }
         return "redirect:/login";
     }

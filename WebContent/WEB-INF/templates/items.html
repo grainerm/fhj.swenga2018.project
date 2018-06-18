@@ -37,33 +37,28 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-1" style="margin-top: 40px">
 				
-					<h1>Hello Miriam!</h1>
+					<h1>Create new items</h1>
 					<div class="panel panel-default">
-						<div class="panel-heading overview">What you have reached
-							today:</div>
+						<div class="panel-heading overview">Food/Drink</div>
 						<!-- /.panel-heading -->
-						<div class="panel-body calories">
-							<div class="table-responsive">
-								<table class="table">
-									<tbody>
-										<tr>
-											<th>Calories burnt:
-											<td>3000</td>
-										</tr>
-										<tr>
-											<th>Weight lost:
-											<td>2kg</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+						<div class="panel-body">
+							<form role="form">
+                                            <div class="form-group">
+                                                <label class="control-label" >Name</label>
+                                                <input type="text" class="form-control" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Calories</label>
+                                                <input type="number" class="form-control">
+                                            </div>
+                                            
+                                        </form>
 							<!-- /.table-responsive -->
 
 						</div>
 						<!-- /.panel-body -->
-						<button class="btn btn-secondary btn-sm pull-right"
-							style="margin: 5px 0 5px 0">
-							<i class="fa fa-download"></i> Download Report
+						<button type="submit" class="btn btn-secondary btn-sm pull-right" style="margin: 5px 0 5px 0">
+							<i class="fa "></i> Create new item
 						</button>
 					</div>
 					<!-- /.panel -->
@@ -75,14 +70,27 @@
 			<div class="col-md-6 col-md-offset-1">
 				
 					<div class="panel panel-default">
-						<div class="panel-heading">Calories Consumption</div>
+						<div class="panel-heading">Activity</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
-							<div id="donut-chart">
-							<!-- http://morrisjs.github.io/morris.js/donuts.html -->
-							</div>
+							<form role="form">
+                                            <div class="form-group">
+                                                <label class="control-label" >Name</label>
+                                                <input type="text" class="form-control" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Burnt calories per hour</label>
+                                                <input type="number" class="form-control">
+                                            </div>
+                                            
+                                        </form>
+							<!-- /.table-responsive -->
+
 						</div>
 						<!-- /.panel-body -->
+						<button type="submit" class="btn btn-secondary btn-sm pull-right" style="margin: 5px 0 5px 0">
+							<i class="fa "></i> Create new item
+						</button>
 					</div>
 			</div>
 			
