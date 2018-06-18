@@ -29,7 +29,10 @@ public class Art implements java.io.Serializable {
 	@Column(nullable = false, length = 30)
 	private String bezeichnung;
 	
-
+	public Art() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Art(int artID, String bezeichnung) {
 		super();
 		this.artID = artID;

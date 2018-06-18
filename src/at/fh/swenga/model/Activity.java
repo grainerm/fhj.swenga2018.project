@@ -33,6 +33,10 @@ public class Activity implements java.io.Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private User user;
 
+	public Activity() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Activity(int aID, Date datum, Item item, User user) {
 		super();
 		this.aID = aID;

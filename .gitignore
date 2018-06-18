@@ -1,4 +1,11 @@
 /build/
 /target/
+/.classpath
+/*.project
+/.settings
+/*.springBeans
+/.settings/org.eclipse.jdt.core.prefs
+/src/db.properties
 .settings/*
 .classpath
+/bin/

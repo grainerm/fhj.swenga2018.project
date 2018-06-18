@@ -22,6 +22,7 @@
 		<param-value>
 			/WEB-INF/datasource.xml
 			/WEB-INF/spring-security.xml
+			/WEB-INF/dispatcher-servlet.xml
 		</param-value>
 	</context-param>
 

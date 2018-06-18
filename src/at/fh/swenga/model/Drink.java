@@ -78,8 +78,17 @@ public class Drink implements java.io.Serializable {
 			return false;
 		return true;
 	}
+
+	public Drink(int drinkID, Item item, int menge) {
+		super();
+		this.drinkID = drinkID;
+		this.item = item;
+		this.menge = menge;
+	}
 	
-	
+	public Drink() {
+		// TODO Auto-generated constructor stub
+	}
 	
 
 }
