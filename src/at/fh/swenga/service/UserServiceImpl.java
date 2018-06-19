@@ -1,5 +1,7 @@
 package at.fh.swenga.service;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,9 +30,41 @@ public class UserServiceImpl implements UserService
 		user.setVorname(userDto.getVorname());
 		user.setNachname(userDto.getNachname());
 		user.setAktiv(true);
-		user.setRole(roleDao.getRole(1));
+		user.setRole(roleDao.getRole(2));
 		userDao.persist(user);
 
+	}
+	
+	public void createGuest()
+	{
+		User admin = userDao.getUser("admin");
+		if(admin == null)
+		{
+			admin = new User("admin", "", "", passwordEncoder.encode("password"), true);
+			admin.setRole(roleDao.getRole(1));
+			userDao.persist(admin);
+		}
+		User guest = userDao.getUser("guest");
+		if(guest == null)
+		{
+			guest = new User("guest", "", "", passwordEncoder.encode("password"), true);
+			guest.setRole(roleDao.getRole(3));
+			userDao.persist(guest);
+		}
+		/*Random rand = new Random();
+		int number = rand.nextInt();
+		if(exists("guest"+number))
+			number = rand.nextInt();
+		
+		User user = new User();
+		user.setName("guest"+number);
+		user.setPasswort("");
+		user.setVorname("");
+		user.setNachname("");
+		user.setAktiv(true);
+		user.setRole(roleDao.getRole(3));
+		userDao.persist(user);*/
+		
 	}
 
 	public boolean exists(String nickname)

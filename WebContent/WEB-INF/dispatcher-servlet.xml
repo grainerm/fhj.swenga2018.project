@@ -55,7 +55,7 @@
 		<property name="enableSpringELCompiler" value="false" />
 		<property name="additionalDialects">
 		<set>
-			<bean
+			<bean 
 			class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" />
 		</set>
 	</property>
