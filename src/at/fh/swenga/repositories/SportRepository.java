@@ -6,10 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import at.fh.swenga.model.Sport;
 
-@Repository
 
 public interface SportRepository extends JpaRepository<Sport, Integer> {
 	
 	@Transactional
-	Sport findBySportItem(String item);
+	Sport findByItem(String item);
 }
