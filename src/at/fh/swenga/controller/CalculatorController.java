@@ -15,17 +15,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import at.fh.swenga.dao.RoleDAO;
 import at.fh.swenga.dao.UserDAO;
 import at.fh.swenga.model.Role;
-import at.fh.swenga.model.User;
 import at.fh.swenga.service.UserService;
              
 
 
 @Controller
 public class CalculatorController {     
-
-	@Autowired     
-	private UserDAO userDao;
-	
 	@Autowired
 	private RoleDAO roleDao;
 	
@@ -78,7 +73,6 @@ public class CalculatorController {
 	@Transactional
     public String registration(@Valid UserDto newUser, BindingResult bindingResult, RedirectAttributes attributes) 
 	{
-		boolean error = false;
 		
 		if(roleDao.getRole(1)==null)
 		{
