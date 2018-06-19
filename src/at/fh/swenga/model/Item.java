@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -21,9 +22,6 @@ public class Item implements java.io.Serializable {
 
 	@OneToMany(mappedBy="item", fetch=FetchType.EAGER)
 	private Set<Activity> activities;
-	
-	@ManyToOne (cascade = CascadeType.PERSIST)
-	private Art art;
 	
 	@OneToOne(mappedBy = "item")
 	private Sport sport;
@@ -44,6 +42,9 @@ public class Item implements java.io.Serializable {
 	
 	@Column(nullable = false, length = 6)
 	private int kalorien;
+	
+	@ManyToOne (cascade = CascadeType.PERSIST)
+	Art art;
 	
 	@Column(nullable = false, length = 1)
 	private boolean validiert;
@@ -82,7 +83,14 @@ public class Item implements java.io.Serializable {
 	public void setKalorien(int kalorien) {
 		this.kalorien = kalorien;
 	}
+	
+	public Art getArt() {
+		return art;
+	}
 
+	public void setArt(Art art) {
+		this.art = art;
+	}
 
 	@Override
 	public int hashCode() {
