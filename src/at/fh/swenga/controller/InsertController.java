@@ -19,19 +19,19 @@ import at.fh.swenga.repositories.SportRepository;
 @Controller
 public class InsertController {
 	
-	@Autowired
+	@Autowired(required = true)
 	ItemRepository itemRepository;
 	
-	@Autowired
+	@Autowired(required = true)
 	FoodRepository foodRepository;
 	
-	@Autowired
+	@Autowired(required = true)
 	DrinkRepository drinkRepository;
 	
-	@Autowired
+	@Autowired(required = true)
 	SportRepository sportRepository;
 	
-	@RequestMapping("/fillFoodList")
+	@RequestMapping("/fillItemList")
 	@Transactional
 	public String fillData(Model model) {
 		
@@ -49,17 +49,17 @@ public class InsertController {
 		
 		//Food
 		
-		Food apple = foodRepository.findByItem("Apple");
+		Food apple = foodRepository.findByFoodItem("Apple");
 		if (apple==null) apple = new Food(f1, 100);
 		
 		//Drink
 		
-		Drink cocaCola = drinkRepository.findByItem("Coca Cola");
+		Drink cocaCola = drinkRepository.findByDrinkItem("Coca Cola");
 		if (cocaCola==null) cocaCola = new Drink(d1, 100);
 		
 		//Sport
 		
-		Sport running = sportRepository.findByItem("Running");
+		Sport running = sportRepository.findBySportItem("Running");
 		if (running==null) running = new Sport(s1, 30);
 		
 		return "forward:list";
