@@ -10,14 +10,16 @@ import at.fh.swenga.controller.UserDto;
 import at.fh.swenga.dao.RoleDAO;
 import at.fh.swenga.dao.UserDAO;
 import at.fh.swenga.model.User;
+import at.fh.swenga.repositories.RoleRepository;
+import at.fh.swenga.repositories.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService 
 {	
 	@Autowired
-	private UserDAO userDao;
+	private UserRepository userRepo;
 	@Autowired
-	private RoleDAO roleDao;
+	private RoleRepository roleRepo;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
@@ -30,26 +32,26 @@ public class UserServiceImpl implements UserService
 		user.setVorname(userDto.getVorname());
 		user.setNachname(userDto.getNachname());
 		user.setAktiv(true);
-		user.setRole(roleDao.getRole(2));
-		userDao.persist(user);
+		user.setRole(roleRepo.findByBezeichnung("ROLE_USER"));
+		userRepo.save(user);
 
 	}
 	
 	public void createGuest()
 	{
-		User admin = userDao.getUser("admin");
+		User admin = userRepo.findByName("admin");
 		if(admin == null)
 		{
 			admin = new User("admin", "", "", passwordEncoder.encode("password"), true);
-			admin.setRole(roleDao.getRole(1));
-			userDao.persist(admin);
+			admin.setRole(roleRepo.findByBezeichnung("ROLE_ADMIN"));
+			userRepo.save(admin);
 		}
-		User guest = userDao.getUser("guest");
+		User guest = userRepo.findByName("guest");
 		if(guest == null)
 		{
 			guest = new User("guest", "", "", passwordEncoder.encode("password"), true);
-			guest.setRole(roleDao.getRole(3));
-			userDao.persist(guest);
+			guest.setRole(roleRepo.findByBezeichnung("ROLE_GUEST"));
+			userRepo.save(guest);
 		}
 		/*Random rand = new Random();
 		int number = rand.nextInt();
@@ -69,7 +71,7 @@ public class UserServiceImpl implements UserService
 
 	public boolean exists(String nickname)
 	{
-		User user = userDao.getUser(nickname);
+		User user = userRepo.findByName(nickname);
 		if(user == null)
 			return false;
 		else
