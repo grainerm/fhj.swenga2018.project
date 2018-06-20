@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import at.fh.swenga.dao.RoleDAO;
 import at.fh.swenga.model.Role;
 import at.fh.swenga.model.User;
+import at.fh.swenga.repositories.UserRepository;
 import at.fh.swenga.service.UserService;
              
 
@@ -33,13 +34,38 @@ public class CalculatorController {
 	private RoleDAO roleDao;
 	
 	@Autowired
+	private UserRepository userRepo;
+	@Autowired
 	private UserService userService;
 	
-	
+	//Get nickname
+	private Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 	@RequestMapping(value = { "/" })
 	public String index(Model model) { 
-
+		/**String nickName = "";
+		
+		nickName = authentication.getName();
+		User user = userRepo.findByName(nickName);
+		// if user has set no weight - send it to the settings page
+		if(user != null) {
+			if(user.getZielgewicht() < 1) {
+				System.out.println("Zielgwicht muas gsetzt sein, oida!");
+				
+				return "settings";
+			} else {
+				model.addAttribute("user", user);
+				// was er essen darf
+				
+				// was er gegessen hat (activities)
+				model.addAttribute("caloriesPerDay", 120);
+				return "index";
+			}
+		} else {
+			return "error";
+		}
+		//System.out.println("user: " + nickName);**/
+		
 		return "index"; 
 	}
 	
@@ -67,11 +93,6 @@ public class CalculatorController {
 		return "journal";
 	}
 	
-	@RequestMapping(value = { "/guestbook" })
-	public String guestbook(Model model) { 
-
-		return "guestbook";
-	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String handleLogin() {
@@ -102,7 +123,7 @@ public class CalculatorController {
         if (bindingResult.hasErrors()) {
             return "error";
         }
-        
+         
 
         if(userService.exists(newUser.getNickname()))
         	attributes.addFlashAttribute("exists", "User already existing!");

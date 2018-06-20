@@ -35,86 +35,79 @@
 	</div>
 	<div class="container" role="main">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-1" style="margin-top: 40px">
-				
+			<form th:action="@{/changeSettings}" method="post" role="form">
+
+				<div class="col-md-6 col-md-offset-1" style="margin-top: 40px">
+
 					<h1>Settings</h1>
 					<div class="panel panel-default">
-						<div class="panel-heading overview">Personal Informations</div>
+						<div class="panel-heading overview">Personal Information</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
-							<form role="form">
-                                            <div class="form-group">
-                                                <label class="control-label" >Birthday</label>
-                                                <input type="date" class="form-control" >
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Weight</label>
-                                                <input type="number" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Gender</label>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Male
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Female
-                                                    </label>
-                                                </div>
-                                                
-                                            </div>
-                                        </form>
+
+							<div class="form-group">
+								<label class="control-label">Birthday</label> <input
+									type="date" th:value="${user} ? ${user.geburtstag}" name="geburtstag" class="form-control">
+							</div>
+							<div class="form-group">
+								<label class="control-label">Weight</label> 
+								<input type="number" th:value="${user} ? ${user.gewicht}" name="gewicht"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label>Gender</label>
+								<div class="radio">
+									<label> <input type="radio" name="optionsRadios"
+										id="optionsRadios1" value="option1" th:checked="male"> Male
+									</label>
+								</div>
+								<div class="radio">
+									<label> <input type="radio" name="optionsRadios"
+										id="optionsRadios2" value="option2">Female
+									</label>
+								</div>
+
+							</div>
+
 							<!-- /.table-responsive -->
 
 						</div>
 						<!-- /.panel-body -->
-						
+
 					</div>
 					<!-- /.panel -->
 
-				
-			</div>
+
+				</div>
 
 
-			<div class="col-md-6 col-md-offset-1">
-				
+				<div class="col-md-6 col-md-offset-1">
+
 					<div class="panel panel-default">
 						<div class="panel-heading">Goal</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<div class="form-group">
-                                                <label>What do you want to reach?</label>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Loose weight
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Keep weight
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Gain weight
-                                                    </label>
-                                                </div>
-                                            </div>
+								<label>What is your desired weight to reach?</label>
+							<div class="form-group">
+								<label class="control-label">Desired weight</label> 
+								<input type="number" th:value="${user} ? ${user.zielgewicht}" name="zielgewicht"
+									class="form-control">
+							</div>
+							</div>
 						</div>
 						<!-- /.panel-body -->
 					</div>
-			</div>
-			
-			
+				</div>
+<button class="btn btn-lg btn-success btn-block" type="submit">
+								Save</button>
+			</form>
 		</div>
-		
-		
-		
-		<div class="col-md-5 pull-right" style="margin-right: -100px; margin-top:-650px">
-			
-					</div>
+
+
+
+		<div class="col-md-5 pull-right"
+			style="margin-right: -100px; margin-top: -650px"></div>
 
 
 		<!--  End of container -->

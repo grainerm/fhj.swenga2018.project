@@ -1,6 +1,8 @@
 package at.fh.swenga.service;
 
-import java.util.Random;
+
+
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,16 +22,19 @@ public class UserServiceImpl implements UserService
 	private RoleRepository roleRepo;
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
 
 	@Override
 	public void save(UserDto userDto)
 	{
+
 		User user = new User();
 		user.setName(userDto.getNickname());
 		user.setPasswort(passwordEncoder.encode(userDto.getPasswort()));
 		user.setVorname(userDto.getVorname());
 		user.setNachname(userDto.getNachname());
 		user.setAktiv(true);
+		user.setRegDate(new Date());
 		user.setRole(roleRepo.findByBezeichnung("ROLE_USER"));
 		userRepo.save(user);
 
@@ -37,17 +42,18 @@ public class UserServiceImpl implements UserService
 	
 	public void createUsers()
 	{
+		Date now = new Date();
 		User admin = userRepo.findByName("admin");
 		if(admin == null)
 		{
-			admin = new User("admin", "", "", passwordEncoder.encode("password"), true);
+			admin = new User("admin", "", "", passwordEncoder.encode("password"), true, now);
 			admin.setRole(roleRepo.findByBezeichnung("ROLE_ADMIN"));
 			userRepo.save(admin);
 		}
 		User guest = userRepo.findByName("guest");
 		if(guest == null)
 		{
-			guest = new User("guest", "", "", passwordEncoder.encode("password"), true);
+			guest = new User("guest", "", "", passwordEncoder.encode("password"), true, now);
 			guest.setRole(roleRepo.findByBezeichnung("ROLE_GUEST"));
 			userRepo.save(guest);
 		}
