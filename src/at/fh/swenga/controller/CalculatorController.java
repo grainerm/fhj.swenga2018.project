@@ -51,9 +51,14 @@ public class CalculatorController {
 		if(user != null) {
 			if(user.getZielgewicht() < 1) {
 				System.out.println("Zielgwicht muas gsetzt sein, oida!");
+				
 				return "settings";
 			} else {
 				model.addAttribute("user", user);
+				// was er essen darf
+				
+				// was er gegessen hat (activities)
+				model.addAttribute("caloriesPerDay", 120);
 				return "index";
 			}
 		} else {
