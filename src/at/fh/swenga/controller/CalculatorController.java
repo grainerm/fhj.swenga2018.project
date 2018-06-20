@@ -43,7 +43,7 @@ public class CalculatorController {
 
 	@RequestMapping(value = { "/" })
 	public String index(Model model) { 
-		String nickName = "";
+		/**String nickName = "";
 		
 		nickName = authentication.getName();
 		User user = userRepo.findByName(nickName);
@@ -64,9 +64,9 @@ public class CalculatorController {
 		} else {
 			return "error";
 		}
-		//System.out.println("user: " + nickName);
+		//System.out.println("user: " + nickName);**/
 		
-		///return "index"; 
+		return "index"; 
 	}
 	
 	@RequestMapping(value = { "/settings" })
