@@ -78,6 +78,15 @@ public class User implements java.io.Serializable{
 		this.geburtstag = geburtstag;
 		this.geschlecht = geschlecht;
 	}
+	
+	public User(String name, String vorname, String nachname, String passwort, boolean aktiv) {
+		super();
+		this.name = name;
+		this.vorname = vorname;
+		this.nachname = nachname;
+		this.passwort = passwort;
+		this.aktiv = aktiv;
+	}
 
 	public String getName() {
 		return name;
