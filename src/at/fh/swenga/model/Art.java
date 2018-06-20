@@ -33,9 +33,8 @@ public class Art implements java.io.Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Art(int artID, String bezeichnung) {
+	public Art(String bezeichnung) {
 		super();
-		this.artID = artID;
 		this.bezeichnung = bezeichnung;
 	}
 

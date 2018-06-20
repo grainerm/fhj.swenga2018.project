@@ -24,7 +24,7 @@ public class Drink implements java.io.Serializable {
 	private Item item;
 	
 	@Column(nullable = false, length = 3)
-	private int menge; //Liter
+	private int menge; //milliLiter
 
 	
 	public Drink(Item item, int menge) {

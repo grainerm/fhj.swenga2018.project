@@ -59,13 +59,17 @@ public class User implements java.io.Serializable{
 	
 	@Column(nullable = true, length = 1)
 	private char geschlecht;
+
+	@Column(nullable = false)
+	@DateTimeFormat(pattern = "dd.MM.yyyy")
+	private Date regDate;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public User(String name, String vorname, String nachname, String passwort, boolean aktiv, int groesse, int gewicht,
-			int zielgewicht, Date geburtstag, char geschlecht) {
+			int zielgewicht, Date geburtstag, char geschlecht, Date regDate) {
 		super();
 		this.name = name;
 		this.vorname = vorname;
@@ -77,6 +81,33 @@ public class User implements java.io.Serializable{
 		this.zielgewicht = zielgewicht;
 		this.geburtstag = geburtstag;
 		this.geschlecht = geschlecht;
+		this.regDate = regDate;
+	}
+	
+	public Set<Activity> getActivities() {
+		return activities;
+	}
+
+	public void setActivities(Set<Activity> activities) {
+		this.activities = activities;
+	}
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+	public User(String name, String vorname, String nachname, String passwort, boolean aktiv, Date regDate) {
+		super();
+		this.name = name;
+		this.vorname = vorname;
+		this.nachname = nachname;
+		this.passwort = passwort;
+		this.aktiv = aktiv;
+		this.regDate = regDate;
 	}
 
 	public String getName() {

@@ -14,17 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import at.fh.swenga.dao.UserDAO;
 import at.fh.swenga.model.User;
+import at.fh.swenga.repositories.UserRepository;
 
 @Service
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService
 {
 	@Autowired
-    private UserDAO userDao;
+    private UserRepository userRepo;
 
     public UserDetails loadUserByUsername(String nickname) throws UsernameNotFoundException 
     {
-        User user = userDao.getUser(nickname);
+        User user = userRepo.findByName(nickname);
         
         if(user == null)
         	throw new UsernameNotFoundException("Kein User mit diesem Namen gefunden!");
