@@ -1,5 +1,6 @@
 package at.fh.swenga.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "Food")
@@ -18,16 +20,15 @@ public class Food implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int foodID;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "ItemID")
 	private Item item;
 	
 	@Column(nullable = false, length = 3)
 	private int menge; //Gramm
 
-	public Food(Item item, int menge) {
+	public Food(int menge) {
 		super();
-		this.item = item;
 		this.menge = menge;
 	}
 

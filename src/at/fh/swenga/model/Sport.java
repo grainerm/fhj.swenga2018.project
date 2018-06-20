@@ -1,5 +1,6 @@
 package at.fh.swenga.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,17 +20,19 @@ public class Sport implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int sportID;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "ItemID")
 	private Item item;
 	
 	@Column(nullable = false, length = 3)
 	private int dauer; //Minuten
 
-
-	public Sport(Item item, int dauer) {
+	public Sport() {
 		super();
-		this.item = item;
+	}
+
+	public Sport(int dauer) {
+		super();
 		this.dauer = dauer;
 	}
 
@@ -47,6 +50,14 @@ public class Sport implements java.io.Serializable {
 
 	public void setDauer(int dauer) {
 		this.dauer = dauer;
+	}
+	
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	@Override
