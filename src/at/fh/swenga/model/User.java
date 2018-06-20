@@ -84,6 +84,22 @@ public class User implements java.io.Serializable{
 		this.regDate = regDate;
 	}
 	
+	public Set<Activity> getActivities() {
+		return activities;
+	}
+
+	public void setActivities(Set<Activity> activities) {
+		this.activities = activities;
+	}
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
 	public User(String name, String vorname, String nachname, String passwort, boolean aktiv, Date regDate) {
 		super();
 		this.name = name;
