@@ -7,8 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import at.fh.swenga.controller.UserDto;
-import at.fh.swenga.dao.RoleDAO;
-import at.fh.swenga.dao.UserDAO;
 import at.fh.swenga.model.User;
 import at.fh.swenga.repositories.RoleRepository;
 import at.fh.swenga.repositories.UserRepository;
@@ -37,7 +35,7 @@ public class UserServiceImpl implements UserService
 
 	}
 	
-	public void createGuest()
+	public void createUsers()
 	{
 		User admin = userRepo.findByName("admin");
 		if(admin == null)

@@ -9,7 +9,7 @@ public interface UserService
 	
 	void save(UserDto user);
 	
-	void createGuest();
+	void createUsers();
 	
 	boolean exists(String nickname);
 

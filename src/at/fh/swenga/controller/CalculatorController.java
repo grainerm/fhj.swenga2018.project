@@ -135,7 +135,7 @@ public class CalculatorController {
 			roleDao.persist(guest);
 		}  
 
-        userService.createGuest();
+        userService.createUsers();
         
         /*UsernamePasswordAuthenticationToken authReq =
                 new UsernamePasswordAuthenticationToken(user.getName(), user.getPasswort());
