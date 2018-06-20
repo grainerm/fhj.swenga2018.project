@@ -1,5 +1,6 @@
 package at.fh.swenga.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Drink implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int drinkID;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "ItemID")
 	private Item item;
 	
@@ -27,9 +28,8 @@ public class Drink implements java.io.Serializable {
 	private int menge; //milliLiter
 
 	
-	public Drink(Item item, int menge) {
+	public Drink(int menge) {
 		super();
-		this.item = item;
 		this.menge = menge;
 	}
 

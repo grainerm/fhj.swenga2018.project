@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import at.fh.swenga.model.Art;
 import at.fh.swenga.model.Drink;
@@ -37,28 +39,29 @@ public class InsertController {
 	ArtRepository artRepository;
 	
 	
-	@RequestMapping("/fillItemList")
+	@RequestMapping(value = "/fillItemList", method = RequestMethod.GET)
 	@Transactional
-	public String fillData(Model model) {
-		
+	public String fillItemList(Model model) {
 		//Art
 		
 		Art food = artRepository.findByBezeichnung("Food");
-		if (food==null) food = new Art("Food");
+		if (food==null) food = new Art(1, "Food");
+		artRepository.save(food);
 		
 		Art drink = artRepository.findByBezeichnung("Drink");
-		if (drink==null) drink = new Art("Drink");
+		if (drink==null) drink = new Art(2, "Drink");
+		artRepository.save(drink);
 		
 		Art sport = artRepository.findByBezeichnung("Sport");
-		if (sport==null) sport = new Art("Sport");
+		if (sport==null) sport = new Art(3, "Sport");
+		artRepository.save(sport);
 		
 		
 		//Item
-		
-		
+				
 		Item f1 = new Item ("Apple", 52, true);
 		f1.setArt(food);
-		
+				
 		itemRepository.save(f1);
 		
 		Item f2 = new Item ("Beef", 250, true);
@@ -303,160 +306,265 @@ public class InsertController {
 		
 		itemRepository.save(s10);
 		
+		
 		//Food
 		
-		Food apple = foodRepository.findByItem("Apple");
-		if (apple==null) apple = new Food(f1, 100);
+		System.out.println("ID?: " + f1.getItemID());
 		
-		Food beef = foodRepository.findByItem("Beef");
-		if (beef==null) beef = new Food(f2, 100);
+		Food apple = new Food (100);
+		apple.setItem(f1);
 		
-		Food pork = foodRepository.findByItem("Pork");
-		if (pork==null) pork = new Food(f3, 100);
+		foodRepository.save(apple);
 		
-		Food lamb = foodRepository.findByItem("Lamb");
-		if (lamb==null) lamb = new Food(f4, 100);
+		Food beef = new Food (100);
+		beef.setItem(f2);
 		
-		Food chicken = foodRepository.findByItem("Chicken");
-		if (chicken==null) chicken = new Food(f5, 100);
+		foodRepository.save(beef);
 		
-		Food pasta = foodRepository.findByItem("Pasta");
-		if (pasta==null) pasta = new Food(f6, 100);
+		Food pork = new Food (100);
+		pork.setItem(f3);
 		
-		Food rice = foodRepository.findByItem("Rice");
-		if (rice==null) rice = new Food(f7, 100);
+		foodRepository.save(pork);
 		
-		Food potatoes = foodRepository.findByItem("Pork");
-		if (potatoes==null) potatoes = new Food(f8, 100);
+		Food lamb = new Food (100);
+		lamb.setItem(f4);
 		
-		Food whiteBread = foodRepository.findByItem("White Bread");
-		if (whiteBread==null) whiteBread = new Food(f9, 100);
+		foodRepository.save(lamb);
 		
-		Food darkBread = foodRepository.findByItem("Dark Bread");
-		if (darkBread==null) darkBread = new Food(f10, 100);
+		Food chicken = new Food (100);
+		chicken.setItem(f5);
 		
-		Food egg = foodRepository.findByItem("Egg");
-		if (egg==null) egg = new Food(f11, 100);
+		foodRepository.save(chicken);
 		
-		Food ham = foodRepository.findByItem("Ham");
-		if (ham==null) ham = new Food(f12, 100);
+		Food pasta = new Food (100);
+		pasta.setItem(f6);
 		
-		Food fries = foodRepository.findByItem("French Fries");
-		if (fries==null) fries = new Food(f13, 100);
+		foodRepository.save(pasta);
 		
-		Food hamburger = foodRepository.findByItem("Double Hamburger");
-		if (hamburger==null) hamburger = new Food(f14, 100);
+		Food rice = new Food (100);
+		rice.setItem(f7);
 		
-		Food pizza = foodRepository.findByItem("Pizza Margherita");
-		if (pizza==null) pizza = new Food(f15, 100);
+		foodRepository.save(rice);
 		
-		Food tomato = foodRepository.findByItem("Tomato");
-		if (tomato==null) tomato = new Food(f16, 100);
+		Food potatoes = new Food (100);
+		potatoes.setItem(f8);
 		
-		Food cheese = foodRepository.findByItem("Cheese");
-		if (cheese==null) cheese = new Food(f17, 100);
+		foodRepository.save(potatoes);
 		
-		Food fish = foodRepository.findByItem("Fish");
-		if (fish==null) fish = new Food(f18, 100);
+		Food whiteBread = new Food (100);
+		whiteBread.setItem(f9);
 		
-		Food salad = foodRepository.findByItem("Salad");
-		if (salad==null) salad = new Food(f19, 100);
+		foodRepository.save(whiteBread);
 		
-		Food pear = foodRepository.findByItem("Pear");
-		if (pear==null) pear = new Food(f20, 100);
+		Food darkBread = new Food (100);
+		darkBread.setItem(f10);
+		
+		foodRepository.save(darkBread);
+		
+		Food egg = new Food (100);
+		egg.setItem(f11);
+		
+		foodRepository.save(egg);
+		
+		Food ham = new Food (100);
+		ham.setItem(f12);
+		
+		foodRepository.save(ham);
+		
+		Food fries = new Food (100);
+		fries.setItem(f13);
+		
+		foodRepository.save(fries);
+		
+		Food hamburger = new Food (100);
+		hamburger.setItem(f14);
+		
+		foodRepository.save(hamburger);
+		
+		Food pizza = new Food (100);
+		pizza.setItem(f15);
+		
+		foodRepository.save(pizza);
+		
+		Food tomato = new Food (100);
+		tomato.setItem(f16);
+	
+		foodRepository.save(tomato);
+		
+		Food cheese = new Food (100);
+		cheese.setItem(f17);
+		
+		foodRepository.save(cheese);
+		
+		Food fish = new Food (100);
+		fish.setItem(f18);
+		
+		foodRepository.save(fish);
+		
+		Food salad = new Food (100);
+		salad.setItem(f19);
+		
+		foodRepository.save(salad);
+		
+		Food pear = new Food (100);
+		pear.setItem(f20);
+		
+		foodRepository.save(pear);
 		
 		
 		//Drink
 		
-		Drink cocaCola = drinkRepository.findByItem("Coca Cola");
-		if (cocaCola==null) cocaCola = new Drink(d1, 100);
+		Drink cocaCola = new Drink (100);
+		cocaCola.setItem(d1);
 		
-		Drink pepsiCola = drinkRepository.findByItem("Pepsi Cola");
-		if (pepsiCola==null) pepsiCola = new Drink(d2, 100);
+		drinkRepository.save(cocaCola);
 		
-		Drink iceTea = drinkRepository.findByItem("Ice Tea");
-		if (iceTea==null) iceTea = new Drink(d3, 100);
+		Drink pepsiCola = new Drink (100);
+		pepsiCola.setItem(d2);
 		
-		Drink sprite = drinkRepository.findByItem("Sprite");
-		if (sprite==null) sprite = new Drink(d4, 100);
+		drinkRepository.save(pepsiCola);
 		
-		Drink almdudler = drinkRepository.findByItem("Almdudler");
-		if (almdudler==null) almdudler = new Drink(d5, 100);
+		Drink iceTea = new Drink (100);
+		iceTea.setItem(d3);
 		
-		Drink orangeJ = drinkRepository.findByItem("Orange Juice");
-		if (orangeJ==null) orangeJ = new Drink(d6, 100);
+		drinkRepository.save(iceTea);
 		
-		Drink appleJ = drinkRepository.findByItem("Apple Juice");
-		if (appleJ==null) appleJ = new Drink(d7, 100);
+		Drink sprite = new Drink (100);
+		sprite.setItem(d4);
 		
-		Drink redWine = drinkRepository.findByItem("Red Wine");
-		if (redWine==null) redWine = new Drink(d8, 100);
+		drinkRepository.save(sprite);
 		
-		Drink whiteWine = drinkRepository.findByItem("White Wine");
-		if (whiteWine==null) whiteWine = new Drink(d9, 100);
+		Drink almdudler = new Drink (100);
+		almdudler.setItem(d5);
 		
-		Drink beer = drinkRepository.findByItem("Beer");
-		if (beer==null) beer = new Drink(d10, 100);
+		drinkRepository.save(almdudler);
 		
-		Drink cranberryJ = drinkRepository.findByItem("Cranberry Juice");
-		if (cranberryJ==null) cranberryJ = new Drink(d11, 100);
+		Drink orangeJ = new Drink (100);
+		orangeJ.setItem(d6);
 		
-		Drink tomatoJ = drinkRepository.findByItem("Tomato Juice");
-		if (tomatoJ==null) tomatoJ = new Drink(d12, 100);
+		drinkRepository.save(orangeJ);
 		
-		Drink carrotsJ = drinkRepository.findByItem("Carrots Juice");
-		if (carrotsJ==null) carrotsJ = new Drink(d13, 100);
+		Drink appleJ = new Drink (100);
+		appleJ.setItem(d7);
 		
-		Drink gin = drinkRepository.findByItem("Gin");
-		if (gin==null) gin = new Drink(d14, 100);
+		drinkRepository.save(appleJ);
 		
-		Drink kakao = drinkRepository.findByItem("Hot Chocolate");
-		if (kakao==null) kakao = new Drink(d15, 100);
+		Drink redWine = new Drink (100);
+		redWine.setItem(d8);
 		
-		Drink emotion = drinkRepository.findByItem("Emotion");
-		if (emotion==null) emotion = new Drink(d16, 100);
+		drinkRepository.save(redWine);
 		
-		Drink martini = drinkRepository.findByItem("Martini Bianco");
-		if (martini==null) martini = new Drink(d17, 100);
+		Drink whiteWine = new Drink (100);
+		whiteWine.setItem(d9);
 		
-		Drink radler = drinkRepository.findByItem("Radler");
-		if (radler==null) radler = new Drink(d18, 100);
+		drinkRepository.save(whiteWine);
+		
+		Drink beer = new Drink (100);
+		beer.setItem(d10);
+		
+		drinkRepository.save(beer);
+		
+		Drink cranberryJ = new Drink (100);
+		cranberryJ.setItem(d11);
+		
+		drinkRepository.save(cranberryJ);
+		
+		Drink tomatoJ = new Drink (100);
+		tomatoJ.setItem(d12);
+		
+		drinkRepository.save(tomatoJ);
+		
+		Drink carrotsJ = new Drink (100);
+		carrotsJ.setItem(d13);
+		
+		drinkRepository.save(carrotsJ);
+		
+		Drink gin = new Drink (100);
+		gin.setItem(d14);
+		
+		drinkRepository.save(gin);
+		
+		Drink kakao = new Drink (100);
+		kakao.setItem(d15);
+		
+		drinkRepository.save(kakao);
+		
+		Drink emotion = new Drink (100);
+		emotion.setItem(d16);
+		
+		drinkRepository.save(emotion);
+		
+		Drink martini = new Drink (100);
+		martini.setItem(d17);
+		
+		drinkRepository.save(martini);
+		
+		Drink radler = new Drink (100);
+		radler.setItem(d18);
+		
+		drinkRepository.save(radler);
 		
 				
 		//Sport
 		
-		Sport running = sportRepository.findByItem("Running");
-		if (running==null) running = new Sport(s1, 30);
+		Sport running = new Sport (30);
+		running.setItem(s1);
 		
-		Sport volley = sportRepository.findByItem("Volleyball");
-		if (volley==null) volley = new Sport(s2, 30);
+		sportRepository.save(running);
 		
-		Sport tennis = sportRepository.findByItem("Tennis");
-		if (tennis==null) tennis = new Sport(s3, 30);
+		Sport volley = new Sport (30);
+		volley.setItem(s2);
 		
-		Sport swimming = sportRepository.findByItem("Swimming");
-		if (swimming==null) swimming = new Sport(s4, 30);
+		sportRepository.save(volley);
 		
-		Sport walking = sportRepository.findByItem("Walking");
-		if (walking==null) walking = new Sport(s5, 30);
+		Sport tennis = new Sport (30);
+		tennis.setItem(s3);
 		
-		Sport bike = sportRepository.findByItem("Bycicle Riding");
-		if (bike==null) bike = new Sport(s6, 30);
+		sportRepository.save(tennis);
 		
-		Sport soccer = sportRepository.findByItem("Soccer");
-		if (soccer==null) soccer = new Sport(s7, 30);
+		Sport swimming = new Sport (30);
+		swimming.setItem(s4);
 		
-		Sport icehockey = sportRepository.findByItem("Icehockey");
-		if (icehockey==null) icehockey = new Sport(s8, 30);
+		sportRepository.save(swimming);
 		
-		Sport climbing = sportRepository.findByItem("Climbing");
-		if (climbing==null) climbing = new Sport(s9, 30);
+		Sport walking = new Sport (30);
+		walking.setItem(s5);
 		
-		Sport basket = sportRepository.findByItem("Basketball");
-		if (basket==null) basket = new Sport(s10, 30);
+		sportRepository.save(walking);
 		
-		return "forward:list";
+		Sport bike = new Sport (30);
+		bike.setItem(s6);
+		
+		sportRepository.save(bike);
+		
+		Sport soccer = new Sport (30);
+		soccer.setItem(s7);
+		
+		sportRepository.save(soccer);
+		
+		Sport icehockey = new Sport (30);
+		icehockey.setItem(s8);
+		
+		sportRepository.save(icehockey);
+		
+		Sport climbing = new Sport (30);
+		climbing.setItem(s9);
+		
+		sportRepository.save(climbing);
+		
+		Sport basket = new Sport (30);
+		basket.setItem(s10);
+		
+		sportRepository.save(basket);
+		
+		return "login";
 	
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public String handleAllException(Exception ex) {
+
+		return "error";
 	}
 	
 }
