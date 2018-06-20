@@ -33,8 +33,8 @@ public class Item implements java.io.Serializable {
 	private Drink drink;
 	
 	@Id
-	@Column(name = "ItemID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ItemID")
 	private int itemID;
 	
 	@Column(nullable = false, length = 30)
