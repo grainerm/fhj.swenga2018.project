@@ -1,31 +1,32 @@
 package at.fh.swenga.controller;
 
-import java.util.Optional;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import at.fh.swenga.model.Art;
 import at.fh.swenga.model.Drink;
 import at.fh.swenga.model.Food;
 import at.fh.swenga.model.Item;
-import at.fh.swenga.model.ProfileImage;
+import at.fh.swenga.model.Role;
 import at.fh.swenga.model.Sport;
+import at.fh.swenga.model.StandardKalorienVerbrauch;
 import at.fh.swenga.model.User;
 import at.fh.swenga.repositories.ArtRepository;
 import at.fh.swenga.repositories.DrinkRepository;
 import at.fh.swenga.repositories.FoodRepository;
 import at.fh.swenga.repositories.ItemRepository;
 import at.fh.swenga.repositories.ProfileImageRepository;
+import at.fh.swenga.repositories.RoleRepository;
 import at.fh.swenga.repositories.SportRepository;
+import at.fh.swenga.repositories.StandardKalorienVerbrauchRepository;
 import at.fh.swenga.repositories.UserRepository;
 
 
@@ -53,10 +54,107 @@ public class InsertController {
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	StandardKalorienVerbrauchRepository standardKalorienVerbrauchRepository;
 	
-	@RequestMapping(value = "/fillItemList", method = RequestMethod.GET)
+	@Autowired
+	RoleRepository roleRepository;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+	
+	@RequestMapping(value = "/fillDatabase", method = RequestMethod.GET)
 	@Transactional
 	public String fillItemList(Model model) {
+		
+		//Roles
+		
+		Role radmin =roleRepository.findByBezeichnung("ROLE_ADMIN");
+		if(radmin==null)
+		{
+			radmin = new Role("ROLE_ADMIN");
+			roleRepository.save(radmin);
+		}
+		
+		Role ruser =roleRepository.findByBezeichnung("ROLE_USER");
+		if(ruser==null)
+		{
+			ruser = new Role("ROLE_USER");
+			roleRepository.save(ruser);
+		}
+		
+		Role rguest =roleRepository.findByBezeichnung("ROLE_GUEST");
+		if(rguest==null)
+		{
+			rguest = new Role("ROLE_GUEST");
+			roleRepository.save(rguest);
+		}
+				
+		
+		//User
+		
+		Date now = new Date();
+		User admin = userRepository.findByName("admin");
+		if(admin == null)
+		{
+			admin = new User("admin", "", "", passwordEncoder.encode("password"), true, now);
+			admin.setRole(roleRepository.findByBezeichnung("ROLE_ADMIN"));
+			userRepository.save(admin);
+		}
+		User guest = userRepository.findByName("guest");
+		if(guest == null)
+		{
+			guest = new User("guest", "", "", passwordEncoder.encode("password"), true, now);
+			guest.setRole(roleRepository.findByBezeichnung("ROLE_GUEST"));
+			userRepository.save(guest);}
+			
+			
+		
+		//SKV
+		StandardKalorienVerbrauch skv1 = standardKalorienVerbrauchRepository.findBySkvID(1);
+		if (skv1==null) skv1 = new StandardKalorienVerbrauch('m', 2500, 0, 19);
+		standardKalorienVerbrauchRepository.save(skv1);
+		
+		StandardKalorienVerbrauch skv2 = standardKalorienVerbrauchRepository.findBySkvID(2);
+		if (skv2==null) skv2 = new StandardKalorienVerbrauch('m', 2500, 20, 25);
+		standardKalorienVerbrauchRepository.save(skv2);
+		
+		StandardKalorienVerbrauch skv3 = standardKalorienVerbrauchRepository.findBySkvID(3);
+		if (skv3==null) skv3 = new StandardKalorienVerbrauch('m', 2400, 26, 51);
+		standardKalorienVerbrauchRepository.save(skv3);
+		
+		StandardKalorienVerbrauch skv4 = standardKalorienVerbrauchRepository.findBySkvID(4);
+		if (skv4==null) skv4 = new StandardKalorienVerbrauch('m', 2200, 52, 65);
+		standardKalorienVerbrauchRepository.save(skv4);
+		
+		StandardKalorienVerbrauch skv5 = standardKalorienVerbrauchRepository.findBySkvID(5);
+		if (skv5==null) skv5 = new StandardKalorienVerbrauch('m', 2000, 66, 120);
+		standardKalorienVerbrauchRepository.save(skv5);
+		
+		StandardKalorienVerbrauch skv6 = standardKalorienVerbrauchRepository.findBySkvID(6);
+		if (skv6==null) skv6 = new StandardKalorienVerbrauch('f', 2000, 0, 19);
+		standardKalorienVerbrauchRepository.save(skv6);
+		
+		StandardKalorienVerbrauch skv7 = standardKalorienVerbrauchRepository.findBySkvID(7);
+		if (skv7==null) skv7 = new StandardKalorienVerbrauch('f', 1900, 20, 25);
+		standardKalorienVerbrauchRepository.save(skv7);
+		
+		StandardKalorienVerbrauch skv8 = standardKalorienVerbrauchRepository.findBySkvID(8);
+		if (skv8==null) skv8 = new StandardKalorienVerbrauch('f', 1900, 26, 51);
+		standardKalorienVerbrauchRepository.save(skv8);
+		
+		StandardKalorienVerbrauch skv9 = standardKalorienVerbrauchRepository.findBySkvID(9);
+		if (skv9==null) skv9 = new StandardKalorienVerbrauch('f', 1800, 52, 65);
+		standardKalorienVerbrauchRepository.save(skv9);
+		
+		StandardKalorienVerbrauch skv10 = standardKalorienVerbrauchRepository.findBySkvID(10);
+		if (skv10==null) skv10 = new StandardKalorienVerbrauch('f', 1600, 66, 120);
+		standardKalorienVerbrauchRepository.save(skv10);
+		
+		
+		
+		
 		//Art
 		
 		Art food = artRepository.findByBezeichnung("Food");
@@ -74,7 +172,7 @@ public class InsertController {
 		
 		//Item
 				
-		Item f1 = new Item ("Apile", 52, true);
+		Item f1 = new Item ("Apple", 52, true);
 		f1.setArt(food);
 				
 		itemRepository.save(f1);
@@ -324,12 +422,11 @@ public class InsertController {
 		
 		//Food
 		
-		System.out.println("ID?: " + f1.getItemID());
+			
+		Food apple = new Food (100);
+		apple.setItem(f1);
 		
-		Food apile = new Food (100);
-		apile.setItem(f1);
-		
-		foodRepository.save(apile);
+		foodRepository.save(apple);
 		
 		Food beef = new Food (100);
 		beef.setItem(f2);
@@ -573,9 +670,9 @@ public class InsertController {
 		sportRepository.save(basket);
 		
 		return "login";
+		
 	
-	}
-	
+		
 	/*
 	@RequestMapping(value = "/uploadProfileImage", method = RequestMethod.GET)
 	@Transactional
@@ -635,8 +732,9 @@ public class InsertController {
 		}
 
 		return "settings";
+		*/
 }
-*/
+
 
 	
 	@ExceptionHandler(Exception.class)
