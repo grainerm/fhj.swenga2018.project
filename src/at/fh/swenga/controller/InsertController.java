@@ -1,23 +1,32 @@
 package at.fh.swenga.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import at.fh.swenga.model.Art;
 import at.fh.swenga.model.Drink;
 import at.fh.swenga.model.Food;
 import at.fh.swenga.model.Item;
+import at.fh.swenga.model.ProfileImage;
 import at.fh.swenga.model.Sport;
+import at.fh.swenga.model.User;
 import at.fh.swenga.repositories.ArtRepository;
 import at.fh.swenga.repositories.DrinkRepository;
 import at.fh.swenga.repositories.FoodRepository;
 import at.fh.swenga.repositories.ItemRepository;
+import at.fh.swenga.repositories.ProfileImageRepository;
 import at.fh.swenga.repositories.SportRepository;
+import at.fh.swenga.repositories.UserRepository;
 
 
 @Controller
@@ -37,6 +46,12 @@ public class InsertController {
 	
 	@Autowired(required = true)
 	ArtRepository artRepository;
+	
+	@Autowired
+	ProfileImageRepository profileImageRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	
 	@RequestMapping(value = "/fillItemList", method = RequestMethod.GET)
@@ -59,7 +74,7 @@ public class InsertController {
 		
 		//Item
 				
-		Item f1 = new Item ("Apple", 52, true);
+		Item f1 = new Item ("Apile", 52, true);
 		f1.setArt(food);
 				
 		itemRepository.save(f1);
@@ -193,7 +208,7 @@ public class InsertController {
 		
 		itemRepository.save(d6);
 		
-		Item d7 = new Item ("Apple Juice", 46, true);
+		Item d7 = new Item ("Apile Juice", 46, true);
 		d7.setArt(drink);
 		
 		itemRepository.save(d7);
@@ -311,10 +326,10 @@ public class InsertController {
 		
 		System.out.println("ID?: " + f1.getItemID());
 		
-		Food apple = new Food (100);
-		apple.setItem(f1);
+		Food apile = new Food (100);
+		apile.setItem(f1);
 		
-		foodRepository.save(apple);
+		foodRepository.save(apile);
 		
 		Food beef = new Food (100);
 		beef.setItem(f2);
@@ -444,10 +459,10 @@ public class InsertController {
 		
 		drinkRepository.save(orangeJ);
 		
-		Drink appleJ = new Drink (100);
-		appleJ.setItem(d7);
+		Drink apileJ = new Drink (100);
+		apileJ.setItem(d7);
 		
-		drinkRepository.save(appleJ);
+		drinkRepository.save(apileJ);
 		
 		Drink redWine = new Drink (100);
 		redWine.setItem(d8);
@@ -560,6 +575,69 @@ public class InsertController {
 		return "login";
 	
 	}
+	
+	/*
+	@RequestMapping(value = "/uploadProfileImage", method = RequestMethod.GET)
+	@Transactional
+	public String uploadProfileImage(Model model, @RequestParam("name") String name) {
+		User user = userRepository.findByName(name);
+		if (user != null) {
+			model.addAttribute("user", user);
+			return "uploadProfileImage";
+		} else {
+			model.addAttribute("errorMessage",
+			"Please login in again and retry to upload your profile Picture. Error while reading User Data!");
+			return "login";
+		}
+	}
+	
+	
+	@RequestMapping(value = "/uploadProfileImage", method = RequestMethod.POST)
+	public String uploadProfileImage(Model model, Authentication authentication,
+			@RequestParam("name") String name, @RequestParam("imageFile") MultipartFile imageFile) {
+
+		try {
+
+			Optional<User> userOp = userRepository.findFirstByName(name);
+
+			if (!userOp.isPresent()) {
+				model.addAttribute("errorMessage", "Error while reading Data!");
+				return "settings";
+			}
+
+			User user = userOp.get();
+
+			// Load lazy ProfilePicutre and check if there is one already!
+			ProfileImage currPic = profileImageRepository.findByCurrentUserName(user.getName());
+			// Already a Profile Picture available -> delete it
+			if (currPic != null) {
+				profileImageRepository.delete(currPic);
+				// Don't forget to remove the relationship too
+				user.setProfileImage(null);
+				userRepository.save(user);
+			}
+			// Create a new document and set all available infos
+
+			ProfileImage pi = new ProfileImage();
+			pi.setName(user.getName() + "-Profile-Image");
+			pi.setType(imageFile.getContentType());
+			pi.setImg(imageFile.getBytes());
+
+			pi.setCurrentUser(user);
+			user.setProfileImage(pi);
+			profileImageRepository.save(pi);
+			userRepository.save(user);
+			model.addAttribute("message", "Profile Image successfully added.");
+
+		} catch (Exception e) {
+
+			model.addAttribute("errorMessage", "Error:" + e.getMessage());
+		}
+
+		return "settings";
+}
+*/
+
 	
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {
