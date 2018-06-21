@@ -22,8 +22,7 @@ public class Art implements java.io.Serializable {
 	private Set<Item> items;
 	
 	@Id
-	@Column(name = "ArtID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ArtID", nullable = false)
 	private int artID;
 	
 	@Column(nullable = false, length = 30)
@@ -33,8 +32,9 @@ public class Art implements java.io.Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Art(String bezeichnung) {
+	public Art(int artID, String bezeichnung) {
 		super();
+		this.artID = artID;
 		this.bezeichnung = bezeichnung;
 	}
 

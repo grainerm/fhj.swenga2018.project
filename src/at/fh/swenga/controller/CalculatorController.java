@@ -43,7 +43,7 @@ public class CalculatorController {
 
 	@RequestMapping(value = { "/" })
 	public String index(Model model) { 
-		String nickName = "";
+		/**String nickName = "";
 		
 		nickName = authentication.getName();
 		User user = userRepo.findByName(nickName);
@@ -64,9 +64,9 @@ public class CalculatorController {
 		} else {
 			return "error";
 		}
-		//System.out.println("user: " + nickName);
+		//System.out.println("user: " + nickName);**/
 		
-		///return "index"; 
+		return "index"; 
 	}
 	
 	@RequestMapping(value = { "/settings" })
@@ -93,11 +93,6 @@ public class CalculatorController {
 		return "journal";
 	}
 	
-	@RequestMapping(value = { "/guestbook" })
-	public String guestbook(Model model) { 
-
-		return "guestbook";
-	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String handleLogin() {
@@ -128,7 +123,7 @@ public class CalculatorController {
         if (bindingResult.hasErrors()) {
             return "error";
         }
-        
+         
 
         if(userService.exists(newUser.getNickname()))
         	attributes.addFlashAttribute("exists", "User already existing!");
