@@ -7,11 +7,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,6 +26,9 @@ public class User implements java.io.Serializable{
 
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private Set<Activity> activities;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade =  CascadeType.ALL, mappedBy = "currentUser")
+	private ProfileImage profileImage;
 	
 	@Id
 	@Column(name = "nickname")
@@ -197,6 +199,14 @@ public class User implements java.io.Serializable{
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	
+	public ProfileImage getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(ProfileImage profileImage) {
+		this.profileImage = profileImage;
 	}
 
 	@Override

@@ -101,19 +101,36 @@
 					<button type="submit" class="btn btn-secondary btn-success btn-md pull-right" style="margin: 5px 0 5px 0">
 							<i class="fa "></i> Save
 						</button>
+					
+					<!--  
+					<button th:action="@{/uploadProfileImage(name=${user.name})}" type="submit" 
+					class="btn btn-secondary btn-success btn-md pull-right" style="margin: 10px 0 1px 0">	
+						upload pic
+					</button>
+					-->
+						
+						
 				</div>
+					
 					
 						
 			</form>
 		</div>
 
 
-
+<!--  
 		<div class="col-md-5 pull-right"
-			style="margin-right: -100px; margin-top: -650px"></div>
+			style="margin-right: -100px; margin-top: -300px">
+			
+					<a th:href="@{/uploadProfileImage(name=${user.name})}">upload pic</a>
+						
+					<div class="float-right">
+							<img th:unless="${image} == null" th:src="${image}" height="250"></div>
+					
+			</div>
 
 
-		<!--  End of container -->
+		End of container -->
 		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
 <script>new Morris.Donut({
