@@ -36,12 +36,12 @@
 	
 	<div class="container" role="main">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-4" style="margin-top: 40px">
+			<div class="col-md-8 col-md-offset-3" style="margin-top: 40px">
 				
 				<h1>Guestbook</h1>
 					
 					
-				
+				<div class="panel-body message">
 						<div class="panel panel-default">
 						<div class="panel-heading">
 							<i class="fa fa-clock-o fa-fw"></i> Create a new entry
@@ -57,17 +57,17 @@
 										<label>Message</label> <input class="form-control text"
 											placeholder="Write a message..." type="text" id="text" name="text" th:value="${guestbook} ? ${guestbook.text}" required autofocus>
 									</div>
-									<button class="btn btn-lg btn-success btn-block">
+									<button class="btn btn-lg btn-success btn-block" type="submit">
 									Post</button>
 									
 								</form>
 								
 							</div>
 						</div>
-					
+					</div>
 			</div>
 			
-			<div class="col-md-8 col-md-offset-3">
+			<div class="col-md-8 col-md-offset-3" style="margin-top:250px">
 				
 	
 					<div class="panel-body message">
@@ -78,33 +78,7 @@
 							<div class="panel-body">
 								<form role="form" th:action="@{/guestbook}" method="get">
 									
-									<!-- table data-toggle="table" class="table table-striped">
-										<thead>
-										<tr>
-											<th>Title</th>
-											<th>Message</th>
-											</tr>
-											</thead> 
-										<tbody>
-										<tr th:each="guestbook : ${entries}">
-											<td th:text="${guestbook} ? ${guestbook.user}"></td>
-											<td th:text="${guestbook} ? ${guestbook.headline}"></td>
-											<td th:text="${guestbook} ? ${guestbook.text}"></td>
-											
-										</tbody>
-									</table-->
 									
-								<!--  div class="chat-body clearfix">
-		                                <div class="header">
-		                                    <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-		                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-		                                </div>
-		                                <p>
-		                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-		                                    dolor, quis ullamcorper ligula sodales.
-		                                </p>
-		                            </div-->
-								
 							<div class="chat-body clearfix chat" th:each="guestbook : ${entries}">
                                 <div class="header">
                                 
@@ -126,7 +100,7 @@
 				
 				</div>
 			</div>
-			</div>
+			
 			
 			
 			
