@@ -37,7 +37,7 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-1" style="margin-top: 40px">
 				
-					<h1>Hello Miriam!</h1>
+					<h1>Hello <span th:text="${currentUser} ? ${currentUser.vorname}"></span>!</h1>
 					<div class="panel panel-default">
 						<div class="panel-heading overview">What you have reached
 							today:</div>

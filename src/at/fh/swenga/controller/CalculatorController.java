@@ -84,7 +84,7 @@ public class CalculatorController {
 				
 				return "settings";
 			} else {
-				model.addAttribute("user", user);
+				model.addAttribute("currentUser", user);
 				// was er essen darf
 				int caloriesPerDay = calulcateCaloriesPerDay(user);
 				int caloriesEatenToday = calculateCaloriesEatenToday(user);
