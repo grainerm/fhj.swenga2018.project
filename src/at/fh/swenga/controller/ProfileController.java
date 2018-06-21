@@ -26,7 +26,7 @@ public class ProfileController
 	
 	@RequestMapping(value = "/changeSettings", method = RequestMethod.POST)
 	@Transactional
-    public String changeSettings(@Valid User newUser, BindingResult bindingResult, RedirectAttributes attributes, @RequestParam boolean male) 
+    public String changeSettings(@Valid User newUser, BindingResult bindingResult, RedirectAttributes attributes, @RequestParam(value="male") boolean male) 
 	{
 		System.out.println(newUser.getGeburtstag());
 		System.out.println("Geschlecht "+male);
