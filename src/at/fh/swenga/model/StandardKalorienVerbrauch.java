@@ -40,17 +40,13 @@ public class StandardKalorienVerbrauch implements java.io.Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public StandardKalorienVerbrauch(int skvID, char geschlecht, int kalorien, int vonAlter, int bisAlter,
-			int vonGroesse, int bisGroesse) {
+	public StandardKalorienVerbrauch(char geschlecht, int kalorien, int vonAlter, int bisAlter) {
 		super();
-		this.skvID = skvID;
 		this.geschlecht = geschlecht;
 		this.kalorien = kalorien;
 		this.vonAlter = vonAlter;
 		this.bisAlter = bisAlter;
-		this.vonGroesse = vonGroesse;
-		this.bisGroesse = bisGroesse;
-	}
+		}
 
 	public int getSkvID() {
 		return skvID;
