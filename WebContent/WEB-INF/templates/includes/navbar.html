@@ -45,6 +45,9 @@
                     <li>
                         <a th:href="@{/items}" class="active"><i class="fa fa-dashboard fa-fw"></i>Items</a>
                     </li>
+                    <li>
+                        <a th:href="@{/adminSettings}" sec:authorize="hasRole('ADMIN')" class="active"><i class="fa fa-dashboard fa-fw"></i>Admin Settings</a>
+                    </li>
                 </ul>
 
             
