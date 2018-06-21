@@ -37,6 +37,8 @@ public class ProfileController
 		User currentUser = userRepo.findByName(nickname);
 		if(currentUser.getGeschlecht() == 'm')
 			male = true;
+		else if(currentUser.getGeschlecht()=='\u0000')
+			male = false;
 		model.addAttribute("currentUser", currentUser);
 		model.addAttribute("male", male);
 		return "settings"; 
