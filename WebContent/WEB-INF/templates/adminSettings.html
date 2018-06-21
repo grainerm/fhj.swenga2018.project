@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+<div th:replace="~{includes/bootstrap :: bootstrapMeta}"  />
+<title>Calories Calculator</title>
+<div th:replace="~{includes/bootstrap :: bootstrapCSS}"  />
+
+
+
+</head>
+<body>
+	<div class="container" role="main">
+
+
+		<!--  Error message ----------------------------------------------------------- -->
+		<div th:unless="${errorMessage} == null" th:utext="${errorMessage}"
+			class="alert alert-danger" role="alert"></div>
+		<!--  Error message ----------------------------------------------------------- -->
+
+		<!--  Warning message ----------------------------------------------------------- -->
+		<div th:unless="${warningMessage} == null"
+			th:utext="${warningMessage}" class="alert alert-warning"
+			role="warning"></div>
+		<!--  Warning message ----------------------------------------------------------- -->
+
+		<!--   message ----------------------------------------------------------- -->
+		<div th:unless="${message} == null" th:utext="${message}"
+			class="alert alert-success" role="warning"></div>
+		<!--   message ----------------------------------------------------------- -->
+
+		<nav th:replace="~{includes/navbar.html :: navigation}"></nav>
+		<div class="row">
+		<div class="col-md-6 col-md-offset-1" style="margin-top: 40px">
+			<h1>Admin Settings</h1>
+			
+</div>
+			<div class="col-md-10 col-md-offset-1">
+				<div th:if="${deleted}" th:text="${deleted}"
+					class="alert alert-success" />
+				<div th:if="${error}" th:text="${error}" class="alert alert-danger" />
+				
+		<h2>Users</h2>
+				<table data-toggle="table" class="table table-striped">
+					<thead>
+						<tr>
+							<th data-sortable="true">Username</th>
+							<th data-sortable="true">First Name</th>
+							<th data-sortable="true">Last Name</th>
+							<th data-sortable="true">Day of birth</th>
+							<th sec:authorize="hasRole('ADMIN')">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!--  list all items ----------------------------------------------------------- -->
+						<tr th:each="user : ${users}">
+							<td th:text="${user.name}"></td>
+							<td th:text="${user.vorname}"></td>
+							<td th:text="${user.nachname}"></td>
+							<td th:text="${#dates.format(user.geburtstag,'dd.MM.yyyy')}"></td>
+							<td>
+								<form
+									th:action="${user.aktiv==false} ? @{/activateUser(name=${user.name})} : @{/lockUser(name=${user.name})}"
+									method="post" role="form">
+									<button class="btn btn-xs btn-info" type="submit"
+										th:text="${user.aktiv==false} ? Activate : Lock">Activate</button>
+
+									<a th:href="@{/deleteSelectedUser(name=${user.name})}"
+										class="btn btn-xs btn-danger"> <span
+										class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										Delete
+									</a>
+								</form>
+							</td>
+							<!-- form th:action="@{/deleteSelectedUser(name=${user.name})}"
+									role="form">
+									<button class="btn btn-xs btn-danger " type="submit">Delete</button>
+
+								</form-->
+
+
+							<!--a th:href="${user.aktiv==false} ? @{/activateUser(name=${user.name})} : @{/lockUser(name=${user.name})}" th:text="${user.aktiv==false} ? Activate : Lock"  class="btn btn-xs btn-info">
+									<span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>
+									Activate
+								</a>
+
+								<a th:href="@{/deleteSelectedUser(name=${user.name})}"  class="btn btn-xs btn-danger">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									Delete
+								</a-->
+
+
+						
+						</tr>
+						<!--  list all items ----------------------------------------------------------- -->
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+	</div>
+
+	<!--  End of container -->
+	<div th:include="~{includes/bootstrap :: bootstrapJS}" th:remove="tag" />
+</body>
+
+</html>
+
