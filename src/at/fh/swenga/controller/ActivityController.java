@@ -72,7 +72,7 @@ public class ActivityController {
 	}
 	
 	@RequestMapping(value = "/activitiesAdd", method = RequestMethod.POST)
-    public String addEntry( Food activityModelForm, BindingResult bindingResult, Model model) 
+    public String addEntry( Activity activityModelForm, BindingResult bindingResult, Model model) 
 	{
 		
 		System.out.println(activityModelForm.getItem().getBezeichnung());
@@ -80,7 +80,7 @@ public class ActivityController {
             return "activities";
         }
         
-      foodRepo.save(activityModelForm);
+      activityRepo.save(activityModelForm);
       
       return activities(model);
     }
