@@ -20,8 +20,8 @@ public class GuestbookModel implements java.io.Serializable  {
 	private int entryID;
 	
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	private User user;
+	/**@ManyToOne(cascade = CascadeType.PERSIST)
+	private User user;**/
 	
 	@Column(nullable = false, length = 20)
 	private String headline;
@@ -42,7 +42,7 @@ public class GuestbookModel implements java.io.Serializable  {
 	public GuestbookModel(int entryID, User user, String headline, String text) {
 		super();
 		this.entryID = entryID;
-		this.user = user;
+		//this.user = user;
 		this.headline = headline;
 		this.text = text;
 	}
@@ -67,17 +67,17 @@ public class GuestbookModel implements java.io.Serializable  {
 
 
 
-	public User getUser() {
+	/*public User getUser() {
 		return user;
-	}
+	}*/
 
 
 
 
 
-	public void setUser(User user) {
+	/*public void setUser(User user) {
 		this.user = user;
-	}
+	}*/
 
 
 
@@ -121,7 +121,7 @@ public class GuestbookModel implements java.io.Serializable  {
 		int result = 1;
 		result = prime * result + ((headline == null) ? 0 : headline.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		//result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -144,11 +144,11 @@ public class GuestbookModel implements java.io.Serializable  {
 				return false;
 		} else if (!text.equals(other.text))
 			return false;
-		if (user == null) {
+		/*if (user == null) {
 			if (other.user != null)
 				return false;
 		} else if (!user.equals(other.user))
-			return false;
+			return false;*/
 		return true;
 	}
 
@@ -157,7 +157,7 @@ public class GuestbookModel implements java.io.Serializable  {
 	
 	@Override
 	public String toString() {
-		return "GuestBookModel [user=" + user + ", headline=" + headline + ", text=" + text + "]";
+		return "GuestBookModel [ headline=" + headline + ", text=" + text + "]";
 	}
 	
 }

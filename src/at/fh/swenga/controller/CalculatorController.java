@@ -79,6 +79,8 @@ public class CalculatorController {
 					model.addAttribute("caloriesPerDay", caloriesPerDay);
 				}
 				// was er gegessen hat (activities)
+				System.out.println("user:"+ user.getVorname());
+				model.addAttribute("currentUser", user);
 				return "index";
 			}
 		} else {
