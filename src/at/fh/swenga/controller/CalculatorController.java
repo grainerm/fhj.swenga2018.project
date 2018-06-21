@@ -51,6 +51,7 @@ public class CalculatorController {
 
 	@RequestMapping(value = { "/" })
 	public String index(Model model) { 
+
 		System.out.println("index method");
 		String nickName = "";
 		System.out.println("test");
@@ -84,7 +85,6 @@ public class CalculatorController {
 			return "error";
 		}
 		//System.out.println("user: " + nickName);
-		
 		//return "index"; 
 	}
 	
@@ -150,11 +150,6 @@ private  int  calulcateCaloriesPerDay(User user) {
 		return "journal";
 	}
 	
-	@RequestMapping(value = { "/guestbook" })
-	public String guestbook(Model model) { 
-
-		return "guestbook";
-	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String handleLogin() {
@@ -185,7 +180,7 @@ private  int  calulcateCaloriesPerDay(User user) {
         if (bindingResult.hasErrors()) {
             return "error";
         }
-        
+         
 
         if(userService.exists(newUser.getNickname()))
         	attributes.addFlashAttribute("exists", "User already existing!");
