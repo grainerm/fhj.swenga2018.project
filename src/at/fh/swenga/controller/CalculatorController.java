@@ -59,9 +59,24 @@ public class CalculatorController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		nickName = authentication.getName();
 		User user = userRepo.findByName(nickName);
-		System.out.println("user:"+ user.getVorname());
-		System.out.println("geschlecht|"+user.getGeschlecht()+"|");
+		float bmi = -1;
+		//System.out.println("user:"+ user.getVorname());
+		//System.out.println("geschlecht|"+user.getGeschlecht()+"|");
+		
+		if(user.getGewicht() < 1 && user.getGroesse() < 1){
+			// set weight and groeße for user 
+			return "settings";
+		} else {
+			// calculate BMI
+			// Körpergewicht in Kilogramm geteilt durch Körpergröße in Metern zum Quadrat
+	        
+			bmi = user.getGewicht() / (user.getGroesse()^2);
+			System.out.println("bmi"+bmi);
+		}
 		// if user has set no weight - send it to the settings page
+		if(bmi > 0) {
+			model.addAttribute("bmi",bmi);
+		}
 		if(user != null) {
 			if(user.getZielgewicht() < 1 || user.getGeburtstag() == null || user.getGeschlecht() == ' ') {
 				
@@ -69,18 +84,30 @@ public class CalculatorController {
 				
 				return "settings";
 			} else {
-				model.addAttribute("user", user);
+				model.addAttribute("currentUser", user);
 				// was er essen darf
 				int caloriesPerDay = calulcateCaloriesPerDay(user);
+				int caloriesEatenToday = calculateCaloriesEatenToday(user);
+				int calosBurntToday = calculateCaloriesBurntToday(user);
+				
+				System.out.println("calosPerDay: " + caloriesPerDay);
 				if(caloriesPerDay < 0) {
 					System.out.println("fail in Berrechnung");
 				}else {
 					
 					model.addAttribute("caloriesPerDay", caloriesPerDay);
 				}
-				// was er gegessen hat (activities)
-				System.out.println("user:"+ user.getVorname());
-				model.addAttribute("currentUser", user);
+				if(caloriesEatenToday < 0) {
+					System.out.println("fail in Berrechnung calos eaten today");
+				} else {
+					model.addAttribute("caloriesEatenToday", caloriesEatenToday);
+				}
+				if(calosBurntToday < 0) {
+					System.out.println("fail in Berrechnung calos eaten today");
+				} else {
+					model.addAttribute("caloriesBurntToday", calosBurntToday);
+				}
+
 				return "index";
 			}
 		} else {
@@ -88,6 +115,18 @@ public class CalculatorController {
 		}
 		//System.out.println("user: " + nickName);
 		//return "index"; 
+	}
+private int calculateCaloriesBurntToday(User user) {
+		int calosBurntToday  = -1;
+		
+		return calosBurntToday;
+	}
+
+
+private int calculateCaloriesEatenToday(User user) {
+		int calosEaterPerDay = -1;
+		
+		return calosEaterPerDay;
 	}
 
 private  int  calulcateCaloriesPerDay(User user) {
@@ -119,6 +158,8 @@ private  int  calulcateCaloriesPerDay(User user) {
 	}
 	return caloriesPerDay;		
 	}
+
+
 
 	private int calculateAge(Date geburtstag) {
 	int age = -1;
