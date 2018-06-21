@@ -1,5 +1,10 @@
 package at.fh.swenga.controller;
 
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,7 +27,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import at.fh.swenga.dao.RoleDAO;
 import at.fh.swenga.model.Role;
+import at.fh.swenga.model.StandardKalorienVerbrauch;
 import at.fh.swenga.model.User;
+import at.fh.swenga.repositories.StandardKalorienVerbrauchRepository;
 import at.fh.swenga.repositories.UserRepository;
 import at.fh.swenga.service.UserService;
              
@@ -38,43 +45,130 @@ public class CalculatorController {
 	@Autowired
 	private UserService userService;
 	
-	//Get nickname
-	private Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	@Autowired 
+	private StandardKalorienVerbrauchRepository skvRepo;
+	
 
 	@RequestMapping(value = { "/" })
 	public String index(Model model) { 
-		/**String nickName = "";
-		
+
+		System.out.println("index method");
+		String nickName = "";
+		System.out.println("test");
+		//Get nickname
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		nickName = authentication.getName();
 		User user = userRepo.findByName(nickName);
+		float bmi = -1;
+		//System.out.println("user:"+ user.getVorname());
+		//System.out.println("geschlecht|"+user.getGeschlecht()+"|");
+		
+		if(user.getGewicht() < 1 && user.getGroesse() < 1){
+			// set weight and groeße for user 
+			return "settings";
+		} else {
+			// calculate BMI
+			// Körpergewicht in Kilogramm geteilt durch Körpergröße in Metern zum Quadrat
+	        
+			bmi = user.getGewicht() / (user.getGroesse()^2);
+			System.out.println("bmi"+bmi);
+		}
 		// if user has set no weight - send it to the settings page
+		if(bmi > 0) {
+			model.addAttribute("bmi",bmi);
+		}
 		if(user != null) {
-			if(user.getZielgewicht() < 1) {
+			if(user.getZielgewicht() < 1 || user.getGeburtstag() == null || user.getGeschlecht() == ' ') {
+				
 				System.out.println("Zielgwicht muas gsetzt sein, oida!");
 				
 				return "settings";
 			} else {
-				model.addAttribute("user", user);
+				model.addAttribute("currentUser", user);
 				// was er essen darf
+				int caloriesPerDay = calulcateCaloriesPerDay(user);
+				int caloriesEatenToday = calculateCaloriesEatenToday(user);
+				int calosBurntToday = calculateCaloriesBurntToday(user);
 				
-				// was er gegessen hat (activities)
-				model.addAttribute("caloriesPerDay", 120);
+				System.out.println("calosPerDay: " + caloriesPerDay);
+				if(caloriesPerDay < 0) {
+					System.out.println("fail in Berrechnung");
+				}else {
+					
+					model.addAttribute("caloriesPerDay", caloriesPerDay);
+				}
+				if(caloriesEatenToday < 0) {
+					System.out.println("fail in Berrechnung calos eaten today");
+				} else {
+					model.addAttribute("caloriesEatenToday", caloriesEatenToday);
+				}
+				if(calosBurntToday < 0) {
+					System.out.println("fail in Berrechnung calos eaten today");
+				} else {
+					model.addAttribute("caloriesBurntToday", calosBurntToday);
+				}
+
 				return "index";
 			}
 		} else {
 			return "error";
 		}
-		//System.out.println("user: " + nickName);**/
+		//System.out.println("user: " + nickName);
+		//return "index"; 
+	}
+private int calculateCaloriesBurntToday(User user) {
+		int calosBurntToday  = -1;
 		
-		return "index"; 
+		return calosBurntToday;
 	}
-	
-	@RequestMapping(value = { "/settings" })
-	public String settings(Model model) { 
 
-		return "settings"; 
+
+private int calculateCaloriesEatenToday(User user) {
+		int calosEaterPerDay = -1;
+		
+		return calosEaterPerDay;
 	}
+
+private  int  calulcateCaloriesPerDay(User user) {
+	System.out.println("");
+	System.out.println("caloriesPerDay");
+	int caloriesPerDay = -1;
+	int zielgewicht = user.getZielgewicht();
 	
+	int age = calculateAge(user.getGeburtstag());
+	
+	System.out.println("age: "+age);
+	if(age < 0) {
+		System.out.println("fehler in Age berrechnung");
+	}else {
+		List<StandardKalorienVerbrauch> skvList = skvRepo.findByGeschlecht(user.getGeschlecht());
+		if(skvList.isEmpty()) {
+			System.out.println("insert data in SKV!!!");
+		} else {
+			for(StandardKalorienVerbrauch skv : skvList) {
+				int unten = skv.getVonAlter();
+				int oben = skv.getBisAlter();
+				
+				if(age < oben && age > unten) {
+					caloriesPerDay = skv.getKalorien();
+					break;
+				}
+			}
+		}
+	}
+	return caloriesPerDay;		
+	}
+
+
+
+	private int calculateAge(Date geburtstag) {
+	int age = -1;
+	if(geburtstag != null) {
+		age = Period.between(geburtstag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()).getYears();
+	}
+	return age;
+}
+
 	@RequestMapping(value = { "/activities" })
 	public String activities(Model model) { 
  

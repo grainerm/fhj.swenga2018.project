@@ -10,118 +10,66 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Guestbook")
+@Table(name = "Journal")
 
-public class GuestbookModel implements java.io.Serializable  {
+public class JournalModel {
 	
 	@Id
-	@Column(name = "entryID")
+	@Column(name = "textID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int entryID;
+	private int textID;
 	
-
-	/**@ManyToOne(cascade = CascadeType.PERSIST)
-	private User user;**/
 	
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, length = 100)
 	private String headline;
 	
 	@Column(nullable = false, length = 300)
 	private String text;
+
+	public JournalModel() {
+			
+		};
 	
-	
-	
-	public GuestbookModel() {
-		
-	}
-	
-	
-	
-	
-	
-	public GuestbookModel(int entryID, User user, String headline, String text) {
+	public JournalModel(int textID, User user, String headline, String text) {
 		super();
-		this.entryID = entryID;
-		//this.user = user;
+		this.textID = textID;
 		this.headline = headline;
 		this.text = text;
 	}
 
-
-
-
-
-	public int getEntryID() {
-		return entryID;
+	public int getTextID() {
+		return textID;
 	}
 
-
-
-
-
-	public void setEntryID(int entryID) {
-		this.entryID = entryID;
+	public void setTextID(int textID) {
+		this.textID = textID;
 	}
 
-
-
-
-
-	/*public User getUser() {
-		return user;
-	}*/
-
-
-
-
-
-	/*public void setUser(User user) {
-		this.user = user;
-	}*/
-
-
-
-
+	
 
 	public String getHeadline() {
 		return headline;
 	}
 
-
-
-
-
 	public void setHeadline(String headline) {
 		this.headline = headline;
 	}
-
-
-
-
 
 	public String getText() {
 		return text;
 	}
 
-
-
-
-
 	public void setText(String text) {
 		this.text = text;
 	}
-
-
-
-
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((headline == null) ? 0 : headline.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
-		//result = prime * result + ((user == null) ? 0 : user.hashCode());
+		
 		return result;
 	}
 
@@ -133,7 +81,7 @@ public class GuestbookModel implements java.io.Serializable  {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GuestbookModel other = (GuestbookModel) obj;
+		JournalModel other = (JournalModel) obj;
 		if (headline == null) {
 			if (other.headline != null)
 				return false;
@@ -144,11 +92,7 @@ public class GuestbookModel implements java.io.Serializable  {
 				return false;
 		} else if (!text.equals(other.text))
 			return false;
-		/*if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;*/
+		
 		return true;
 	}
 
@@ -157,7 +101,7 @@ public class GuestbookModel implements java.io.Serializable  {
 	
 	@Override
 	public String toString() {
-		return "GuestBookModel [ headline=" + headline + ", text=" + text + "]";
+		return "JournalModel [headline=" + headline + ", text=" + text + "]";
 	}
-	
+
 }
