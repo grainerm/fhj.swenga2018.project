@@ -87,7 +87,7 @@ public class CalculatorController {
 		//System.out.println("user: " + nickName);
 		//return "index"; 
 	}
-	
+
 private  int  calulcateCaloriesPerDay(User user) {
 	System.out.println("");
 	System.out.println("caloriesPerDay");
@@ -126,12 +126,6 @@ private  int  calulcateCaloriesPerDay(User user) {
 	return age;
 }
 
-	@RequestMapping(value = { "/settings" })
-	public String settings(Model model) { 
-
-		return "settings"; 
-	}
-	
 	@RequestMapping(value = { "/activities" })
 	public String activities(Model model) { 
  
