@@ -68,13 +68,7 @@ public class CalculatorController {
 		
 		return "index"; 
 	}
-	
-	@RequestMapping(value = { "/settings" })
-	public String settings(Model model) { 
-
-		return "settings"; 
-	}
-	
+		
 	@RequestMapping(value = { "/activities" })
 	public String activities(Model model) { 
  

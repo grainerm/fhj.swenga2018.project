@@ -42,28 +42,41 @@
 					<h1>Settings</h1>
 					<div class="panel panel-default">
 						<div class="panel-heading overview">Personal Information</div>
+
 						<!-- /.panel-heading -->
 						<div class="panel-body">
-
+							<div th:if="${success}" th:text="${success}"
+								class="alert alert-success" />
+							<div th:if="${error}" th:text="${error}"
+								class="alert alert-danger" />
 							<div class="form-group">
 								<label class="control-label">Birthday</label> <input
-									type="date" th:value="${user} ? ${user.geburtstag}" name="geburtstag" class="form-control">
+									class="form_datetime form-control" id="geburtstag"
+									placeholder="Date" type="text" readonly name="geburtstag"
+									th:value="${currentUser} ? ${#dates.format(currentUser.geburtstag, 'dd.MM.yyyy')}">
 							</div>
 							<div class="form-group">
-								<label class="control-label">Weight</label> 
-								<input type="number" th:value="${user} ? ${user.gewicht}" name="gewicht"
-									class="form-control">
+								<label class="control-label">Weight</label> <input type="number"
+									th:value="${currentUser} ? ${currentUser.gewicht}"
+									name="gewicht" class="form-control">
+							</div>
+							<div class="form-group">
+								<label class="control-label">Size (cm)</label> <input
+									type="number"
+									th:value="${currentUser} ? ${currentUser.groesse}"
+									name="groesse" class="form-control">
 							</div>
 							<div class="form-group">
 								<label>Gender</label>
 								<div class="radio">
 									<label> <input type="radio" name="optionsRadios"
-										id="optionsRadios1" value="option1" th:checked="male"> Male
+										id="optionsRadios1" value="male" th:checked="${male==true}">
+										Male
 									</label>
 								</div>
 								<div class="radio">
 									<label> <input type="radio" name="optionsRadios"
-										id="optionsRadios2" value="option2">Female
+										id="optionsRadios2" value="female" th:checked="${male==false}">Female
 									</label>
 								</div>
 
@@ -89,46 +102,68 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<label>What is your desired weight to reach?</label>
-							<div class="form-group">
-								<label class="control-label">Desired weight</label> 
-								<input type="number" th:value="${user} ? ${user.zielgewicht}" name="zielgewicht"
-									class="form-control">
-							</div>
+								<div class="form-group">
+									<label class="control-label">Desired weight</label> <input
+										type="number"
+										th:value="${currentUser} ? ${currentUser.zielgewicht}"
+										name="zielgewicht" class="form-control">
+								</div>
 							</div>
 						</div>
 						<!-- /.panel-body -->
 					</div>
-					<button type="submit" class="btn btn-secondary btn-success btn-md pull-right" style="margin: 5px 0 5px 0">
-							<i class="fa "></i> Save
-						</button>
+					<button type="submit"
+						class="btn btn-secondary btn-success btn-md pull-right"
+						style="margin: 5px 0 5px 0">
+						<i class="fa "></i> Save
+					</button>
 				</div>
-					
-						
-			</form>
-		</div>
+		
+		</form>
+	
+
+	</div>
+
+	<div class="col-md-5 pull-right"
+		style="margin-right: -100px; margin-top: -650px"></div>
 
 
-
-		<div class="col-md-5 pull-right"
-			style="margin-right: -100px; margin-top: -650px"></div>
-
-
-		<!--  End of container -->
-		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
+	<!--  End of container -->
+	<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
-<script>new Morris.Donut({
-	  // ID of the element in which to draw the chart.
-	  element: 'donut-chart',
-	  // Chart data records -- each entry in this array corresponds to a point on
-	  // the chart.
-	  data: [
-	    {label: "Calories left", value: 12},
-	    {label: "Calories Eaten", value: 30}
-	  ]
-	  
-	  
-	  
-	 
-	});</script>
+<script>
+	new Morris.Donut({
+		// ID of the element in which to draw the chart.
+		element : 'donut-chart',
+		// Chart data records -- each entry in this array corresponds to a point on
+		// the chart.
+		data : [ {
+			label : "Calories left",
+			value : 12
+		}, {
+			label : "Calories Eaten",
+			value : 30
+		} ]
+
+	});
+</script>
+
+<!-- JS for Datetime picker -->
+<script type="text/javascript"
+	src="http://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+	$(function() {
+
+		$(".form_datetime").datetimepicker({
+			format : "dd.mm.yyyy",
+			autoclose : true,
+			todayBtn : true,
+			pickerPosition : "bottom-left",
+			minView : 2
+		});
+
+	});
+</script>
 </html>
 
