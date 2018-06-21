@@ -1,5 +1,7 @@
 package at.fh.swenga.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Modifying
 	@Query("delete from User u where u.name = :nickname")
 	void deleteByName(@Param("nickname") String name);
+	
+	Optional<User> findFirstByName(String name);
 }
