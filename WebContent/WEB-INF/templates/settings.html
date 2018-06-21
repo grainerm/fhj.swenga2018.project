@@ -112,27 +112,64 @@
 						</div>
 						<!-- /.panel-body -->
 					</div>
+					<button type="submit" name="save"
 
-
-					<button type="submit"
 						class="btn btn-secondary btn-success btn-md pull-right"
 						style="margin: 5px 0 5px 0">
 						<i class="fa "></i> Save
 					</button>
+
+					<button type="button" data-toggle="modal"
+						data-target="#deleteModal" 
+						class="btn btn-secondary btn-danger btn-md pull-right"
+						style="margin: 5px 0 5px 0">
+						<i class="fa "></i>Delete Account
+					</button>
+					<div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title">Deleting Account</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p>Do you really want to delete your account?</p>
+								</div>
+								<div class="modal-footer">
+									<a th:href="@{/deleteUser}" class="btn btn-md btn-danger">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									Yes
+								</a>
+								<a data-dismiss="modal" class="btn btn-md btn-info">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									No
+								</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-		
-		</form>
-	
 
-	</div>
-
-	<div class="col-md-5 pull-right"
-		style="margin-right: -100px; margin-top: -650px"></div>
+			</form>
 
 
+		</div>
+
+		<div class="col-md-5 pull-right"
+			style="margin-right: -100px; margin-top: -650px"></div>
+
+
+<<<<<<< HEAD
+		<!--  End of container -->
+		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
+=======
 	<!--  End of container -->
 	<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 
+>>>>>>> 5a0974b0d1fd04b0ac839e78fd9a4986d67df302
 </body>
 <script>
 	new Morris.Donut({
