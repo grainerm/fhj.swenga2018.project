@@ -4,9 +4,9 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
-<div th:replace="~{includes/bootstrap :: bootstrapMeta}"  />
+<div th:replace="~{includes/bootstrap :: bootstrapMeta}" />
 <title>Calories Calculator</title>
-<div th:replace="~{includes/bootstrap :: bootstrapCSS}"  />
+<div th:replace="~{includes/bootstrap :: bootstrapCSS}" />
 
 
 
@@ -33,17 +33,17 @@
 
 		<nav th:replace="~{includes/navbar.html :: navigation}"></nav>
 		<div class="row">
-		<div class="col-md-6 col-md-offset-1" style="margin-top: 40px">
-			<h1>Admin Settings</h1>
-			
-</div>
+			<div class="col-md-6 col-md-offset-1" style="margin-top: 40px">
+				<h1>Admin Settings</h1>
+
+			</div>
 			<div class="col-md-10 col-md-offset-1">
 				<div th:if="${deleted}" th:text="${deleted}"
 					class="alert alert-success" />
 				<div th:if="${error}" th:text="${error}" class="alert alert-danger" />
-				
-		<h2>Users</h2>
-				<table data-toggle="table" class="table table-striped">
+
+				<h2>Users</h2>
+				<table  class="table table-striped">
 					<thead>
 						<tr>
 							<th data-sortable="true">Username</th>
@@ -74,33 +74,17 @@
 									</a>
 								</form>
 							</td>
-							<!-- form th:action="@{/deleteSelectedUser(name=${user.name})}"
-									role="form">
-									<button class="btn btn-xs btn-danger " type="submit">Delete</button>
-
-								</form-->
 
 
-							<!--a th:href="${user.aktiv==false} ? @{/activateUser(name=${user.name})} : @{/lockUser(name=${user.name})}" th:text="${user.aktiv==false} ? Activate : Lock"  class="btn btn-xs btn-info">
-									<span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>
-									Activate
-								</a>
 
-								<a th:href="@{/deleteSelectedUser(name=${user.name})}"  class="btn btn-xs btn-danger">
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-									Delete
-								</a-->
-
-
-						
 						</tr>
 						<!--  list all items ----------------------------------------------------------- -->
 					</tbody>
 				</table>
 			</div>
-				<div class="col-md-10 col-md-offset-1">
-		<h2>Items</h2>
-				<table data-toggle="table" class="table table-striped">
+			<div class="col-md-10 col-md-offset-1">
+				<h2>Items</h2>
+				<table  class="table table-striped">
 					<thead>
 						<tr>
 							<th data-sortable="true">Name</th>
@@ -116,8 +100,7 @@
 							<td th:text="${item.art.bezeichnung}"></td>
 							<td th:text="${item.kalorien}"></td>
 							<td>
-								<form
-									th:action="@{/validate(bezeichnung=${item.bezeichnung})}"
+								<form th:action="@{/validate(bezeichnung=${item.bezeichnung})}"
 									method="post" role="form">
 									<button class="btn btn-xs btn-info" type="submit">Validate</button>
 
@@ -128,27 +111,7 @@
 									</a>
 								</form>
 							</td>
-							<!-- form th:action="@{/deleteSelectedUser(name=${user.name})}"
-									role="form">
-									<button class="btn btn-xs btn-danger " type="submit">Delete</button>
-
-								</form-->
-
-
-							<!--a th:href="${user.aktiv==false} ? @{/activateUser(name=${user.name})} : @{/lockUser(name=${user.name})}" th:text="${user.aktiv==false} ? Activate : Lock"  class="btn btn-xs btn-info">
-									<span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>
-									Activate
-								</a>
-
-								<a th:href="@{/deleteSelectedUser(name=${user.name})}"  class="btn btn-xs btn-danger">
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-									Delete
-								</a-->
-
-
-						
 						</tr>
-						<!--  list all items ----------------------------------------------------------- -->
 					</tbody>
 				</table>
 			</div>
