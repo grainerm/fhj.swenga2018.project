@@ -73,7 +73,8 @@ public class CalculatorController {
 		//System.out.println("user:"+ user.getVorname());
 		//System.out.println("geschlecht|"+user.getGeschlecht()+"|");
 		if(nickName.toLowerCase().equals("guest")) {
-			model.addAttribute("currentUser", "Guest");
+			//model.addAttribute("currentUser", "Guest");
+			
 			return "index";
 		}
 		if(user.getGewicht() < 1 && user.getGroesse() < 1){
