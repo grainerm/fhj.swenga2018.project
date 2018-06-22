@@ -108,6 +108,13 @@ public class InsertController {
 			guest = new User("guest", "", "", passwordEncoder.encode("password"), true, now);
 			guest.setRole(roleRepository.findByBezeichnung("ROLE_GUEST"));
 			userRepository.save(guest);}
+		
+		User user = userRepository.findByName("user");
+		if(user == null)
+		{
+			user = new User("user", "User", "A", passwordEncoder.encode("password"), true, now);
+			user.setRole(roleRepository.findByBezeichnung("ROLE_USER"));
+			userRepository.save(user);}
 			
 			
 		
@@ -171,106 +178,106 @@ public class InsertController {
 		
 		
 		//Item
-				
+		
 		Item f1 = new Item ("Apple", 52, true);
 		f1.setArt(food);
 				
-		itemRepository.save(f1);
+		//itemRepository.save(f1);
 		
 		Item f2 = new Item ("Beef", 250, true);
 		f2.setArt(food);
 		
-		itemRepository.save(f2);
+		//itemRepository.save(f2);
 		
 		Item f3 = new Item ("Pork", 242, true);
 		f3.setArt(food);
 		
-		itemRepository.save(f3);
+		//itemRepository.save(f3);
 		
 		Item f4 = new Item ("Lamb", 294, true);
 		f4.setArt(food);
 		
-		itemRepository.save(f4);
+		//itemRepository.save(f4);
 		
 		Item f5 = new Item ("Chicken", 239, true);
 		f5.setArt(food);
 		
-		itemRepository.save(f5);
+		//itemRepository.save(f5);
 		
 		Item f6 = new Item ("Pasta", 131, true);
 		f6.setArt(food);
 		
-		itemRepository.save(f6);
+		//itemRepository.save(f6);
 		
 		Item f7 = new Item ("Rice", 130, true);
 		f7.setArt(food);
 		
-		itemRepository.save(f7);
+		//itemRepository.save(f7);
 		
 		Item f8 = new Item ("Potatoes", 77, true);
 		f8.setArt(food);
 		
-		itemRepository.save(f8);
+		//itemRepository.save(f8);
 		
 		Item f9 = new Item ("White Bread", 265, true);
 		f9.setArt(food);
 		
-		itemRepository.save(f9);
+		//itemRepository.save(f9);
 		
 		Item f10 = new Item ("Dark Bread", 259, true);
 		f10.setArt(food);
 		
-		itemRepository.save(f10);
+		//itemRepository.save(f10);
 		
 		Item f11 = new Item ("Egg", 155, true);
 		f11.setArt(food);
 		
-		itemRepository.save(f11);
+		//itemRepository.save(f11);
 		
 		Item f12 = new Item ("Ham", 110, true);
 		f12.setArt(food);
 		
-		itemRepository.save(f12);
+		//itemRepository.save(f12);
 		
 		Item f13 = new Item ("French Fries", 312, true);
 		f13.setArt(food);
 		
-		itemRepository.save(f13);
+		//itemRepository.save(f13);
 		
 		Item f14 = new Item ("Double Hamburger", 295, true);
 		f14.setArt(food);
 		
-		itemRepository.save(f14);
+		//itemRepository.save(f14);
 		
 		Item f15 = new Item ("Pizza Margherita", 204, true);
 		f15.setArt(food);
 		
-		itemRepository.save(f15);
+		//itemRepository.save(f15);
 		
 		Item f16 = new Item ("Tomato", 18, true);
 		f16.setArt(food);
 		
-		itemRepository.save(f16);
+		//itemRepository.save(f16);
 		
 		Item f17 = new Item ("Cheese", 402, true);
 		f17.setArt(food);
 		
-		itemRepository.save(f17);
+		//itemRepository.save(f17);
 		
 		Item f18 = new Item ("Fish", 206, true);
 		f18.setArt(food);
 		
-		itemRepository.save(f18);
+		//itemRepository.save(f18);
 		
 		Item f19 = new Item ("Salad", 152, true);
 		f19.setArt(food);
 		
-		itemRepository.save(f19);
+		//itemRepository.save(f19);
 		
 		Item f20 = new Item ("Pear", 57, true);
 		f20.setArt(food);
 		
-		itemRepository.save(f20);
+		//itemRepository.save(f20);
 		
 		
 		
@@ -279,92 +286,92 @@ public class InsertController {
 		Item d1 = new Item ("Coca Cola", 37, true);
 		d1.setArt(drink);
 		
-		itemRepository.save(d1);
+		//itemRepository.save(d1);
 		
 		Item d2 = new Item ("Pepsi Cola", 41, true);
 		d2.setArt(drink);
 		
-		itemRepository.save(d2);
+		//itemRepository.save(d2);
 		
 		Item d3 = new Item ("Ice Tea", 35, true);
 		d3.setArt(drink);
 		
-		itemRepository.save(d3);
+		//itemRepository.save(d3);
 		
 		Item d4 = new Item ("Sprite", 39, true);
 		d4.setArt(drink);
 		
-		itemRepository.save(d4);
+		//itemRepository.save(d4);
 		
 		Item d5 = new Item ("Almdudler", 33, true);
 		d5.setArt(drink);
 		
-		itemRepository.save(d5);
+		//itemRepository.save(d5);
 		
 		Item d6 = new Item ("Orange Juice", 29, true);
 		d6.setArt(drink);
 		
-		itemRepository.save(d6);
+		//itemRepository.save(d6);
 		
 		Item d7 = new Item ("Apile Juice", 46, true);
 		d7.setArt(drink);
 		
-		itemRepository.save(d7);
+		//itemRepository.save(d7);
 		
 		Item d8 = new Item ("Red Wine", 85, true);
 		d8.setArt(drink);
 		
-		itemRepository.save(d8);
+		//itemRepository.save(d8);
 		
 		Item d9 = new Item ("White Wine", 82, true);
 		d9.setArt(drink);
 		
-		itemRepository.save(d9);
+		//itemRepository.save(d9);
 		
 		Item d10 = new Item ("Beer", 43, true);
 		d10.setArt(drink);
 		
-		itemRepository.save(d10);
+		//itemRepository.save(d10);
 		
 		Item d11 = new Item ("Cranberry Juice", 46, true);
 		d11.setArt(drink);
 		
-		itemRepository.save(d11);
+		//itemRepository.save(d11);
 		
 		Item d12 = new Item ("Tomato Juice", 17, true);
 		d12.setArt(drink);
 		
-		itemRepository.save(d12);
+		//itemRepository.save(d12);
 		
 		Item d13 = new Item ("Carrots Juice", 39, true);
 		d13.setArt(drink);
 		
-		itemRepository.save(d13);
+		//itemRepository.save(d13);
 		
 		Item d14 = new Item ("Gin", 263, true);
 		d14.setArt(drink);
 		
-		itemRepository.save(d14);
+		//itemRepository.save(d14);
 		
 		Item d15 = new Item ("Hot Chocolate", 77, true);
 		d15.setArt(drink);
 		
-		itemRepository.save(d15);
+		//itemRepository.save(d15);
 		
 		Item d16 = new Item ("Emotion", 15, true);
 		d16.setArt(drink);
 		
-		itemRepository.save(d16);
+		//itemRepository.save(d16);
 		
 		Item d17 = new Item ("Martini Bianco", 145, true);
 		d17.setArt(drink);
 		
-		itemRepository.save(d17);
+		//itemRepository.save(d17);
 		
 		Item d18 = new Item ("Radler", 42, true);
 		d18.setArt(drink);
 		
-		itemRepository.save(d18);
+		//itemRepository.save(d18);
 		
 				
 		//------------------------------------------------
@@ -372,57 +379,56 @@ public class InsertController {
 		Item s1 = new Item ("Running", 300, true);
 		s1.setArt(sport);
 		
-		itemRepository.save(s1);
+		//itemRepository.save(s1);
 		
 		Item s2 = new Item ("Volleyball", 156, true);
 		s2.setArt(sport);
 		
-		itemRepository.save(s2);
+		//itemRepository.save(s2);
 		
 		Item s3 = new Item ("Tennis", 288, true);
 		s3.setArt(sport);
 		
-		itemRepository.save(s3);
+		//itemRepository.save(s3);
 		
 		Item s4 = new Item ("Swimming", 367, true);
 		s4.setArt(sport);
 		
-		itemRepository.save(s4);
+		//itemRepository.save(s4);
 		
 		Item s5 = new Item ("Walking", 80, true);
 		s5.setArt(sport);
 		
-		itemRepository.save(s5);
+		//itemRepository.save(s5);
 		
 		Item s6 = new Item ("Bycicle Riding", 315, true);
 		s6.setArt(sport);
 		
-		itemRepository.save(s6);
+		//itemRepository.save(s6);
 		
 		Item s7 = new Item ("Soccer", 273, true);
 		s7.setArt(sport);
 		
-		itemRepository.save(s7);
+		//itemRepository.save(s7);
 		
 		Item s8 = new Item ("Icehockey", 325, true);
 		s8.setArt(sport);
 		
-		itemRepository.save(s8);
+		//itemRepository.save(s8);
 		
 		Item s9 = new Item ("Climbing", 400, true);
 		s9.setArt(sport);
 		
-		itemRepository.save(s9);
+		//itemRepository.save(s9);
 		
 		Item s10 = new Item ("Basketball", 300, true);
 		s10.setArt(sport);
 		
-		itemRepository.save(s10);
+		//itemRepository.save(s10);
 		
 		
 		//Food
 		
-			
 		Food apple = new Food (100);
 		apple.setItem(f1);
 		
