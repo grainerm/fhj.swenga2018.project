@@ -36,93 +36,80 @@
 	<div class="container" role="main">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-1" style="margin-top: 40px">
-				
-					<h1>Hello <span th:text="${currentUser} ? ${currentUser.vorname}"></span>!</h1>
-					<div class="panel panel-default">
-						<div class="panel-heading overview">What you have reached
-							today:</div>
-						<!-- /.panel-heading -->
-						<div class="panel-body calories">
-							<div class="table-responsive">
-								<table class="table">
-									<tbody>
-										<tr>
-											<th>Calories per day:
-											<td th:text="${caloriesPerDay}">3000</td>
-										</tr>
-										<tr>
-											<th>BMI:
-											<td th:text="${bmi}">2kg</td>
-										</tr>
-										<tr>
-											<th>Calories burnt today:
-											<td th:text="${caloriesBurntToday}">3000</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<!-- /.table-responsive -->
-					
-						</div>
-						<!-- /.panel-body -->
-					<button class="btn btn-success btn-md pull-right"
-							style="margin: 5px 0 15px 0">
-							<i class="fa fa-download"></i> Download Report
-</button>
-					<!-- /.panel -->
 
-				
+				<h1>
+					Hello <span th:text="${currentUser} ? ${currentUser.vorname}"></span>!
+				</h1>
+				<div class="panel panel-default">
+					<div class="panel-heading overview">What you have reached
+						today:</div>
+					<div class="panel-body calories">
+						<div class="table-responsive">
+							<table class="table">
+								<tbody>
+									<tr>
+										<th>Calories per day:
+										<td th:text="${caloriesPerDay}">3000</td>
+									</tr>
+									<tr>
+										<th>BMI:
+										<td th:text="${bmi}">2kg</td>
+									</tr>
+									<tr>
+										<th>Calories burnt today:
+										<td th:text="${caloriesBurntToday}">3000</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 
 
 			<div class="col-md-6 col-md-offset-1">
-				
-					<div class="panel panel-default">
-						<div class="panel-heading">Calories Consumption</div>
-						<!-- /.panel-heading -->
-						<div id="perDay" th:value="${caloriesPerDay}"></div>
-						<div id="eatenDay" th:value="${caloriesEatenToday}"></div>
-						<div class="panel-body">
-							<div id="donut-chart">
-							
-							<!-- http://morrisjs.github.io/morris.js/donuts.html -->
-							</div>
-							
-						</div> 
-						<!-- /.panel-body -->
+
+				<div class="panel panel-default">
+					<div class="panel-heading">Calories Consumption</div>
+					<div id="perDay" th:value="${caloriesPerDay}"></div>
+					<div id="eatenDay" th:value="${caloriesEatenToday}"></div>
+					<div class="panel-body">
+						<div id="donut-chart"></div>
 					</div>
+				</div>
 			</div>
-			
-			
 		</div>
-		
-		
-		
-		<div class="col-md-5 pull-right" style="margin-right: -100px; margin-top:-650px">
-			
-					</div>
 
 
-		<!--  End of container -->
-		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
+		<div class="col-md-5 pull-right "
+			style="margin-right: -40px; margin-top: -650px">
+
+			<img src="images/healthy1.jpg">
+
+		</div>
+
+	</div>
+	<!--  End of container -->
+	<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
 <script>
-var perDay = document.getElementById('perDay').value;
-var eatenToday = document.getElementById('eatenDay').value;
-var left = perDay - eatenToday;
-new Morris.Donut({
-	  // ID of the element in which to draw the chart.
-	  element: 'donut-chart',
-	  // Chart data records -- each entry in this array corresponds to a point on
-	  // the chart.
-	  data: [
-	    {label: "Calories left", value: perDay},
-	    {label: "Calories Eaten", value: eatenToday }
-	  ]
-	  
-	  
-	  
-	 
-	});</script>
+	var perDay = document.getElementById('perDay').getAttribute('value');
+	var eatenToday = document.getElementById('eatenDay').getAttribute('value');
+	var left = perDay - eatenToday;
+	new Morris.Donut({
+		// ID of the element in which to draw the chart.
+		element : 'donut-chart',
+		// Chart data records -- each entry in this array corresponds to a point on
+		// the chart.
+		data : [ {
+			label : "Calories left",
+			value : left
+		}, {
+			label : "Calories Eaten",
+			value : eatenToday
+		} ]
+
+	});
+</script>
 </html>
 

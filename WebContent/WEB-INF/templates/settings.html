@@ -79,26 +79,15 @@
 										id="optionsRadios2" value="female" th:checked="${male==false}">Female
 									</label>
 								</div>
-
 							</div>
-
-							<!-- /.table-responsive -->
-
 						</div>
-						<!-- /.panel-body -->
-
 					</div>
-					<!-- /.panel -->
-
-
 				</div>
 
 
 				<div class="col-md-6 col-md-offset-1">
-
 					<div class="panel panel-default">
 						<div class="panel-heading">Goal</div>
-						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<div class="form-group">
 								<label>What is your desired weight to reach?</label>
@@ -110,17 +99,15 @@
 								</div>
 							</div>
 						</div>
-						<!-- /.panel-body -->
 					</div>
 					<button type="submit" name="save"
-
 						class="btn btn-secondary btn-success btn-md pull-right"
 						style="margin: 5px 0 5px 0">
 						<i class="fa "></i> Save
 					</button>
 
 					<button type="button" data-toggle="modal"
-						data-target="#deleteModal" 
+						data-target="#deleteModal"
 						class="btn btn-secondary btn-danger btn-md pull-right"
 						style="margin: 5px 0 5px 0">
 						<i class="fa "></i>Delete Account
@@ -140,36 +127,23 @@
 								</div>
 								<div class="modal-footer">
 									<a th:href="@{/deleteUser}" class="btn btn-md btn-danger">
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-									Yes
-								</a>
-								<a data-dismiss="modal" class="btn btn-md btn-info">
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-									No
-								</a>
+										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										Yes
+									</a> <a data-dismiss="modal" class="btn btn-md btn-info"> <span
+										class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+										No
+									</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</form>
-
-
 		</div>
 
-		<div class="col-md-5 pull-right"
-			style="margin-right: -100px; margin-top: -650px"></div>
-
-
-<<<<<<< HEAD
+		
 		<!--  End of container -->
 		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
-=======
-	<!--  End of container -->
-	<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
-
->>>>>>> 5a0974b0d1fd04b0ac839e78fd9a4986d67df302
 </body>
 <script>
 	new Morris.Donut({

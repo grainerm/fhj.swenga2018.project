@@ -33,16 +33,40 @@ public class Activity implements java.io.Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private User user;
 
+	@Column(nullable = true, length = 3)
+	private int sum;
+	
+	@Column(nullable = true, length = 5)
+	private int kalorienGesamt;
+	
 	public Activity() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Activity(int aID, Date datum, Item item, User user) {
+	public Activity(Date datum, Item item, User user, int sum) {
 		super();
-		this.aID = aID;
 		this.datum = datum;
 		this.item = item;
 		this.user = user;
+		this.sum = sum;
+	}
+	
+	
+
+	public int getKalorienGesamt() {
+		return kalorienGesamt;
+	}
+
+	public void setKalorienGesamt(int kalorienGesamt) {
+		this.kalorienGesamt = kalorienGesamt;
+	}
+
+	public int getSum() {
+		return sum;
+	}
+
+	public void setSum(int sum) {
+		this.sum = sum;
 	}
 
 	public int getaID() {

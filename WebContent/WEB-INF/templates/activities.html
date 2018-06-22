@@ -35,187 +35,146 @@
 	</div>
 	<div class="container" role="main">
 		<div class="row">
-		<div th:text="${#dates.format(#dates.createNow(),'dd-MM-YYYY')}" style="margin-top:100px; margin-left: 100px; font-size:80px">
-		
-		</div>
+			<div th:text="${#dates.format(#dates.createNow(),'dd-MM-YYYY')}"
+				style="margin-top: 100px; margin-left: 100px; font-size: 80px">
+
+			</div>
 			<div class="col-md-8 col-md-offset-1" style="margin-top: 20px">
-				
-					<h1>Calculate how much you can still eat today!</h1>
-					<div class="panel panel-default">
-						<div class="panel-heading overview">What do you have eaten
-							so far?</div>
-						<!-- /.panel-heading -->
-						<div class="panel-body ">
-							
-							<!-- /.table-responsive -->
-							
+
+				<h1>Calculate how much you can still eat today!</h1>
+				<div class="panel panel-default">
+					<div class="panel-heading overview">What do you have eaten so
+						far?</div>
+					<div class="panel-body">
+						<form method="post" th:action="@{/add}">
+
 							<div class="form-group">
-                                                <label>Food/Drink</label>
-                                                <select class="form-control">
-                                                    <option>Beer</option>
-                                                    <option>Schnitzl</option>
-                                                    <option>Bread</option>
-                                                    <option>Salad</option>
-                                                    <option>Apple</option>
-                                                </select>
-                                            </div>
-                                <div class="form-group">
-                                                <label>Number</label>
-                                                <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </div>            
-
-						</div>
-						<!-- /.panel-body -->
-						<button type="submit" class="btn btn-secondary btn-success btn-md pull-right" style="margin: 5px 0 15px 0">
-							<i class="fa "></i> Add to list
-						</button>
+								<select class="form-control" name="bezeichnung">
+									<option th:each="activities : ${foods}"
+										th:text="${activities} ? ${activities.item.bezeichnung}"
+										th:value="${activities} ? ${activities.item.bezeichnung}">
+									</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Sum (1 unit: 100g)</label> <input class="form-control"
+									type="text" name="menge"
+									th:value="${activities} ? ${activities.menge}" required
+									autofocus>
+							</div>
+							<button type="submit"
+								class="btn btn-secondary btn-success btn-md pull-right"
+								style="margin: 5px 0 15px 0">
+								<i class="fa "></i> Add to list
+							</button>
+						</form>
 					</div>
-					
-					<!-- /.panel -->
+				</div>
+			</div>
 
-				
+			<div class="col-md-8 col-md-offset-1" style="margin-top: 20px">
+				<div class="panel panel-default">
+					<div class="panel-heading overview">What did you drink?</div>
+
+					<div class="panel-body">
+						<form method="post" th:action="@{/add}">
+
+							<div class="form-group">
+								<select class="form-control" name="bezeichnung">
+									<option th:each="activities : ${drinks}"
+										th:text="${activities} ? ${activities.item.bezeichnung}"
+										th:value="${activities} ? ${activities.item.bezeichnung}">
+									</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Sum (1 unit: 100ml)</label> <input class="form-control"
+									type="text" name="menge"
+									th:value="${activities} ? ${activities.menge}" required
+									autofocus>
+							</div>
+							<button type="submit"
+								class="btn btn-secondary btn-success btn-md pull-right"
+								style="margin: 5px 0 15px 0">
+								<i class="fa "></i> Add to list
+							</button>
+						</form>
+					</div>
+				</div>
 			</div>
 
 
 			<div class="col-md-8 col-md-offset-1">
-				
-					<div class="panel panel-default">
-						<div class="panel-heading">What kind of sports have you done?</div>
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-							
-					<div class="form-group">
-                                                <label>Activity</label>
-                                                <select class="form-control">
-                                                    <option>Swimming</option>
-                                                    <option>Jogging</option>
-                                                    <option>Biking</option>
-                                                    <option>Yoga</option>
-                                                    <option>Sleeping</option>
-                                                </select>
-                                            </div>
-                                <div class="form-group">
-                                                <label>Time (minutes)</label>
-                                                <select class="form-control">
-                                                    <option>30</option>
-                                                    <option>60</option>
-                                                    <option>90</option>
-                                                    <option>120</option>
-                                                    <option>150</option>
-                                                    <option>180</option>
-                                                </select>
-                                            </div>    
-					
-						</div>
-						<!-- /.panel-body -->
-						<button type="submit" class="btn btn-success btn-md pull-right" style="margin: 5px 0 15px 0">
-							<i class="fa "></i> Add to list
-						</button>
-						
+
+				<div class="panel panel-default">
+					<div class="panel-heading overview">What kind of sports did
+						you do?</div>
+					<div class="panel-body">
+						<form method="post" th:action="@{/add}">
+
+							<div class="form-group">
+								<select class="form-control" name="bezeichnung">
+									<option th:each="activities : ${sports}"
+										th:text="${activities} ? ${activities.item.bezeichnung}"
+										th:value="${activities} ? ${activities.item.bezeichnung}">
+									</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Sum (1 unit: 30 min)</label> <input class="form-control"
+									type="text" name="menge"
+									th:value="${activities} ? ${activities.menge}" required
+									autofocus>
+							</div>
+							<button type="submit"
+								class="btn btn-secondary btn-success btn-md pull-right"
+								style="margin: 5px 0 15px 0">
+								<i class="fa "></i> Add to list
+							</button>
+						</form>
 					</div>
+				</div>
 			</div>
-			
-			
-		
-		
-		
-		
-		<div class="col-md-8 col-md-offset-1">
-			<div class="panel panel-default">
-                            <div class="panel-heading">
-                                Overview
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Activity/Food</th>
-                                                <th>Time (minutes)/kCl</th>
-                                                <th>Sum</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Swimming</td>
-                                                <td>60</td>
-                                                <td>1</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Beer</td>
-                                                <td>7348945</td>
-                                                <td>5</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Bread</td>
-                                                <td>1234</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Bread</td>
-                                                <td>1234</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Bread</td>
-                                                <td>1234</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Bread</td>
-                                                <td>1234</td>
-                                                <td>3</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.table-responsive -->
-                            </div>
-                            <!-- /.panel-body -->
-                            <button type="submit" class="btn btn-success btn-md pull-right"
-							style="margin: 5px 0 15px 0">
-							<i class="fa "></i>Calculate
-						</button>
-                        </div>
+			<div class="col-md-8 col-md-offset-1">
+				<div class="panel panel-default">
+					<div class="panel-heading">Overview</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<form role="form" th:action="@{/activities}" method="get">
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Activity/Food</th>
+											<th>kCl</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="activity : ${addedActivities}">
+											<td th:text="${activity} ? ${activity.item.bezeichnung}"></td>
+											<td th:text="${activity} ? ${activity.kalorienGesamt}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<button type="submit" class="btn btn-success btn-md pull-right"
+								style="margin: 5px 0 15px 0">
+								<i class="fa "></i>Calculate
+							</button>
+						</form>
 					</div>
-					
-					
-					<div class="col-md-4 pull-right" style="margin-right: -100px; ">
-					<div id="line-chart"></div>
-					</div></div>
+				</div>
+			</div>
+		</div>
+
 
 
 		<!--  End of container -->
 		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
-<script>new Morris.Bar({
-	  // ID of the element in which to draw the chart.
-	  element: 'line-chart',
-	  // Chart data records -- each entry in this array corresponds to a point on
-	  // the chart.
-	  data: [
-		    { y: 'Today', a: 1800, b: 200 }
-		   
-		    
-		  ],
-		  xkey: 'y',
-		  ykeys: ['a', 'b'],
-		  labels: ['Consumption', 'Left over']
-		});</script>
+
 
 </html>
 
