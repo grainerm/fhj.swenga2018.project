@@ -144,8 +144,8 @@ public class CalculatorController {
 				System.out.println("act:" + act.getDatum() + " now:" + today);
 				//DateUtils..isSameDay(this.toCalendar(today),toCalendar(act.getDatum());
 				if(sdf.format(act.getDatum()).equals(sdf.format(today))) {
-					if(act.getItem().getKalorien() < 0)
-						calosBurntToday += (act.getItem().getKalorien() * -1);
+					if(act.getItem().getArt().getBezeichnung().toLowerCase().equals("sport"))
+						calosBurntToday += (act.getItem().getKalorien());
 				}
 			}		
 		}
@@ -172,7 +172,7 @@ private int calculateCaloriesEatenToday(User user) {
 				System.out.println("act:" + act.getDatum() + " now:" + today);
 				//DateUtils..isSameDay(this.toCalendar(today),toCalendar(act.getDatum());
 				if(sdf.format(act.getDatum()).equals(sdf.format(today))) {
-					if(act.getItem().getKalorien() > 0)
+					if(!act.getItem().getArt().getBezeichnung().toLowerCase().equals("sport"))
 						calosEatenPerDay += act.getItem().getKalorien();
 				}
 			}		
@@ -185,7 +185,7 @@ private  int  calulcateCaloriesPerDay(User user) {
 	System.out.println("");
 	System.out.println("caloriesPerDay");
 	int caloriesPerDay = -1;
-	//int zielgewicht = user.getZielgewicht();
+	int zielgewicht = user.getZielgewicht();
 	
 	int age = calculateAge(user.getGeburtstag());
 	
@@ -201,10 +201,31 @@ private  int  calulcateCaloriesPerDay(User user) {
 				int unten = skv.getVonAlter();
 				int oben = skv.getBisAlter();
 				
-				if(age < oben && age > unten) {
+				if(age <= oben && age >= unten) {
 					caloriesPerDay = skv.getKalorien();
 					break;
 				}
+			}
+		}
+	}
+	
+	if(caloriesPerDay > 0) {
+		// we have values in SKV and found an entry
+		// max +/- 500 Kcal -> if diff is more than 50kg
+		int diff = zielgewicht - user.getGewicht();
+		if(diff > 0) {
+			// user want to get more weight
+			if((diff)*10 > 500) {
+				caloriesPerDay += 500;
+			}else {
+			caloriesPerDay += (diff)*10;
+			}
+		} else if (diff < 0) {
+			// user want to loose weight
+			if((diff*-1)*10 > 500) {
+				caloriesPerDay -= 500;
+			}else {
+			caloriesPerDay -= (diff*-1)*10;
 			}
 		}
 	}
