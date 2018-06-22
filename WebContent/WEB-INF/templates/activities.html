@@ -45,8 +45,6 @@
 				<div class="panel panel-default">
 					<div class="panel-heading overview">What do you have eaten so
 						far?</div>
-					<!-- /.panel-heading -->
-
 					<div class="panel-body">
 					<form method="post" th:action="@{/add}">
 						
@@ -78,7 +76,6 @@
 			<div class="col-md-8 col-md-offset-1" style="margin-top: 20px">
 				<div class="panel panel-default">
 					<div class="panel-heading overview">What did you drink?</div>
-					<!-- /.panel-heading -->
 
 					<div class="panel-body">
 					<form method="post" th:action="@{/add}">
@@ -113,8 +110,6 @@
 
 			<div class="panel panel-default">
 					<div class="panel-heading overview">What kind of sports did you do?</div>
-					<!-- /.panel-heading -->
-
 					<div class="panel-body">
 					<form method="post" th:action="@{/add}">
 						
@@ -168,20 +163,10 @@
 									<td th:text="${activity} ? ${activity.item.bezeichnung}"></td>
 									<td th:text="${activity} ? ${activity.kalorienGesamt}"></td>
 								</tr>
-								<!--tr th:each="activities : ${foods}">
-									<td th:text="${activities} ? ${activities.item.bezeichnung}"></td>
-									<td th:text="${activities} ? ${activities.menge}"></td>
-								</tr>
-								<tr th:each="activities : ${drinks}">
-									<td th:text="${activities} ? ${activities.item.bezeichnung}"></td>
-									<td th:text="${activities} ? ${activities.menge}"></td>
-								</tr-->
 							</tbody>
 						</table>
 					</div>
-					<!-- /.table-responsive -->
-				
-				<!-- /.panel-body -->
+					
 				<button type="submit" class="btn btn-success btn-md pull-right"
 					style="margin: 5px 0 15px 0">
 					<i class="fa "></i>Calculate
@@ -192,33 +177,12 @@
 		</div>
 </div>
 
-		<div class="col-md-4 pull-right" style="margin-right: -100px;">
-			<div id="line-chart"></div>
-		</div>
-	</div>
 
 
 	<!--  End of container -->
 	<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
-<script>
-	new Morris.Bar({
-		// ID of the element in which to draw the chart.
-		element : 'line-chart',
-		// Chart data records -- each entry in this array corresponds to a point on
-		// the chart.
-		data : [ {
-			y : 'Today',
-			a : 1800,
-			b : 200
-		}
 
-		],
-		xkey : 'y',
-		ykeys : [ 'a', 'b' ],
-		labels : [ 'Consumption', 'Left over' ]
-	});
-</script>
 
 </html>
 
