@@ -150,7 +150,7 @@ public class CalculatorController {
 				//DateUtils..isSameDay(this.toCalendar(today),toCalendar(act.getDatum());
 				if(sdf.format(act.getDatum()).equals(sdf.format(today))) {
 					if(act.getItem().getArt().getBezeichnung().toLowerCase().equals("sport"))
-						calosBurntToday += (act.getItem().getKalorien());
+						calosBurntToday += act.getKalorienGesamt();
 				}
 			}		
 		}
@@ -178,7 +178,7 @@ private int calculateCaloriesEatenToday(User user) {
 				//DateUtils..isSameDay(this.toCalendar(today),toCalendar(act.getDatum());
 				if(sdf.format(act.getDatum()).equals(sdf.format(today))) {
 					if(!act.getItem().getArt().getBezeichnung().toLowerCase().equals("sport"))
-						calosEatenPerDay += act.getItem().getKalorien();
+						calosEatenPerDay += act.getKalorienGesamt();
 				}
 			}		
 		}
