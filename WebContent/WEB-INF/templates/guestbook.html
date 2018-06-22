@@ -39,8 +39,6 @@
 			<div class="col-md-8 col-md-offset-3" style="margin-top: 40px">
 
 				<h1>Guestbook</h1>
-
-
 				<div class="panel-body message">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -98,10 +96,6 @@
 									<div>
 										<small class="pull-right text-muted"> <span
 											th:text="${guestbookUser} ? ${guestbookUser.name}"></span> <br>
-
-											<span class="glyphicon glyphicon-time"></span><span
-											th:text="${#dates.format(#dates.createNow(),'HH:mm dd-MM-YYYY')}"></span>
-
 										</small>
 									</div>
 								</div>
@@ -115,8 +109,6 @@
 
 		</div>
 	</div>
-
-
 
 
 
