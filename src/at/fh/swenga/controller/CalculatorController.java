@@ -1,7 +1,10 @@
 package at.fh.swenga.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -24,11 +27,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.util.DateUtils;
 
 import at.fh.swenga.dao.RoleDAO;
+import at.fh.swenga.model.Activity;
 import at.fh.swenga.model.Role;
 import at.fh.swenga.model.StandardKalorienVerbrauch;
 import at.fh.swenga.model.User;
+import at.fh.swenga.repositories.ActivityRepository;
 import at.fh.swenga.repositories.StandardKalorienVerbrauchRepository;
 import at.fh.swenga.repositories.UserRepository;
 import at.fh.swenga.service.UserService;
@@ -48,6 +54,9 @@ public class CalculatorController {
 	@Autowired 
 	private StandardKalorienVerbrauchRepository skvRepo;
 	
+	@Autowired
+	private ActivityRepository actRepo;
+	
 
 	@RequestMapping(value = { "/" })
 	public String index(Model model) { 
@@ -59,7 +68,7 @@ public class CalculatorController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		nickName = authentication.getName();
 		User user = userRepo.findByName(nickName);
-		float bmi = -1;
+		double bmi = -1;
 		//System.out.println("user:"+ user.getVorname());
 		//System.out.println("geschlecht|"+user.getGeschlecht()+"|");
 		
@@ -69,8 +78,12 @@ public class CalculatorController {
 		} else {
 			// calculate BMI
 			// Körpergewicht in Kilogramm geteilt durch Körpergröße in Metern zum Quadrat
-	        
-			bmi = user.getGewicht() / (user.getGroesse()^2);
+	        double groesse =Math.pow((user.getGroesse()/100.0),2.0);
+	        System.out.println("groesse"+groesse);
+			bmi = user.getGewicht() / groesse;
+			bmi = bmi * 100;
+			bmi = Math.round(bmi);
+			bmi = bmi / 100;
 			System.out.println("bmi"+bmi);
 		}
 		// if user has set no weight - send it to the settings page
@@ -118,15 +131,58 @@ public class CalculatorController {
 	}
 private int calculateCaloriesBurntToday(User user) {
 		int calosBurntToday  = -1;
+
+		
+		System.out.println("BurntToday:");
+
+		List<Activity> userActivities = actRepo.findByUser(user);
+		if(userActivities.isEmpty()) {
+			System.out.println("no activities found!");
+			calosBurntToday = 0;
+		} else {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			Date today = new Date();
+			calosBurntToday = 0;
+			
+			for(Activity act : userActivities) {
+				System.out.println("act:" + act.getDatum() + " now:" + today);
+				//DateUtils..isSameDay(this.toCalendar(today),toCalendar(act.getDatum());
+				if(sdf.format(act.getDatum()).equals(sdf.format(today))) {
+					if(act.getItem().getArt().getBezeichnung().toLowerCase().equals("sport"))
+						calosBurntToday += (act.getItem().getKalorien());
+				}
+			}		
+		}
 		
 		return calosBurntToday;
 	}
 
 
 private int calculateCaloriesEatenToday(User user) {
-		int calosEaterPerDay = -1;
+		int calosEatenPerDay = -1;
 		
-		return calosEaterPerDay;
+		System.out.println("EatenTOday:");
+
+		List<Activity> userActivities = actRepo.findByUser(user);
+		if(userActivities.isEmpty()) {
+			System.out.println("no activities found!");
+			calosEatenPerDay = 0;
+		} else {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			Date today = new Date();
+
+			
+			for(Activity act : userActivities) {
+				System.out.println("act:" + act.getDatum() + " now:" + today);
+				//DateUtils..isSameDay(this.toCalendar(today),toCalendar(act.getDatum());
+				if(sdf.format(act.getDatum()).equals(sdf.format(today))) {
+					if(!act.getItem().getArt().getBezeichnung().toLowerCase().equals("sport"))
+						calosEatenPerDay += act.getItem().getKalorien();
+				}
+			}		
+		}
+		
+		return calosEatenPerDay;
 	}
 
 private  int  calulcateCaloriesPerDay(User user) {
@@ -148,11 +204,35 @@ private  int  calulcateCaloriesPerDay(User user) {
 			for(StandardKalorienVerbrauch skv : skvList) {
 				int unten = skv.getVonAlter();
 				int oben = skv.getBisAlter();
-				
-				if(age < oben && age > unten) {
+				boolean flag = true;
+				if(age <= oben && age >= unten && flag) {
 					caloriesPerDay = skv.getKalorien();
-					break;
+					flag = false;
 				}
+			}
+		}
+	}
+	
+	if(caloriesPerDay > 0) {
+		System.out.println("cal: " + caloriesPerDay);
+		System.out.println("advanced calculation");
+		// we have values in SKV and found an entry
+		// max +/- 500 Kcal -> if diff is more than 50kg
+		int diff = zielgewicht - user.getGewicht();
+		System.out.println("diff: " + diff);
+		if(diff > 0) {
+			// user want to get more weight
+			if((diff)*10 > 500) {
+				caloriesPerDay += 500;
+			}else {
+			caloriesPerDay += (diff)*10;
+			}
+		} else if (diff < 0) {
+			// user want to loose weight
+			if((diff*-1)*10 > 500) {
+				caloriesPerDay -= 500;
+			}else {
+			caloriesPerDay -= (diff*-1)*10;
 			}
 		}
 	}
@@ -229,39 +309,7 @@ private  int  calulcateCaloriesPerDay(User user) {
         return "redirect:/login";
     }
 	
-	@RequestMapping(value = "/fillRoles", method = RequestMethod.GET)
-	@Transactional
-    public String fillRoles() 
-	{
-		
-		if(roleDao.getRole(1)==null)
-		{
-			Role admin = new Role("ROLE_ADMIN");
-			roleDao.persist(admin);
-		}
-		if(roleDao.getRole(2)==null)
-		{
-			Role user = new Role("ROLE_USER");
-			roleDao.persist(user);
-		}
-		if(roleDao.getRole(3)==null)
-		{
-			Role guest = new Role("ROLE_GUEST");
-			roleDao.persist(guest);
-		}  
-
-        userService.createUsers();
-        
-        /*UsernamePasswordAuthenticationToken authReq =
-                new UsernamePasswordAuthenticationToken(user.getName(), user.getPasswort());
-            Authentication auth = authManager.authenticate(authReq);
-            SecurityContext sc = SecurityContextHolder.getContext();
-            sc.setAuthentication(auth);
-            HttpSession session = request.getSession(true);
-            session.setAttribute("SPRING_SECURITY_CONTEXT", sc);*/
-        
-        return "login";
-    }
+	
 	
 	@ExceptionHandler(Exception.class)
 	public String handleAllException(Exception ex) {

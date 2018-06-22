@@ -13,9 +13,6 @@ import at.fh.swenga.model.Item;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 	
-	@Transactional
-	//@Query("select i from Item i where i.bezeichnung = :bezeichnung")
-	List<Item> findByBezeichnung(String bezeichnung);
 	
 	@Modifying
 	@Transactional
@@ -25,4 +22,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	@Transactional
 	@Query("SELECT i FROM Item i WHERE i.validiert = false")
 	List<Item> findByValidiertFalse();
+
+	@Transactional
+	List<Item> findByBezeichnung(String bezeichnung);
 }
