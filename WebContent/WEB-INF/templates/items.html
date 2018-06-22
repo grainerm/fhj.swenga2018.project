@@ -42,24 +42,32 @@
 						<div class="panel-heading overview">Food/Drink</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
-							<form role="form">
+							<form method=post role="form" th:action="@{/addItem}">
                                             <div class="form-group">
                                                 <label class="control-label" >Name</label>
-                                                <input type="text" class="form-control" >
+                                                <input type="text" class="form-control" name="bezeichnung" >
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Calories</label>
-                                                <input type="number" class="form-control">
+                                                <input type="number" class="form-control" name="kalorien">
                                             </div>
-                                            
+                                            <div class="form-group">
+                                                <label>Type</label>
+                                                <select class="form-control" name="type">
+                                                    <option th:each="itemType : ${itemTypes}"
+                                                    	th:text="${itemType} ? ${itemType.bezeichnung}"
+                                                    	th:value="${itemType} ? ${itemType.bezeichnung}">Beer</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-success btn-md pull-right" style="margin: 5px 0 15px 0">
+							<i class="fa "></i> Create new item
+						</button>
                                         </form>
 							<!-- /.table-responsive -->
 
 						</div>
 						<!-- /.panel-body -->
-						<button type="submit" class="btn btn-success btn-md pull-right" style="margin: 5px 0 15px 0">
-							<i class="fa "></i> Create new item
-						</button>
+						
 					</div>
 					<!-- /.panel -->
 
