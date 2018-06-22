@@ -179,102 +179,123 @@ public class InsertController {
 		
 		//Item
 		
-		Item f1 = new Item ("Apple", 52, true);
+		
+		Item f1 = itemRepository.findByBezeichnung("Apple");
+		if (f1==null) f1 = new Item ("Apple", 52, true);
 		f1.setArt(food);
 				
 		//itemRepository.save(f1);
 		
-		Item f2 = new Item ("Beef", 250, true);
+		Item f2 = itemRepository.findByBezeichnung("Beef");
+		if (f2==null) f2 = new Item ("Beef", 250, true);
 		f2.setArt(food);
 		
 		//itemRepository.save(f2);
 		
-		Item f3 = new Item ("Pork", 242, true);
+		Item f3 = itemRepository.findByBezeichnung("Pork");
+		if (f3==null) f3 = new Item ("Pork", 242, true);
 		f3.setArt(food);
 		
 		//itemRepository.save(f3);
 		
-		Item f4 = new Item ("Lamb", 294, true);
+		Item f4 = itemRepository.findByBezeichnung("Lamb");
+		if (f4==null) f4 = new Item ("Lamb", 294, true);
 		f4.setArt(food);
 		
 		//itemRepository.save(f4);
 		
-		Item f5 = new Item ("Chicken", 239, true);
+		Item f5 = itemRepository.findByBezeichnung("Chicken");
+		if (f5==null) f5 = new Item ("Chicken", 239, true);
 		f5.setArt(food);
 		
 		//itemRepository.save(f5);
 		
-		Item f6 = new Item ("Pasta", 131, true);
+		Item f6 = itemRepository.findByBezeichnung("Pasta");
+		if (f6==null) f6 =  new Item ("Pasta", 131, true);
 		f6.setArt(food);
 		
 		//itemRepository.save(f6);
 		
-		Item f7 = new Item ("Rice", 130, true);
+		Item f7 = itemRepository.findByBezeichnung("Rice");
+		if (f7==null) f7 =  new Item ("Rice", 130, true);
 		f7.setArt(food);
 		
 		//itemRepository.save(f7);
 		
-		Item f8 = new Item ("Potatoes", 77, true);
+		Item f8 = itemRepository.findByBezeichnung("Potatoes");
+		if (f8==null) f8 = new Item ("Potatoes", 77, true);
 		f8.setArt(food);
 		
 		//itemRepository.save(f8);
 		
-		Item f9 = new Item ("White Bread", 265, true);
+		Item f9 = itemRepository.findByBezeichnung("White Bread");
+		if (f9==null) f9 =  new Item ("White Bread", 265, true);
 		f9.setArt(food);
 		
 		//itemRepository.save(f9);
 		
-		Item f10 = new Item ("Dark Bread", 259, true);
+		Item f10 = itemRepository.findByBezeichnung("Dark Bread");
+		if (f10==null) f10 =  new Item ("Dark Bread", 259, true);
 		f10.setArt(food);
 		
 		//itemRepository.save(f10);
 		
-		Item f11 = new Item ("Egg", 155, true);
+		Item f11 = itemRepository.findByBezeichnung("Egg");
+		if (f11==null) f11 =  new Item ("Egg", 155, true);
 		f11.setArt(food);
 		
 		//itemRepository.save(f11);
 		
-		Item f12 = new Item ("Ham", 110, true);
+		Item f12 = itemRepository.findByBezeichnung("Ham");
+		if (f12==null) f12 = new Item ("Ham", 110, true);
 		f12.setArt(food);
 		
 		//itemRepository.save(f12);
 		
-		Item f13 = new Item ("French Fries", 312, true);
+		Item f13 = itemRepository.findByBezeichnung("French Fries");
+		if (f13==null) f13 =  new Item ("French Fries", 312, true);
 		f13.setArt(food);
 		
 		//itemRepository.save(f13);
 		
-		Item f14 = new Item ("Double Hamburger", 295, true);
+		Item f14 = itemRepository.findByBezeichnung("Double Hamburger");
+		if (f14==null) f14 =  new Item ("Double Hamburger", 295, true);
 		f14.setArt(food);
 		
 		//itemRepository.save(f14);
 		
-		Item f15 = new Item ("Pizza Margherita", 204, true);
+		Item f15 = itemRepository.findByBezeichnung("Pizza Margherita");
+		if (f15==null) f15 = new Item ("Pizza Margherita", 204, true);
 		f15.setArt(food);
 		
 		//itemRepository.save(f15);
 		
-		Item f16 = new Item ("Tomato", 18, true);
+		Item f16 = itemRepository.findByBezeichnung("Tomato");
+		if (f16==null) f16 =  new Item ("Tomato", 18, true);
 		f16.setArt(food);
 		
 		//itemRepository.save(f16);
 		
-		Item f17 = new Item ("Cheese", 402, true);
+		Item f17 = itemRepository.findByBezeichnung("Cheese");
+		if (f17==null) f17 =  new Item ("Cheese", 402, true);
 		f17.setArt(food);
 		
 		//itemRepository.save(f17);
 		
-		Item f18 = new Item ("Fish", 206, true);
+		Item f18 = itemRepository.findByBezeichnung("Fish");
+		if (f18==null) f18 =  new Item ("Fish", 206, true);
 		f18.setArt(food);
 		
 		//itemRepository.save(f18);
 		
-		Item f19 = new Item ("Salad", 152, true);
+		Item f19 = itemRepository.findByBezeichnung("Salad");
+		if (f19==null) f19 =  new Item ("Salad", 152, true);
 		f19.setArt(food);
 		
 		//itemRepository.save(f19);
 		
-		Item f20 = new Item ("Pear", 57, true);
+		Item f20 = itemRepository.findByBezeichnung("Pear");
+		if (f20==null) f20 =  new Item ("Pear", 57, true);
 		f20.setArt(food);
 		
 		//itemRepository.save(f20);
@@ -283,92 +304,110 @@ public class InsertController {
 		
 		//--------------------------------------------------
 		
-		Item d1 = new Item ("Coca Cola", 37, true);
+		Item d1 = itemRepository.findByBezeichnung("Coca Cola");
+		if (d1==null) d1 = new Item ("Coca Cola", 37, true);
 		d1.setArt(drink);
 		
 		//itemRepository.save(d1);
 		
-		Item d2 = new Item ("Pepsi Cola", 41, true);
+		Item d2 = itemRepository.findByBezeichnung("Pepsi Cola");
+		if (d2==null) d2 = new Item ("Pepsi Cola", 41, true);
 		d2.setArt(drink);
 		
 		//itemRepository.save(d2);
 		
-		Item d3 = new Item ("Ice Tea", 35, true);
+		Item d3 = itemRepository.findByBezeichnung("Ice Tea");
+		if (d3==null) d3 = new Item ("Ice Tea", 35, true);
 		d3.setArt(drink);
 		
 		//itemRepository.save(d3);
 		
-		Item d4 = new Item ("Sprite", 39, true);
+		Item d4 = itemRepository.findByBezeichnung("Sprite");
+		if (d4==null) d4 = new Item ("Sprite", 39, true);
 		d4.setArt(drink);
 		
 		//itemRepository.save(d4);
 		
-		Item d5 = new Item ("Almdudler", 33, true);
+		Item d5 = itemRepository.findByBezeichnung("Almdudler");
+		if (d5==null) d5 = new Item ("Almdudler", 33, true);
 		d5.setArt(drink);
 		
 		//itemRepository.save(d5);
 		
-		Item d6 = new Item ("Orange Juice", 29, true);
+		Item d6 = itemRepository.findByBezeichnung("Orange Juice");
+		if (d6==null) d6 = new Item ("Orange Juice", 29, true);
 		d6.setArt(drink);
 		
 		//itemRepository.save(d6);
 		
-		Item d7 = new Item ("Apile Juice", 46, true);
+		Item d7 = itemRepository.findByBezeichnung("Apple Juice");
+		if (d7==null) d7 = new Item ("Apple Juice", 46, true);
 		d7.setArt(drink);
 		
 		//itemRepository.save(d7);
 		
-		Item d8 = new Item ("Red Wine", 85, true);
+		Item d8 = itemRepository.findByBezeichnung("Red Wine");
+		if (d8==null) d8 = new Item ("Red Wine", 85, true);
 		d8.setArt(drink);
 		
 		//itemRepository.save(d8);
 		
-		Item d9 = new Item ("White Wine", 82, true);
+		Item d9 = itemRepository.findByBezeichnung("White Wine");
+		if (d9==null) d9 = new Item ("White Wine", 82, true);
 		d9.setArt(drink);
 		
 		//itemRepository.save(d9);
 		
-		Item d10 = new Item ("Beer", 43, true);
+		Item d10 = itemRepository.findByBezeichnung("Beer");
+		if (d10==null) d10 = new Item ("Beer", 43, true);
 		d10.setArt(drink);
 		
 		//itemRepository.save(d10);
 		
-		Item d11 = new Item ("Cranberry Juice", 46, true);
+		Item d11 = itemRepository.findByBezeichnung("Cranberry Juice");
+		if (d11==null) d11 = new Item ("Cranberry Juice", 46, true);
 		d11.setArt(drink);
 		
 		//itemRepository.save(d11);
 		
-		Item d12 = new Item ("Tomato Juice", 17, true);
+		Item d12 = itemRepository.findByBezeichnung("Tomato Juice");
+		if (d12==null) d12 = new Item ("Tomato Juice", 17, true);
 		d12.setArt(drink);
 		
 		//itemRepository.save(d12);
 		
-		Item d13 = new Item ("Carrots Juice", 39, true);
+		Item d13 = itemRepository.findByBezeichnung("Carrots Juice");
+		if (d13==null) d13 = new Item ("Carrots Juice", 39, true);
 		d13.setArt(drink);
 		
 		//itemRepository.save(d13);
 		
-		Item d14 = new Item ("Gin", 263, true);
+		Item d14 = itemRepository.findByBezeichnung("Gin");
+		if (d14==null) d14 = new Item ("Gin", 263, true);
 		d14.setArt(drink);
 		
 		//itemRepository.save(d14);
 		
-		Item d15 = new Item ("Hot Chocolate", 77, true);
+		Item d15 = itemRepository.findByBezeichnung("Hot Chocolate");
+		if (d15==null) d15 = new Item ("Hot Chocolate", 77, true);
 		d15.setArt(drink);
 		
 		//itemRepository.save(d15);
 		
-		Item d16 = new Item ("Emotion", 15, true);
+		Item d16 = itemRepository.findByBezeichnung("Emotion");
+		if (d16==null) d16 = new Item ("Emotion", 15, true);
 		d16.setArt(drink);
 		
 		//itemRepository.save(d16);
 		
-		Item d17 = new Item ("Martini Bianco", 145, true);
+		Item d17 = itemRepository.findByBezeichnung("Martini Bianco");
+		if (d17==null) d17 = new Item ("Martini Bianco", 145, true);
 		d17.setArt(drink);
 		
 		//itemRepository.save(d17);
 		
-		Item d18 = new Item ("Radler", 42, true);
+		Item d18 = itemRepository.findByBezeichnung("Radler");
+		if (d18==null) d18 = new Item ("Radler", 42, true);
 		d18.setArt(drink);
 		
 		//itemRepository.save(d18);
@@ -376,52 +415,62 @@ public class InsertController {
 				
 		//------------------------------------------------
 		
-		Item s1 = new Item ("Running", 300, true);
+		Item s1 = itemRepository.findByBezeichnung("Running");
+		if (s1==null) s1 = new Item ("Running", 300, true);
 		s1.setArt(sport);
 		
 		//itemRepository.save(s1);
 		
-		Item s2 = new Item ("Volleyball", 156, true);
+		Item s2 = itemRepository.findByBezeichnung("Volleyball");
+		if (s2==null) s2 = new Item ("Volleyball", 156, true);
 		s2.setArt(sport);
 		
 		//itemRepository.save(s2);
 		
-		Item s3 = new Item ("Tennis", 288, true);
+		Item s3 = itemRepository.findByBezeichnung("Tennis");
+		if (s3==null) s3 = new Item ("Tennis", 288, true);
 		s3.setArt(sport);
 		
 		//itemRepository.save(s3);
 		
-		Item s4 = new Item ("Swimming", 367, true);
+		Item s4 = itemRepository.findByBezeichnung("Swimming");
+		if (s4==null) s4 = new Item ("Swimming", 367, true);
 		s4.setArt(sport);
 		
 		//itemRepository.save(s4);
 		
-		Item s5 = new Item ("Walking", 80, true);
+		Item s5 = itemRepository.findByBezeichnung("Walking");
+		if (s5==null) s5 = new Item ("Walking", 80, true);
 		s5.setArt(sport);
 		
 		//itemRepository.save(s5);
 		
-		Item s6 = new Item ("Bycicle Riding", 315, true);
+		Item s6 = itemRepository.findByBezeichnung("Bycicle Riding");
+		if (s6==null) s6 = new Item ("Bycicle Riding", 315, true);
 		s6.setArt(sport);
 		
 		//itemRepository.save(s6);
 		
-		Item s7 = new Item ("Soccer", 273, true);
+		Item s7 = itemRepository.findByBezeichnung("Soccer");
+		if (s7==null) s7 = new Item ("Soccer", 273, true);
 		s7.setArt(sport);
 		
 		//itemRepository.save(s7);
 		
-		Item s8 = new Item ("Icehockey", 325, true);
+		Item s8 = itemRepository.findByBezeichnung("Icehockey");
+		if (s8==null) s8 = new Item ("Icehockey", 325, true);
 		s8.setArt(sport);
 		
 		//itemRepository.save(s8);
 		
-		Item s9 = new Item ("Climbing", 400, true);
+		Item s9 = itemRepository.findByBezeichnung("Climbing");
+		if (s9==null) s9 = new Item ("Climbing", 400, true);
 		s9.setArt(sport);
 		
 		//itemRepository.save(s9);
 		
-		Item s10 = new Item ("Basketball", 300, true);
+		Item s10 = itemRepository.findByBezeichnung("Basketball");
+		if (s10==null) s10 = new Item ("Basketball", 300, true);
 		s10.setArt(sport);
 		
 		//itemRepository.save(s10);
@@ -429,102 +478,123 @@ public class InsertController {
 		
 		//Food
 		
-		Food apple = new Food (100);
+		
+		Food apple = foodRepository.findByItemBezeichnung("Apple");
+		if (apple==null) apple = new Food (100);
 		apple.setItem(f1);
 		
 		foodRepository.save(apple);
 		
-		Food beef = new Food (100);
+		Food beef = foodRepository.findByItemBezeichnung("Beef");
+		if (beef==null) beef = new Food (100);
 		beef.setItem(f2);
 		
 		foodRepository.save(beef);
 		
-		Food pork = new Food (100);
+		Food pork = foodRepository.findByItemBezeichnung("Pork");
+		if (pork==null) pork = new Food (100);
 		pork.setItem(f3);
 		
 		foodRepository.save(pork);
 		
-		Food lamb = new Food (100);
+		Food lamb = foodRepository.findByItemBezeichnung("Lamb");
+		if (lamb==null) lamb = new Food (100);
 		lamb.setItem(f4);
 		
 		foodRepository.save(lamb);
 		
-		Food chicken = new Food (100);
+		Food chicken = foodRepository.findByItemBezeichnung("Chicken");
+		if (chicken==null) chicken = new Food (100);
 		chicken.setItem(f5);
 		
 		foodRepository.save(chicken);
 		
-		Food pasta = new Food (100);
+		Food pasta = foodRepository.findByItemBezeichnung("Pasta");
+		if (pasta==null) pasta = new Food (100);
 		pasta.setItem(f6);
 		
 		foodRepository.save(pasta);
 		
-		Food rice = new Food (100);
+		Food rice = foodRepository.findByItemBezeichnung("Rice");
+		if (rice==null) rice = new Food (100);
 		rice.setItem(f7);
 		
 		foodRepository.save(rice);
 		
-		Food potatoes = new Food (100);
+		Food potatoes = foodRepository.findByItemBezeichnung("Potatoes");
+		if (potatoes==null) potatoes = new Food (100);
 		potatoes.setItem(f8);
 		
 		foodRepository.save(potatoes);
 		
-		Food whiteBread = new Food (100);
+		Food whiteBread = foodRepository.findByItemBezeichnung("White Bread");
+		if (whiteBread==null) whiteBread = new Food (100);
 		whiteBread.setItem(f9);
 		
 		foodRepository.save(whiteBread);
 		
-		Food darkBread = new Food (100);
+		Food darkBread = foodRepository.findByItemBezeichnung("Dark Bread");
+		if (darkBread==null) darkBread = new Food (100);
 		darkBread.setItem(f10);
 		
 		foodRepository.save(darkBread);
 		
-		Food egg = new Food (100);
+		Food egg = foodRepository.findByItemBezeichnung("Egg");
+		if (egg==null) egg = new Food (100);
 		egg.setItem(f11);
 		
 		foodRepository.save(egg);
 		
-		Food ham = new Food (100);
+		Food ham = foodRepository.findByItemBezeichnung("Ham");
+		if (ham==null) ham = new Food (100);
 		ham.setItem(f12);
 		
 		foodRepository.save(ham);
 		
-		Food fries = new Food (100);
+		Food fries = foodRepository.findByItemBezeichnung("French Fries");
+		if (fries==null) fries = new Food (100);
 		fries.setItem(f13);
 		
 		foodRepository.save(fries);
 		
-		Food hamburger = new Food (100);
+		Food hamburger = foodRepository.findByItemBezeichnung("Double Hamburger");
+		if (hamburger==null) hamburger = new Food (100);
 		hamburger.setItem(f14);
 		
 		foodRepository.save(hamburger);
 		
-		Food pizza = new Food (100);
+		Food pizza = foodRepository.findByItemBezeichnung("Pizza Margherita");
+		if (pizza==null) pizza = new Food (100);
 		pizza.setItem(f15);
 		
 		foodRepository.save(pizza);
 		
-		Food tomato = new Food (100);
+		Food tomato = foodRepository.findByItemBezeichnung("Tomato");
+		if (tomato==null) tomato = new Food (100);
 		tomato.setItem(f16);
 	
 		foodRepository.save(tomato);
 		
-		Food cheese = new Food (100);
+		Food cheese = foodRepository.findByItemBezeichnung("Cheese");
+		if (cheese==null) cheese = new Food (100);
 		cheese.setItem(f17);
 		
 		foodRepository.save(cheese);
 		
-		Food fish = new Food (100);
+		Food fish = foodRepository.findByItemBezeichnung("Fish");
+		if (fish==null) fish = new Food (100);
 		fish.setItem(f18);
 		
 		foodRepository.save(fish);
 		
-		Food salad = new Food (100);
+		Food salad = foodRepository.findByItemBezeichnung("Salad");
+		if (salad==null) salad = new Food (100);
 		salad.setItem(f19);
 		
 		foodRepository.save(salad);
 		
-		Food pear = new Food (100);
+		Food pear = foodRepository.findByItemBezeichnung("Pear");
+		if (pear==null) pear = new Food (100);
 		pear.setItem(f20);
 		
 		foodRepository.save(pear);
@@ -532,92 +602,110 @@ public class InsertController {
 		
 		//Drink
 		
-		Drink cocaCola = new Drink (100);
+		Drink cocaCola = drinkRepository.findByItemBezeichnung("Coca Cola");
+		if (cocaCola==null) cocaCola = new Drink (100);
 		cocaCola.setItem(d1);
 		
 		drinkRepository.save(cocaCola);
 		
-		Drink pepsiCola = new Drink (100);
+		Drink pepsiCola = drinkRepository.findByItemBezeichnung("Pepsi Cola");
+		if (pepsiCola==null) pepsiCola = new Drink (100);
 		pepsiCola.setItem(d2);
 		
 		drinkRepository.save(pepsiCola);
 		
-		Drink iceTea = new Drink (100);
+		Drink iceTea = drinkRepository.findByItemBezeichnung("Ice Tea");
+		if (iceTea==null) iceTea = new Drink (100);
 		iceTea.setItem(d3);
 		
 		drinkRepository.save(iceTea);
 		
-		Drink sprite = new Drink (100);
+		Drink sprite = drinkRepository.findByItemBezeichnung("Sprite");
+		if (sprite==null) sprite = new Drink (100);
 		sprite.setItem(d4);
 		
 		drinkRepository.save(sprite);
 		
-		Drink almdudler = new Drink (100);
+		Drink almdudler = drinkRepository.findByItemBezeichnung("Almdudler");
+		if (almdudler==null) almdudler = new Drink (100);
 		almdudler.setItem(d5);
 		
 		drinkRepository.save(almdudler);
 		
-		Drink orangeJ = new Drink (100);
+		Drink orangeJ = drinkRepository.findByItemBezeichnung("Orange Juice");
+		if (orangeJ==null) orangeJ = new Drink (100);
 		orangeJ.setItem(d6);
 		
 		drinkRepository.save(orangeJ);
 		
-		Drink apileJ = new Drink (100);
-		apileJ.setItem(d7);
+		Drink appleJ = drinkRepository.findByItemBezeichnung("Apple Juice");
+		if (appleJ==null) appleJ = new Drink (100);
+		appleJ.setItem(d7);
 		
-		drinkRepository.save(apileJ);
+		drinkRepository.save(appleJ);
 		
-		Drink redWine = new Drink (100);
+		Drink redWine = drinkRepository.findByItemBezeichnung("Red Wine");
+		if (redWine==null) redWine = new Drink (100);
 		redWine.setItem(d8);
 		
 		drinkRepository.save(redWine);
 		
-		Drink whiteWine = new Drink (100);
+		Drink whiteWine = drinkRepository.findByItemBezeichnung("White Wine");
+		if (whiteWine==null) whiteWine = new Drink (100);
 		whiteWine.setItem(d9);
 		
 		drinkRepository.save(whiteWine);
 		
-		Drink beer = new Drink (100);
+		Drink beer = drinkRepository.findByItemBezeichnung("Beer");
+		if (beer==null) beer = new Drink (100);
 		beer.setItem(d10);
 		
 		drinkRepository.save(beer);
 		
-		Drink cranberryJ = new Drink (100);
+		Drink cranberryJ = drinkRepository.findByItemBezeichnung("Cranberry Juice");
+		if (cranberryJ==null) cranberryJ = new Drink (100);
 		cranberryJ.setItem(d11);
 		
 		drinkRepository.save(cranberryJ);
 		
-		Drink tomatoJ = new Drink (100);
+		Drink tomatoJ = drinkRepository.findByItemBezeichnung("Tomato Juice");
+		if (tomatoJ==null) tomatoJ = new Drink (100);
 		tomatoJ.setItem(d12);
 		
 		drinkRepository.save(tomatoJ);
 		
-		Drink carrotsJ = new Drink (100);
+		Drink carrotsJ = drinkRepository.findByItemBezeichnung("Carrots Juice");
+		if (carrotsJ==null) carrotsJ = new Drink (100);
 		carrotsJ.setItem(d13);
 		
 		drinkRepository.save(carrotsJ);
 		
-		Drink gin = new Drink (100);
+		Drink gin = drinkRepository.findByItemBezeichnung("Gin");
+		if (gin==null) gin = new Drink (100);
 		gin.setItem(d14);
 		
 		drinkRepository.save(gin);
 		
-		Drink kakao = new Drink (100);
+		Drink kakao = drinkRepository.findByItemBezeichnung("Hot Chocolate");
+		if (kakao==null) kakao = new Drink (100);
 		kakao.setItem(d15);
 		
 		drinkRepository.save(kakao);
 		
-		Drink emotion = new Drink (100);
+		Drink emotion = drinkRepository.findByItemBezeichnung("Emotion");
+		if (emotion==null) emotion = new Drink (100);
 		emotion.setItem(d16);
 		
 		drinkRepository.save(emotion);
 		
-		Drink martini = new Drink (100);
+		Drink martini = drinkRepository.findByItemBezeichnung("Martini Bianco");
+		if (martini==null) martini = new Drink (100);
 		martini.setItem(d17);
 		
 		drinkRepository.save(martini);
 		
-		Drink radler = new Drink (100);
+		Drink radler = drinkRepository.findByItemBezeichnung("Radler");
+		if (radler==null) radler = new Drink (100);
 		radler.setItem(d18);
 		
 		drinkRepository.save(radler);
@@ -625,52 +713,62 @@ public class InsertController {
 				
 		//Sport
 		
-		Sport running = new Sport (30);
+		Sport running = sportRepository.findByItemBezeichnung("Running");
+		if (running==null) running = new Sport (30);
 		running.setItem(s1);
 		
 		sportRepository.save(running);
 		
-		Sport volley = new Sport (30);
+		Sport volley = sportRepository.findByItemBezeichnung("Volleyball");
+		if (volley==null) volley = new Sport (30);
 		volley.setItem(s2);
 		
 		sportRepository.save(volley);
 		
-		Sport tennis = new Sport (30);
+		Sport tennis = sportRepository.findByItemBezeichnung("Tennis");
+		if (tennis==null) tennis = new Sport (30);
 		tennis.setItem(s3);
 		
 		sportRepository.save(tennis);
 		
-		Sport swimming = new Sport (30);
+		Sport swimming = sportRepository.findByItemBezeichnung("Swimming");
+		if (swimming==null) swimming = new Sport (30);
 		swimming.setItem(s4);
 		
 		sportRepository.save(swimming);
 		
-		Sport walking = new Sport (30);
+		Sport walking = sportRepository.findByItemBezeichnung("Walking");
+		if (walking==null) walking = new Sport (30);
 		walking.setItem(s5);
 		
 		sportRepository.save(walking);
 		
-		Sport bike = new Sport (30);
+		Sport bike = sportRepository.findByItemBezeichnung("Bycicle Riding");
+		if (bike==null) bike = new Sport (30);
 		bike.setItem(s6);
 		
 		sportRepository.save(bike);
 		
-		Sport soccer = new Sport (30);
+		Sport soccer = sportRepository.findByItemBezeichnung("Soccer");
+		if (soccer==null) soccer = new Sport (30);
 		soccer.setItem(s7);
 		
 		sportRepository.save(soccer);
 		
-		Sport icehockey = new Sport (30);
-		icehockey.setItem(s8);
+		Sport iceHockey = sportRepository.findByItemBezeichnung("Icehockey");
+		if (iceHockey==null) iceHockey = new Sport (30);
+		iceHockey.setItem(s8);
 		
-		sportRepository.save(icehockey);
+		sportRepository.save(iceHockey);
 		
-		Sport climbing = new Sport (30);
+		Sport climbing = sportRepository.findByItemBezeichnung("Climbing");
+		if (climbing==null) climbing = new Sport (30);
 		climbing.setItem(s9);
 		
 		sportRepository.save(climbing);
 		
-		Sport basket = new Sport (30);
+		Sport basket = sportRepository.findByItemBezeichnung("Basketball");
+		if (basket==null) basket = new Sport (30);
 		basket.setItem(s10);
 		
 		sportRepository.save(basket);
