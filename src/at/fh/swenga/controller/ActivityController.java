@@ -55,8 +55,7 @@ public class ActivityController {
 	
 	private Authentication authentication;
 
-	List<Item> addedItems = new ArrayList<Item>();
-	List<Activity> addedActivities= new ArrayList<Activity>();
+	private List<Activity> addedActivities= new ArrayList<Activity>();
 
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "/activities", method = RequestMethod.GET)
@@ -72,6 +71,7 @@ public class ActivityController {
 		
 		List<Activity> userActivities = new ArrayList<Activity>();
 		userActivities.addAll(activityRepo.findByUserName(nickname));
+		
 		model.addAttribute("foods",  foods);
 		model.addAttribute("drinks",  drinks);
 		model.addAttribute("sports",  sports);
