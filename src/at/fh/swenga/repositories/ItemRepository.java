@@ -25,4 +25,6 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
 	@Transactional
 	List<Item> findByBezeichnung(String bezeichnung);
+	
+	Item findFirstByBezeichnung(String bezeichnung);
 }
