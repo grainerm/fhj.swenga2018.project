@@ -36,80 +36,48 @@
 	<div class="container" role="main">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-1" style="margin-top: 40px">
-				
-					<h1>Create new items</h1>
-					<div class="panel panel-default">
-						<div class="panel-heading overview">Food/Drink</div>
-						<!-- /.panel-heading -->
-						<div class="panel-body">
-						
+
+				<h1>Create new items</h1>
+				<div class="panel panel-default">
+					<div class="panel-heading overview">Food/Drink</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+
 						<div th:if="${success}" th:text="${success}"
-					class="alert alert-success" />
-				<div th:if="${error}" th:text="${error}" class="alert alert-danger" />
-							<form method=post role="form" th:action="@{/addItem}">
-                                            <div class="form-group">
-                                                <label class="control-label" >Name</label>
-                                                <input type="text" class="form-control" name="bezeichnung" >
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Calories</label>
-                                                <input type="number" class="form-control" name="kalorien">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Type</label>
-                                                <select class="form-control" name="type">
-                                                    <option th:each="itemType : ${itemTypes}"
-                                                    	th:text="${itemType} ? ${itemType.bezeichnung}"
-                                                    	th:value="${itemType} ? ${itemType.bezeichnung}">Beer</option>
-                                                </select>
-                                            </div>
-                                            <button type="submit" class="btn btn-success btn-md pull-right" style="margin: 5px 0 15px 0">
-							<i class="fa "></i> Create new item
-						</button>
-                                        </form>
-							<!-- /.table-responsive -->
+							class="alert alert-success" />
+						<div th:if="${error}" th:text="${error}"
+							class="alert alert-danger" />
+						<form method=post role="form" th:action="@{/addItem}">
+							<div class="form-group">
+								<label class="control-label">Name</label> <input type="text"
+									class="form-control" name="bezeichnung">
+							</div>
+							<div class="form-group">
+								<label class="control-label">Calories</label> <input
+									type="number" class="form-control" name="kalorien">
+							</div>
+							<div class="form-group">
+								<label>Type</label> <select class="form-control" name="type">
+									<option th:each="itemType : ${itemTypes}"
+										th:text="${itemType} ? ${itemType.bezeichnung}"
+										th:value="${itemType} ? ${itemType.bezeichnung}">Beer</option>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-success btn-md pull-right"
+								style="margin: 5px 0 15px 0">
+								<i class="fa "></i> Create new item
+							</button>
+						</form>
 
-						</div>
-						<!-- /.panel-body -->
-						
 					</div>
-					<!-- /.panel -->
-
-				
+				</div>
 			</div>
-
-
-			<div class="col-md-6 col-md-offset-1">
-				
-					
-			</div>
-			
-			
 		</div>
-		
-		
-		
-		<div class="col-md-5 pull-right" style="margin-right: -100px; margin-top:-650px">
-			
-					</div>
 
 
 		<!--  End of container -->
 		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
-<script>new Morris.Donut({
-	  // ID of the element in which to draw the chart.
-	  element: 'donut-chart',
-	  // Chart data records -- each entry in this array corresponds to a point on
-	  // the chart.
-	  data: [
-	    {label: "Calories left", value: 12},
-	    {label: "Calories Eaten", value: 30}
-	  ]
-	  
-	  
-	  
-	 
-	});</script>
+
 </html>
 
