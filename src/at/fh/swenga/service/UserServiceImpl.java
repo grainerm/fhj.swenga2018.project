@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService
 		user.setPasswort(passwordEncoder.encode(userDto.getPasswort()));
 		user.setVorname(userDto.getVorname());
 		user.setNachname(userDto.getNachname());
-		user.setAktiv(true);
+		user.setAktiv(false);
 		user.setRegDate(new Date());
 		user.setRole(roleRepo.findByBezeichnung("ROLE_USER"));
 		userRepo.save(user);

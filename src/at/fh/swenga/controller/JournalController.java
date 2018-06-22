@@ -3,6 +3,7 @@ package at.fh.swenga.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ public class JournalController {
 	@Autowired
 	private JournalRepository journalRepository;
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "/journal", method = RequestMethod.GET)
 	public String journal(Model model) {
 		List<JournalModel> entries = journalRepository.findAll();
@@ -26,6 +28,7 @@ public class JournalController {
 		return "journal";
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "/journal", method = RequestMethod.POST)
     public String addEntry( JournalModel journalModelForm, BindingResult bindingResult, Model model) 
 	{

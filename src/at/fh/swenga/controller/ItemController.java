@@ -1,6 +1,7 @@
 package at.fh.swenga.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -22,9 +23,10 @@ public class ItemController
 	@Autowired
 	ItemRepository itemRepo;
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@Transactional
 	@RequestMapping(value= { "/addItem" })
-	public String delete(Model model, @RequestParam(value="bezeichnung") String bezeichnung, @RequestParam(value="kalorien") int kalorien, @RequestParam(value="type") String type) 
+	public String addItem(Model model, @RequestParam(value="bezeichnung") String bezeichnung, @RequestParam(value="kalorien") int kalorien, @RequestParam(value="type") String type) 
 	{ 
 		
 		if(itemRepo.findByBezeichnung(bezeichnung).isEmpty())
@@ -37,6 +39,7 @@ public class ItemController
 		return "forward:/items";
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value= { "/items" }, method=RequestMethod.GET)
 	public String items(Model model) 
 	{ 

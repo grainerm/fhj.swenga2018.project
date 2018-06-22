@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -51,27 +52,35 @@ public class ActivityController {
 
 	@Autowired
 	private ActivityRepository activityRepo;
+	
+	private Authentication authentication;
 
 	List<Item> addedItems = new ArrayList<Item>();
 	List<Activity> addedActivities= new ArrayList<Activity>();
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "/activities", method = RequestMethod.GET)
 	public String activities(Model model) {
 
 
+		authentication = SecurityContextHolder.getContext().getAuthentication();
+		String nickname = authentication.getName();
+		
 		List<Food> foods = foodRepo.findAll();
 		List<Drink> drinks = drinkRepo.findAll();
 		List<Sport> sports = sportRepo.findAll();
-
+		
+		List<Activity> userActivities = new ArrayList<Activity>();
+		userActivities.addAll(activityRepo.findByUserName(nickname));
 		model.addAttribute("foods",  foods);
 		model.addAttribute("drinks",  drinks);
 		model.addAttribute("sports",  sports);
-		model.addAttribute("addedActivities",  addedActivities);
+		model.addAttribute("addedActivities",  userActivities);
 		return "activities";
 	}
 
 
-
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = { "/add" })
 	public String find(Model model, @RequestParam(value="bezeichnung") String bezeichnung, 
 			@RequestParam(value="menge") int menge) 
@@ -80,7 +89,7 @@ public class ActivityController {
 		List<Drink> drinks = drinkRepo.findAll();
 		List<Sport> sports = sportRepo.findAll();
 
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		authentication = SecurityContextHolder.getContext().getAuthentication();
 		String nickname = authentication.getName();
 		
 		Item item = itemRepo.findByBezeichnung(bezeichnung).get(0);
