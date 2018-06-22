@@ -35,7 +35,11 @@ public class Sport implements java.io.Serializable {
 		super();
 		this.dauer = dauer;
 	}
-
+	public Sport(int dauer, Item item) {
+		super();
+		this.dauer = dauer;
+		this.item = item;
+	}
 	public int getSportID() {
 		return sportID;
 	}

@@ -42,6 +42,11 @@
 					<div class="panel-heading overview">Food/Drink</div>
 					<!-- /.panel-heading -->
 					<div class="panel-body">
+
+						<div th:if="${success}" th:text="${success}"
+							class="alert alert-success" />
+						<div th:if="${error}" th:text="${error}"
+							class="alert alert-danger" />
 						<form method=post role="form" th:action="@{/addItem}">
 							<div class="form-group">
 								<label class="control-label">Name</label> <input type="text"
@@ -63,6 +68,7 @@
 								<i class="fa "></i> Create new item
 							</button>
 						</form>
+
 					</div>
 				</div>
 			</div>
@@ -72,21 +78,6 @@
 		<!--  End of container -->
 		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
-<script>
-	new Morris.Donut({
-		// ID of the element in which to draw the chart.
-		element : 'donut-chart',
-		// Chart data records -- each entry in this array corresponds to a point on
-		// the chart.
-		data : [ {
-			label : "Calories left",
-			value : 12
-		}, {
-			label : "Calories Eaten",
-			value : 30
-		} ]
 
-	});
-</script>
 </html>
 

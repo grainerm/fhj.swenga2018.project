@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import at.fh.swenga.model.Drink;
+import at.fh.swenga.model.Food;
 import at.fh.swenga.model.Item;
+import at.fh.swenga.model.Sport;
 import at.fh.swenga.model.User;
+import at.fh.swenga.repositories.DrinkRepository;
+import at.fh.swenga.repositories.FoodRepository;
 import at.fh.swenga.repositories.ItemRepository;
+import at.fh.swenga.repositories.SportRepository;
 import at.fh.swenga.repositories.UserRepository;
 
 @Controller
@@ -22,6 +28,15 @@ public class AdminController
 
 	@Autowired
 	ItemRepository itemRepo;
+	
+	@Autowired
+	FoodRepository foodRepo;
+	
+	@Autowired
+	DrinkRepository drinkRepo;
+	
+	@Autowired
+	SportRepository sportRepo;
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = { "/adminSettings" })
@@ -75,6 +90,21 @@ public class AdminController
 		if(!itemRepo.findByBezeichnung(bezeichnung).isEmpty())
 		{
 			Item item = itemRepo.findByBezeichnung(bezeichnung).get(0);
+			if(item.getArt().getBezeichnung().equals("Food"))
+			{
+				Food newFood = new Food(item, 100);
+				foodRepo.save(newFood);
+			}
+			else if(item.getArt().getBezeichnung().equals("Drink"))
+			{
+				Drink newDrink = new Drink(item, 100);
+				drinkRepo.save(newDrink);
+			}
+			else
+			{
+				Sport newSport = new Sport(30, item);
+				sportRepo.save(newSport);
+			}
 			item.setValidiert(true);
 		}
 		return "forward:/adminSettings";
@@ -85,6 +115,8 @@ public class AdminController
 	@RequestMapping(value="/deleteItem", method = RequestMethod.GET)
 	public String deleteItem(Model model, @RequestParam(value="bezeichnung") String bezeichnung) 
 	{ 
+		
+		
 		itemRepo.deleteByName(bezeichnung);
 		return "forward:/adminSettings";
 	}

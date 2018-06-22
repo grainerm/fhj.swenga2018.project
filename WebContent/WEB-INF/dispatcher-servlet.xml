@@ -81,9 +81,7 @@
 					data. create-drop: drop the schema at the end of the session. -->
 
 
-
-
-			
+	
 
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
