@@ -46,141 +46,133 @@
 					<div class="panel-heading overview">What do you have eaten so
 						far?</div>
 					<div class="panel-body">
-					<form method="post" th:action="@{/add}">
-						
+						<form method="post" th:action="@{/add}">
+
 							<div class="form-group">
-							<select class="form-control" name="bezeichnung">
-							<option th:each="activities : ${foods}" 
+								<select class="form-control" name="bezeichnung">
+									<option th:each="activities : ${foods}"
 										th:text="${activities} ? ${activities.item.bezeichnung}"
-										th:value="${activities} ? ${activities.item.bezeichnung}" >
-										</option>		
-						</select>
-						</div>
-						<div class="form-group">
-								<label>Sum (1 unit: 100g)</label> 
-								<input class="form-control" type="text"
-									 name="menge"
-										th:value="${activities} ? ${activities.menge}" required
-										autofocus>
+										th:value="${activities} ? ${activities.item.bezeichnung}">
+									</option>
+								</select>
 							</div>
-						<button type="submit"
+							<div class="form-group">
+								<label>Sum (1 unit: 100g)</label> <input class="form-control"
+									type="text" name="menge"
+									th:value="${activities} ? ${activities.menge}" required
+									autofocus>
+							</div>
+							<button type="submit"
 								class="btn btn-secondary btn-success btn-md pull-right"
 								style="margin: 5px 0 15px 0">
 								<i class="fa "></i> Add to list
 							</button>
-							</form>
+						</form>
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="col-md-8 col-md-offset-1" style="margin-top: 20px">
 				<div class="panel panel-default">
 					<div class="panel-heading overview">What did you drink?</div>
 
 					<div class="panel-body">
-					<form method="post" th:action="@{/add}">
-						
+						<form method="post" th:action="@{/add}">
+
 							<div class="form-group">
-							<select class="form-control" name="bezeichnung">
-							<option th:each="activities : ${drinks}" 
+								<select class="form-control" name="bezeichnung">
+									<option th:each="activities : ${drinks}"
 										th:text="${activities} ? ${activities.item.bezeichnung}"
-										th:value="${activities} ? ${activities.item.bezeichnung}" >
-										</option>		
-						</select>
-						</div>
-						<div class="form-group">
-								<label>Sum (1 unit: 100ml)</label> 
-								<input class="form-control" type="text"
-									 name="menge"
-										th:value="${activities} ? ${activities.menge}" required
-										autofocus>
+										th:value="${activities} ? ${activities.item.bezeichnung}">
+									</option>
+								</select>
 							</div>
-						<button type="submit"
+							<div class="form-group">
+								<label>Sum (1 unit: 100ml)</label> <input class="form-control"
+									type="text" name="menge"
+									th:value="${activities} ? ${activities.menge}" required
+									autofocus>
+							</div>
+							<button type="submit"
 								class="btn btn-secondary btn-success btn-md pull-right"
 								style="margin: 5px 0 15px 0">
 								<i class="fa "></i> Add to list
 							</button>
-							</form>
+						</form>
 					</div>
 				</div>
 			</div>
 
 
-		<div class="col-md-8 col-md-offset-1">
+			<div class="col-md-8 col-md-offset-1">
 
-			<div class="panel panel-default">
-					<div class="panel-heading overview">What kind of sports did you do?</div>
+				<div class="panel panel-default">
+					<div class="panel-heading overview">What kind of sports did
+						you do?</div>
 					<div class="panel-body">
-					<form method="post" th:action="@{/add}">
-						
+						<form method="post" th:action="@{/add}">
+
 							<div class="form-group">
-							<select class="form-control" name="bezeichnung">
-							<option th:each="activities : ${sports}" 
+								<select class="form-control" name="bezeichnung">
+									<option th:each="activities : ${sports}"
 										th:text="${activities} ? ${activities.item.bezeichnung}"
-										th:value="${activities} ? ${activities.item.bezeichnung}" >
-										</option>		
-						</select>
-						</div>
-						<div class="form-group">
-								<label>Sum (1 unit: 30 min)</label> 
-								<input class="form-control" type="text"
-									 name="menge"
-										th:value="${activities} ? ${activities.menge}" required
-										autofocus>
+										th:value="${activities} ? ${activities.item.bezeichnung}">
+									</option>
+								</select>
 							</div>
-						<button type="submit"
+							<div class="form-group">
+								<label>Sum (1 unit: 30 min)</label> <input class="form-control"
+									type="text" name="menge"
+									th:value="${activities} ? ${activities.menge}" required
+									autofocus>
+							</div>
+							<button type="submit"
 								class="btn btn-secondary btn-success btn-md pull-right"
 								style="margin: 5px 0 15px 0">
 								<i class="fa "></i> Add to list
 							</button>
-							</form>
+						</form>
 					</div>
 				</div>
-		</div>
+			</div>
+			<div class="col-md-8 col-md-offset-1">
+				<div class="panel panel-default">
+					<div class="panel-heading">Overview</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<form role="form" th:action="@{/activities}" method="get">
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Activity/Food</th>
+											<th>kCl</th>
 
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="activity : ${addedActivities}">
+											<td th:text="${activity} ? ${activity.item.bezeichnung}"></td>
+											<td th:text="${activity} ? ${activity.kalorienGesamt}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 
-
-
-
-
-		<div class="col-md-8 col-md-offset-1">
-			<div class="panel panel-default">
-				<div class="panel-heading">Overview</div>
-				<!-- /.panel-heading -->
-				<div class="panel-body">
-				<form role="form" th:action="@{/activities}" method="get">
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Activity/Food</th>
-									<th>kCl</th>
-									
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="activity : ${addedActivities}">
-									<td th:text="${activity} ? ${activity.item.bezeichnung}"></td>
-									<td th:text="${activity} ? ${activity.kalorienGesamt}"></td>
-								</tr>
-							</tbody>
-						</table>
+							<button type="submit" class="btn btn-success btn-md pull-right"
+								style="margin: 5px 0 15px 0">
+								<i class="fa "></i>Calculate
+							</button>
+						</form>
 					</div>
-					
-				<button type="submit" class="btn btn-success btn-md pull-right"
-					style="margin: 5px 0 15px 0">
-					<i class="fa "></i>Calculate
-				</button>
-				</form>
 				</div>
 			</div>
 		</div>
-</div>
 
 
 
-	<!--  End of container -->
-	<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
+		<!--  End of container -->
+		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
 
 
