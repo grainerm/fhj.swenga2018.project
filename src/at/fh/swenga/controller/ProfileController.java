@@ -3,6 +3,7 @@ package at.fh.swenga.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +27,7 @@ public class ProfileController
 
 	private Authentication authentication;
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = { "/settings" })
 	public String settings(Model model) 
 	{ 
@@ -45,6 +47,7 @@ public class ProfileController
 		return "settings"; 
 	}
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "/changeSettings", method = RequestMethod.POST)
 	@Transactional
 	public String changeSettings(@Valid User newUser, BindingResult bindingResult, RedirectAttributes attributes, 
@@ -95,6 +98,7 @@ public class ProfileController
 		return "error";
 	}
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value="/deleteUser")
 	public String delete(Model model) 
 	{ 

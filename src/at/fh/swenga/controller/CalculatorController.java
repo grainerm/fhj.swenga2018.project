@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -249,18 +250,21 @@ private  int  calulcateCaloriesPerDay(User user) {
 	return age;
 }
 
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = { "/activities" })
 	public String activities(Model model) { 
  
 		return "activities";
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = { "/items" })
 	public String items(Model model) { 
  
 		return "items";
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = { "/journal" })
 	public String journal(Model model) { 
 

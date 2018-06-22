@@ -16,7 +16,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                            
-                            <li><a th:href="@{/settings}" ><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            <li><a th:href="@{/settings}" sec:authorize="hasAnyRole('ADMIN', 'USER')"><i class="fa fa-gear fa-fw"></i> Settings</a>
                             </li>
                             <li class="divider"></li>
                             <li><a th:href="@{/login}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -34,16 +34,16 @@
                         <a th:href="@{/}" class="active"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a th:href="@{/activities}" class="active"><i class="fa fa-dashboard fa-fw"></i>Activities</a>
+                        <a th:href="@{/activities}" sec:authorize="hasAnyRole('ADMIN', 'USER')" class="active"><i class="fa fa-dashboard fa-fw"></i>Activities</a>
                     </li>
                     <li>
-                        <a th:href="@{/journal}" class="active"><i class="fa fa-dashboard fa-fw"></i>Journal</a>
+                        <a th:href="@{/journal}" sec:authorize="hasAnyRole('ADMIN', 'USER')" class="active"><i class="fa fa-dashboard fa-fw"></i>Journal</a>
                     </li>
                     <li>
                         <a th:href="@{/guestbook}" class="active"><i class="fa fa-dashboard fa-fw"></i>Guestbook</a>
                     </li>
                     <li>
-                        <a th:href="@{/items}" class="active"><i class="fa fa-dashboard fa-fw"></i>Items</a>
+                        <a th:href="@{/items}" sec:authorize="hasAnyRole('ADMIN', 'USER')" class="active"><i class="fa fa-dashboard fa-fw"></i>Items</a>
                     </li>
                     <li>
                         <a th:href="@{/adminSettings}" sec:authorize="hasRole('ADMIN')" class="active"><i class="fa fa-dashboard fa-fw"></i>Admin Settings</a>
