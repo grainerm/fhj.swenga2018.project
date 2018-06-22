@@ -68,7 +68,7 @@ public class CalculatorController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		nickName = authentication.getName();
 		User user = userRepo.findByName(nickName);
-		float bmi = -1;
+		double bmi = -1;
 		//System.out.println("user:"+ user.getVorname());
 		//System.out.println("geschlecht|"+user.getGeschlecht()+"|");
 		
@@ -78,8 +78,12 @@ public class CalculatorController {
 		} else {
 			// calculate BMI
 			// Körpergewicht in Kilogramm geteilt durch Körpergröße in Metern zum Quadrat
-	        
-			bmi = user.getGewicht() / (user.getGroesse()^2);
+	        double groesse =Math.pow((user.getGroesse()/100.0),2.0);
+	        System.out.println("groesse"+groesse);
+			bmi = user.getGewicht() / groesse;
+			bmi = bmi * 100;
+			bmi = Math.round(bmi);
+			bmi = bmi / 100;
 			System.out.println("bmi"+bmi);
 		}
 		// if user has set no weight - send it to the settings page
@@ -200,19 +204,22 @@ private  int  calulcateCaloriesPerDay(User user) {
 			for(StandardKalorienVerbrauch skv : skvList) {
 				int unten = skv.getVonAlter();
 				int oben = skv.getBisAlter();
-				
-				if(age <= oben && age >= unten) {
+				boolean flag = true;
+				if(age <= oben && age >= unten && flag) {
 					caloriesPerDay = skv.getKalorien();
-					break;
+					flag = false;
 				}
 			}
 		}
 	}
 	
 	if(caloriesPerDay > 0) {
+		System.out.println("cal: " + caloriesPerDay);
+		System.out.println("advanced calculation");
 		// we have values in SKV and found an entry
 		// max +/- 500 Kcal -> if diff is more than 50kg
 		int diff = zielgewicht - user.getGewicht();
+		System.out.println("diff: " + diff);
 		if(diff > 0) {
 			// user want to get more weight
 			if((diff)*10 > 500) {
