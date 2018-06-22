@@ -60,6 +60,15 @@ public class Item implements java.io.Serializable {
 		this.validiert = validiert;
 	}
 
+	
+	public boolean isValidiert() {
+		return validiert;
+	}
+
+	public void setValidiert(boolean validiert) {
+		this.validiert = validiert;
+	}
+
 	public int getItemID() {
 		return itemID;
 	}

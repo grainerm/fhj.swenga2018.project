@@ -98,7 +98,60 @@
 					</tbody>
 				</table>
 			</div>
-			
+				<div class="col-md-10 col-md-offset-1">
+		<h2>Items</h2>
+				<table data-toggle="table" class="table table-striped">
+					<thead>
+						<tr>
+							<th data-sortable="true">Name</th>
+							<th data-sortable="true">Type</th>
+							<th data-sortable="true">Calories</th>
+							<th sec:authorize="hasRole('ADMIN')">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!--  list all items ----------------------------------------------------------- -->
+						<tr th:each="item : ${items}">
+							<td th:text="${item.bezeichnung}"></td>
+							<td th:text="${item.art.bezeichnung}"></td>
+							<td th:text="${item.kalorien}"></td>
+							<td>
+								<form
+									th:action="@{/validate(bezeichnung=${item.bezeichnung})}"
+									method="post" role="form">
+									<button class="btn btn-xs btn-info" type="submit">Validate</button>
+
+									<a th:href="@{/deleteItem(bezeichnung=${item.bezeichnung})}"
+										class="btn btn-xs btn-danger"> <span
+										class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										Delete
+									</a>
+								</form>
+							</td>
+							<!-- form th:action="@{/deleteSelectedUser(name=${user.name})}"
+									role="form">
+									<button class="btn btn-xs btn-danger " type="submit">Delete</button>
+
+								</form-->
+
+
+							<!--a th:href="${user.aktiv==false} ? @{/activateUser(name=${user.name})} : @{/lockUser(name=${user.name})}" th:text="${user.aktiv==false} ? Activate : Lock"  class="btn btn-xs btn-info">
+									<span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>
+									Activate
+								</a>
+
+								<a th:href="@{/deleteSelectedUser(name=${user.name})}"  class="btn btn-xs btn-danger">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									Delete
+								</a-->
+
+
+						
+						</tr>
+						<!--  list all items ----------------------------------------------------------- -->
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 
