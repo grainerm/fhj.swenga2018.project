@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import at.fh.swenga.model.Art;
+import at.fh.swenga.model.Drink;
+import at.fh.swenga.model.Food;
 import at.fh.swenga.model.Item;
+import at.fh.swenga.model.Sport;
 import at.fh.swenga.repositories.ArtRepository;
+import at.fh.swenga.repositories.DrinkRepository;
+import at.fh.swenga.repositories.FoodRepository;
 import at.fh.swenga.repositories.ItemRepository;
+import at.fh.swenga.repositories.SportRepository;
 
 @Controller
 public class ItemController 
@@ -22,6 +27,15 @@ public class ItemController
 	
 	@Autowired
 	ItemRepository itemRepo;
+	
+	@Autowired
+	FoodRepository foodRepo;
+	
+	@Autowired
+	DrinkRepository drinkRepo;
+	
+	@Autowired
+	SportRepository sportRepo;
 
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@Transactional
@@ -34,19 +48,20 @@ public class ItemController
 			Item item = new Item(bezeichnung, kalorien, false);
 			item.setArt(artRepo.findByBezeichnung(type));
 			itemRepo.save(item);
+			
+			model.addAttribute("success", "Item successfully added");
 		}
+		else
+			model.addAttribute("error", "Item already existing");
 		
-		return "forward:/items";
+		model.addAttribute("itemTypes", artRepo.findAll());
+		return "items";
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value= { "/items" }, method=RequestMethod.GET)
 	public String items(Model model) 
 	{ 
-		for(Art art : artRepo.findAll())
-		{
-			System.out.println(art.getBezeichnung());
-		}
 		model.addAttribute("itemTypes", artRepo.findAll());
 
 		return "items";

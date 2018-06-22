@@ -79,9 +79,8 @@ public class Drink implements java.io.Serializable {
 		return true;
 	}
 
-	public Drink(int drinkID, Item item, int menge) {
+	public Drink(Item item, int menge) {
 		super();
-		this.drinkID = drinkID;
 		this.item = item;
 		this.menge = menge;
 	}

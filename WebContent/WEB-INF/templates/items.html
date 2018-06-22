@@ -42,6 +42,10 @@
 						<div class="panel-heading overview">Food/Drink</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
+						
+						<div th:if="${success}" th:text="${success}"
+					class="alert alert-success" />
+				<div th:if="${error}" th:text="${error}" class="alert alert-danger" />
 							<form method=post role="form" th:action="@{/addItem}">
                                             <div class="form-group">
                                                 <label class="control-label" >Name</label>
