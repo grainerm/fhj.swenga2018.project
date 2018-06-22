@@ -23,6 +23,7 @@ public class AdminController
 	@Autowired
 	ItemRepository itemRepo;
 
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = { "/adminSettings" })
 	public String adminSettings(Model model) 
 	{ 
