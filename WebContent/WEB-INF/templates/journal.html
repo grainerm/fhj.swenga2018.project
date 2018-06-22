@@ -37,13 +37,12 @@
 	<div class="container" role="main">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-3" style="margin-top: 40px">
-			<h1>Journal</h1>
+				<h1>Journal</h1>
 				<div class="panel-body message">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<i class="fa fa-clock-o fa-fw"></i> Create a new note
 						</div>
-						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<form role="form" th:action="@{/journal}" th:object="${journal}"
 								method="post">
@@ -66,39 +65,29 @@
 				</div>
 
 			</div>
-			<div class="col-md-8 col-md-offset-3" style="margin-top:250px;">
-
-				
-
-				<!-- /.panel-heading -->
+			<div class="col-md-8 col-md-offset-3" style="margin-top: 250px;">
 				<div class="panel-body calories">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<i class="fa fa-clock-o fa-fw"></i> Notes
 						</div>
-						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<form role="form" th:action="@{/guestbook}" method="get">
-								<!--div class="chat-body clearfix chat" th:each="journal : ${entries}"-->
 								<div class="chat-body clearfix chat"
 									th:each="journal,iterStat : ${entries}">
-
 									<ul class="timeline">
-
 										<li th:if="${iterStat.index}%2 == 0">
 											<div class="timeline-panel">
 												<div class="timeline-heading">
 													<h4 class="timeline-title">
 														<span th:text="${journal} ? ${journal.headline}"></span>
 													</h4>
-
 													<p></p>
 												</div>
 												<div class="timeline-body">
 													<p th:text="${journal} ? ${journal.text}"></p>
 												</div>
 											</div>
-
 										</li>
 										<li th:if="${iterStat.index}%2 != 0" class="timeline-inverted">
 											<div class="timeline-panel">
@@ -114,15 +103,11 @@
 										</li>
 									</ul>
 								</div>
-
 							</form>
 						</div>
-						<!-- /.panel-body -->
 					</div>
-					<!-- /.panel -->
 				</div>
 			</div>
-
 		</div>
 	</div>
 
