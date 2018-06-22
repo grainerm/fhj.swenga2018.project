@@ -17,4 +17,5 @@ public interface FoodRepository extends JpaRepository<Food, Integer> {
 	@Transactional
 	List<Food> findByItemBezeichnung(String bezeichnung);
 	
+	Food findFirstByItemBezeichnung(String bezeichnung);
 }
