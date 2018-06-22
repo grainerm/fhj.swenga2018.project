@@ -107,8 +107,8 @@
 		<div th:replace="~{includes/bootstrap :: bootstrapJS}" />
 </body>
 <script>
-var perDay = document.getElementById('perDay').value;
-var eatenToday = document.getElementById('eatenDay').value;
+var perDay = document.getElementById('perDay').getAttribute('value');
+var eatenToday = document.getElementById('eatenDay').getAttribute('value');
 var left = perDay - eatenToday;
 new Morris.Donut({
 	  // ID of the element in which to draw the chart.
