@@ -21,15 +21,18 @@ The CC is an application to help you reach a certain goal concerning the weight 
         
 ### Setup Guide
 
-    Download project source from here
-    Create New dynamic Web project eclipse project, convert to maven project and import sources
+    Download project source from github Repo
+    Create New dynamic Web project eclipse project, convert to maven project and import sources (or just import the existing project)
     Setup db.properties in folder src (db-connection-information)
     Change jpa-properties in dispatcher-servlet.xml to required attributes (validate, update, or create-drop)
-    Setup your eclipse project (Server, Runtime, ...)
+    Setup your eclipse project (Server - (target runtime) , and correct java build path if necessary )
     Publish project to Tomcat and start Tomcat (8.5)
     Open Web application.
     Press on Button "Fill Database" to fill the Database with required data
     Login credentials: admin/password, user/password, guest/password
     Fill in the personel Settings so you can use full range of possibilities in the web application
+    	- first settings
+    	- then activities
+    	- check activities at dashboard (dashboard view only possible if settings are set - otherwise no calculation possible)
     Have a lot of fun and reach your goal with the Calories Calculator
 
